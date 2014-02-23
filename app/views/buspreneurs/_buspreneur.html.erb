@@ -1,5 +1,8 @@
 <li>
-  <%= content_tag :b, buspreneur.name %>
-  <%= buspreneur.username %>
-  &lt;<%= buspreneur.email %>&gt;
+  <%= link_to buspreneur do %>
+    <%= content_tag :b, buspreneur.name %>
+    <%= buspreneur.username %>
+    &lt;<%= buspreneur.email %>&gt;
+  <% end %>
+  (<%= buspreneur.team_name %>)
 </li>

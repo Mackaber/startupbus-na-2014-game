@@ -20,7 +20,7 @@ class Omniauthable < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create.tap do |omniauthable|
+    find_or_create_by(uid: auth.uid, provider: auth.provider) do |omniauthable|
       omniauthable.type = "Investor"
       omniauthable.provider = auth.provider
       omniauthable.uid = auth.uid

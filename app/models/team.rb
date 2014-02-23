@@ -1,5 +1,7 @@
 class Team < ActiveRecord::Base
 
+  delegate :name, to: :bus, prefix: true, allow_nil: false
+
   validates :name, :website, :twitter_handle, :github_url, :facebook_url,
             :uniqueness => true
   validates :description, :presence => true
@@ -19,7 +21,7 @@ class Team < ActiveRecord::Base
   #end
 
   def funding
-    0
+    @funding ||= investments.pluck(:amount).reduce(:+)
   end
 
   def score

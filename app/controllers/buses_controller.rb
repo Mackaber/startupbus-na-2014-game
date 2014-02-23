@@ -4,6 +4,10 @@ class BusesController < ApplicationController
     @bus = Bus.new
   end
 
+  def show
+    @bus = Bus.find(params[:id])
+  end
+
   def index
     @buses = Bus.includes(:teams).all
   end
@@ -20,6 +24,6 @@ class BusesController < ApplicationController
   private
 
   def bus_params
-    params.require(:bus).permit(:name, :ranking, :conductor_id) 
+    params.require(:bus).permit(:name, :ranking, :conductor_id)
   end
 end
