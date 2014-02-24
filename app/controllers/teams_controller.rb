@@ -8,6 +8,9 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
 
+  def edit
+  end
+
   def index
     @teams = Team.all
   end
