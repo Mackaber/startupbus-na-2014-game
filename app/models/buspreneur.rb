@@ -6,6 +6,8 @@ class Buspreneur < Omniauthable
   delegate :name, to: :bus, prefix: true, allow_nil: true
 
   scope :pending, where(approved_at: nil)
+  scope :approved, where("approved_at IS NOT NULL")
+  scope :approved_without_team, ->(user) { approved.where("attachable_id IS NULL OR attachable_id = ?", user.id) }
 
   def approved?
     approved_at.present?
@@ -22,5 +24,9 @@ class Buspreneur < Omniauthable
 
   def team=(team)
     self.attachable = team
+  end
+
+  def to_s
+    "#{name} (#{username}) <#{email}>"
   end
 end

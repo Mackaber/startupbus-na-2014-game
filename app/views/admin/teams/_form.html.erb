@@ -1,0 +1,17 @@
+<%= semantic_form_for [:admin, @team] do |f| %>
+  <%= f.inputs "Details" do %>
+    <%= f.input(:name) %>
+    <%= f.input(:website) %>
+    <%= f.input(:github_url) %>
+    <%= f.input(:twitter_handle) %>
+    <%= f.input(:facebook_url) %>
+    <%= f.input(:description) %>
+    <%= f.input(:buspreneurs, as: :select, multiple: true,
+      collection: options_from_collection_for_select(
+        Buspreneur.approved_without_team(@team), :id, :email, @team.buspreneur_ids
+      )
+    ) %>
+  <% end %>
+
+  <%= f.actions %>
+<% end %>
