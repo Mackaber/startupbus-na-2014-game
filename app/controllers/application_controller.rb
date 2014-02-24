@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
     current_omniauthable
   end
 
-  def access_denied
-    render text: "HELLO"
+  def access_denied(exception)
+    redirect_to root_path, alert: exception.message
   end
 
-  def authenticate_omniauthable!
-    raise "SHIT"
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
   end
 end

@@ -2,16 +2,29 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.admin?
-      can :manage, :all
-    else
-      can :read, :all
-
-      can :show, Buspreneur do |buspreneur|
-        user == buspreneur && buspreneur.approved?
+    if user.present?
+      if user.admin?
+        admin_abilities
+      else
+        logged_in_abilities
       end
-
+    else
+      visitor_abilities
     end
+  end
+
+  def admin_abilities
+    can :manage, :all
+  end
+
+  def logged_in_abilities
+    can :read, Buspreneur do |buspreneur|
+      user == buspreneur && buspreneur.approved?
+    end
+  end
+
+  def visitor_abilities
+  end
 
     # Define abilities for the passed in user here. For example:
     #
@@ -39,5 +52,4 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-  end
 end
