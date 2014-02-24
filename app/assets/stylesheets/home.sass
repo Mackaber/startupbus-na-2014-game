@@ -22,7 +22,7 @@
 	right: 0
 	width: 50px
 
-.sb-team-summary
+.sb-item-summary
 	position: relative
 
 .sb-funding-amount
@@ -31,6 +31,26 @@
 
 .sb-collection-title
 	font-size: $font-size-h1
-	text-align: center
-	border-top: 1px solid $gray
-	padding: $padding-small-horizontal 0
+
+
+
+// Single bus pages
+
+.sb-bus-header-img
+	border: 3px solid $brand-primary
+
+.sb-buspreneur
+	.caption
+		position: absolute
+		bottom: 0
+		left: 0
+		width: 100%
+		background-color: rgba($gray-darker, 0.3)
+		color: #fff
+
+		a 
+			color: lighten($brand-info, 30%)
+	&:hover
+		background-color: $brand-info
+	
+
