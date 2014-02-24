@@ -2,52 +2,150 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>The Game | Startup Bus 2014</title>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+	<title>The Game | Startup Bus 2014</title>
+	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+	
+	<!-- TODO: Should this be included elsewhere? -->
+	<link href='http://fonts.googleapis.com/css?family=Exo:400,600' rel='stylesheet' type='text/css'>
+
 </head>
 
 <body>
-  <nav>
-    <div class="container">
-      <div class="navbar-header">
-        <%= link_to "The Game", root_path, class: "navbar-brand" %>
-        <p class="navbar-text">North American 2014 Bus</p>
-      </div>
+	<nav>
+		<div class="container">
+			<div class="navbar-header">
+				<%= link_to "The Game", root_path, class: "navbar-brand" %>
+				<p class="navbar-text">North American 2014 Bus</p>
+			</div>
 
-      <ul class="nav navbar-nav navbar-right">
-      <% if omniauthable_signed_in? %>
-        <li>
-          <p class="navbar-text">Welcome, <%= current_omniauthable.name %>!</p>
-        </li>
-        <li>
-          <%= link_to 'Dashboard', root_path %>
-        </li>
-        <li>
-          <%= link_to "Sign Out", destroy_omniauthable_session_path, :method => :delete %>
-        </li>
-      <% else %>
-        <a href="<%= omniauthable_omniauth_authorize_path(:facebook) %>" class="btn btn-default btn-facebook"><i class="fa fa-facebook"></i> Sign In</a>
-      <% end %>
-      </ul>
-    </div>
-  </nav>
+			<ul class="nav navbar-nav navbar-right">
+			<% if omniauthable_signed_in? %>
+				<li>
+					<p class="navbar-text">Welcome, <%= current_omniauthable.name %>!</p>
+				</li>
+				<li>
+					<%= link_to 'Dashboard', root_path %>
+				</li>
+				<li>
+					<%= link_to "Sign Out", destroy_omniauthable_session_path, :method => :delete %>
+				</li>
+			<% else %>
+				<a href="<%= omniauthable_omniauth_authorize_path(:facebook) %>" class="btn btn-default btn-facebook"><i class="fa fa-facebook"></i> Sign In</a>
+			<% end %>
+			</ul>
+		</div>
+	</nav>
 
-  <div class="container">
-    <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-    <% end %>
+	<div class="container">
 
-    <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+		<div class="jumbotron">
+			<% if notice %>
+			<p class="alert alert-success"><%= notice %></p>
+			<% end %>
 
-    <%= yield %>
-  </div>
+			<% if alert %>
+			<p class="alert alert-danger"><%= alert %></p>
+			<% end %>
+
+			<%= yield %>
+
+			<!-- NOTE: only with success message -->
+			<p class="lead">...and what do investors do? Invest!</p>
+			<p class="lead">Look through the companies below and put your money where your mouth is.</p>
+		</div>
+		
+		<div class="clearfix">
+
+			<h2 class="sb-collection-title">Top teams</h2>
+				
+			<div class="row">
+			
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail sb-team-summary">
+						<%= image_tag image_path('bus-icons/cali.png'), :class => 'sb-bus-icon' %>
+						<img src="http://placehold.it/600x300" alt="Team name">
+			      		<div class="caption">
+			        		<h3>Gnar.ly</h3>
+			        		<p><span class="sb-funding-amount">$300</span> raised</p>
+			        		<p>Delivering an innovative architecture to disruptive technologies.</p>
+			        		<div class="clearfix">
+			        			<a href="#" class="btn btn-success col-xs-6" role="button"><i class="fa fa-dollar"></i> Invest</a> <a href="#" class="btn btn-default col-xs-6" role="button">Learn More</a>
+			        		</div>
+			      		</div>
+			    	</div>
+			  	</div>
+
+
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail sb-team-summary">
+						<%= image_tag image_path('bus-icons/cali.png'), :class => 'sb-bus-icon' %>
+						<img src="http://placehold.it/600x300" alt="Team name">
+			      		<div class="caption">
+			        		<h3>Gnar.ly</h3>
+			        		<p><span class="sb-funding-amount">$300</span> raised</p>
+			        		<p>Delivering an innovative architecture to disruptive technologies.</p>
+			        		<div class="clearfix">
+			        			<a href="#" class="btn btn-success col-xs-6" role="button"><i class="fa fa-dollar"></i> Invest</a> <a href="#" class="btn btn-default col-xs-6" role="button">Learn More</a>
+			        		</div>
+			      		</div>
+			    	</div>
+			  	</div>
+
+			</div> <!-- /row -->
+		
+
+
+			<h2 class="sb-collection-title">On the rise</h2>
+
+			<div class="row">
+				
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail sb-team-summary">
+						<img src="" alt="" class="sb-bus-icon">
+						<img src="http://placehold.it/600x300" alt="Team name">
+			      		<div class="caption">
+			        		<h3>Team Name Awesome</h3>
+			        		<p></p>
+			        		<p>Focused on delivering an innovative architecture that enables disruptive technologies to address the inefficiencies in current online marketplaces.</p>
+			        		<div class="clearfix">
+			        			<a href="#" class="btn btn-success col-xs-6" role="button">Invest</a> <a href="#" class="btn btn-default col-xs-6" role="button">Learn More</a>
+			        		</div>
+			      		</div>
+			    	</div>
+			  	</div>
+
+			</div> <!-- /row -->
+
+
+			<h2>Everyone else</h2>
+
+			<div class="row">
+				
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img src="http://placehold.it/600x300" alt="Team name">
+			      		<div class="caption">
+			        		<h3>Team Name Awesome</h3>
+			        		<p></p>
+			        		<p>Focused on delivering an innovative architecture that enables disruptive technologies to address the inefficiencies in current online marketplaces.</p>
+			        		<div class="clearfix">
+			        			<a href="#" class="btn btn-primary col-xs-6" role="button">Invest</a> <a href="#" class="btn btn-default col-xs-6" role="button">Learn More</a>
+			        		</div>
+			      		</div>
+			    	</div>
+			  	</div>
+
+			</div> <!-- /row -->
+		
+
+		</div>
+	
+	</div> <!-- /container -->
 </body>
 </html>
