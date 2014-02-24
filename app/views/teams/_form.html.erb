@@ -1,0 +1,65 @@
+<%= form_for(@team, :html => {:class => 'form-horizontal'}) do |f| %>
+  <% if @team.errors.any? %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <h4><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h4>
+
+      <ul>
+      <% @team.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Team Name", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :name, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Team website", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :website, :class => "form-control", :value => "http://" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Brief description", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :description, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Twitter handle", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :twitter_handle, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Facebook page", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :facebook_url, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "GitHub link", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :github_url, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Your bus", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.select(:bus_id, Bus.all.map {|b| [b.name, b.id]}) %>
+    </div>
+  </div>
+
+  <%= f.submit "Create team", :class => "btn btn-block btn-primary"  %>
+<% end %>

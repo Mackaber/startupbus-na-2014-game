@@ -15,7 +15,7 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
   require "omniauth-facebook"
-  
+
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -228,7 +228,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   config.omniauth :twitter, '', ''
-  config.omniauth :facebook, '', '' #,:client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

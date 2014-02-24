@@ -1,0 +1,16 @@
+<h1><%= @team.name %></h1>
+
+<p>Bus: <%= content_tag :b, link_to(@team.bus_name, @team.bus) %></p>
+<p>Score: <%= content_tag :b, @team.score %></p>
+
+<h3>Buspreneurs</h3>
+<ul>
+  <%= render @team.buspreneurs %>
+</ul>
+
+<h3>Investments</h3>
+<p>
+  <%= render @team.investments %>
+</p>
+
+<p>Total: <%= content_tag :b, number_to_currency(@team.funding) %>

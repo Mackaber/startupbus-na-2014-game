@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
-	def index
-		if user_signed_in?
-			redirect_to :controller => 'dashboard', :action => 'index'
-		end
-	end
+  def index
+    if omniauthable_signed_in?
+      redirect_to current_omniauthable, action: :welcome
+    end
+  end
 end

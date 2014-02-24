@@ -43,20 +43,28 @@ end
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Authentication
-gem 'devise', '~> 3.0.3'
+gem 'devise',              github: 'plataformatec/devise'
+gem 'responders',          github: 'plataformatec/responders'
+gem 'inherited_resources', github: 'josevalim/inherited_resources'
+gem 'ransack',             github: 'ernie/ransack'
+gem 'activeadmin',         github: 'gregbell/active_admin'
+gem 'formtastic',          github: 'justinfrench/formtastic'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'protected_attributes'
 gem 'certified'
 gem 'cancan'
-gem 'rolify'
+gem 'data_mapper'
 
 group :development do
   gem 'meta_request'
+  gem 'better_errors', git: 'https://github.com/charliesome/better_errors.git'
+  gem 'binding_of_caller'
 end
 
 gem 'bootstrap-sass', '~> 3.1.1'
+gem 'font-awesome-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -69,6 +77,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rails-erd'
 end
 
 group :test do

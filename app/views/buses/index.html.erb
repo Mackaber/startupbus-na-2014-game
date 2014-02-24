@@ -1,0 +1,29 @@
+<div class="component-box">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>North American Bus Listing</h2>
+    </div>
+    <div class="col-sm-4">
+      <%= link_to 'Register your bus', new_bus_path, :class => 'pull-right btn btn-primary' %>
+    </div>
+  </div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ranking</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @buses.each do |bus| %>
+      <tr>
+        <td><%= bus.name %></td>
+        <td><%= bus.ranking %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div></div>

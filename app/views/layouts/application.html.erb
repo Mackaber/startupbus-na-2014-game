@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>The Game | Startup Bus 2014</title>
-<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-<%= csrf_meta_tags %>
-</head>
-<body>
-	<nav>
-		<div class="container">
-
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">The Game</a>
-				<p class="navbar-text">North American 2014 Bus</p>
-
-			</div>
-
-			<ul class="nav navbar-right">
-				<% if user_signed_in? %>
-					<span class="glyphicon glyphicon-user"></span>
-					Signed In As <%= current_user.name %>.
-					<!-- <span>Logged in as <#%= current_user.name %>.</span> -->
-					Not You? <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-				<% else %>
-					<a href="<%= new_user_session_path %>" class="btn btn-default btn-sm">Sign In</a>
-					<p class="navbar-text">&nbsp;or&nbsp;</p>
-					<a href="<%= user_omniauth_authorize_path(:facebook) %>" class="btn btn-primary btn-sm">
-					Sign In With Facebook</a>
-					<!-- <#%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %> -->
-				<% end %>
-			</div>
-		</div>
-	</nav>
-
-	<div class="container">
-		<% if notice %>
-		<p class="alert alert-success"><%= notice %></p>
-		<% end %>
-
-		<% if alert %>
-		<p class="alert alert-danger"><%= alert %></p>
-		<% end %>
+	<title>The Game | Startup Bus 2014</title>
+	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
 	
-		<%= yield %>
-	</div>
+	<!-- TODO: Should this be included elsewhere? -->
+	<link href='http://fonts.googleapis.com/css?family=Exo:400,600' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+  <nav>
+    <div class="container">
+      <div class="navbar-header">
+        <%= link_to "The Game", root_path, class: "navbar-brand" %>
+        <p class="navbar-text">StartupBus North America 2014</p>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+      <% if omniauthable_signed_in? %>
+        <li>
+          <p class="navbar-text">Welcome, <%= current_omniauthable.name %>!</p>
+        </li>
+        <li>
+          <%= link_to 'Dashboard', root_path %>
+        </li>
+        <li>
+          <%= link_to "Sign Out", destroy_omniauthable_session_path, :method => :delete %>
+        </li>
+      <% else %>
+        <a href="<%= omniauthable_omniauth_authorize_path(:facebook) %>" class="btn btn-default btn-facebook"><i class="fa fa-facebook"></i> Sign In</a>
+      <% end %>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+  </div>
+
 </body>
 </html>

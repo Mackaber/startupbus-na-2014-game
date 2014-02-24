@@ -32,11 +32,11 @@ Examples of milestones:
 
 
 === Get started
-# bundle install
+$ bundle install
 
-# rails s
+$ rails s
 
-# rake db:migrate RAILS_ENV=development
+$ rake db:migrate RAILS_ENV=development
 
 
 === User Types

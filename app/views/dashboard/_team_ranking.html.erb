@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>Bus</th>
+    <th>Bus Ranking</th>
+    <th>Team Name</th>
+  </tr>
+  <% @buses.each do |bus| %>
+  <tr>
+    <th><%= bus.name %></th>
+    <th><%= bus.ranking || 0 %></th>
+  </tr>
+    <% bus.teams.each do |team| %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><%= team.name %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
