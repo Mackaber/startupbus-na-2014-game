@@ -1,11 +1,10 @@
 ActiveAdmin.setup do |config|
-
   # == Site Title
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Devise App"
+  config.site_title = "The Game"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -55,7 +54,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the controller.
-  config.authentication_method = :authenticate_admin_user!
+  config.authentication_method = :authenticate_omniauthable!
 
   # == User Authorization
   #
@@ -63,17 +62,17 @@ ActiveAdmin.setup do |config|
   # method in a before filter of all controller actions to
   # ensure that there is a user with proper rights. You can use
   # CanCanAdapter or make your own. Please refer to documentation.
-  # config.authorization_adapter = ActiveAdmin::CanCanAdapter
+  config.authorization_adapter = ActiveAdmin::CanCanAdapter
 
   # You can customize your CanCan Ability class name here.
-  # config.cancan_ability_class = "Ability"
+  config.cancan_ability_class = "Ability"
 
   # You can specify a method to be called on unauthorized access.
   # This is necessary in order to prevent a redirect loop which happens
   # because, by default, user gets redirected to Dashboard. If user
   # doesn't have access to Dashboard, he'll end up in a redirect loop.
   # Method provided here should be defined in application_controller.rb.
-  # config.on_unauthorized_access = :access_denied
+  config.on_unauthorized_access = :access_denied
 
   # == Current User
   #
@@ -82,8 +81,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # to return the currently logged in user.
-  config.current_user_method = :current_admin_user
-
+  config.current_user_method = :current_omniauthable
 
   # == Logging Out
   #
@@ -95,14 +93,13 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
-  config.logout_link_path = :destroy_admin_user_session_path
+  config.logout_link_path = :destroy_omniauthable_session_path
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
   #
   # Default:
   # config.logout_link_method = :get
-
 
   # == Root
   #
@@ -112,20 +109,18 @@ ActiveAdmin.setup do |config|
   # Default:
   # config.root_to = 'dashboard#index'
 
-
   # == Admin Comments
   #
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  # config.allow_comments = false
+  config.allow_comments = false
   #
   # You can disable the menu item for the comments index page:
-  # config.show_comments_in_menu = false
+  config.show_comments_in_menu = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
-
 
   # == Batch Actions
   #
@@ -133,19 +128,16 @@ ActiveAdmin.setup do |config|
   #
   config.batch_actions = true
 
-
   # == Controller Filters
   #
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
   # config.before_filter :do_something_awesome
-  
-  
+
   # == Setting a Favicon
   #
   # config.favicon = '/assets/favicon.ico'
-
 
   # == Removing Breadcrumbs
   #
@@ -153,7 +145,6 @@ ActiveAdmin.setup do |config|
   # resources or you can disable them globally from here.
   #
   # config.breadcrumb = false
-
 
   # == Register Stylesheets & Javascripts
   #
@@ -170,7 +161,6 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
 
-
   # == CSV options
   #
   # Set the CSV builder separator
@@ -178,7 +168,6 @@ ActiveAdmin.setup do |config|
   #
   # Force the use of quotes
   # config.csv_options = { :force_quotes => true }
-
 
   # == Menu System
   #
@@ -201,7 +190,6 @@ ActiveAdmin.setup do |config|
   #     end
   #   end
 
-
   # == Download Links
   #
   # You can disable download links on resource listing pages,
@@ -223,14 +211,12 @@ ActiveAdmin.setup do |config|
   #
   #   end
 
-
   # == Pagination
   #
   # Pagination is enabled by default for all resources.
   # You can control the default per page count for all resources here.
   #
   # config.default_per_page = 30
-
 
   # == Filters
   #

@@ -8,7 +8,9 @@
   <%= render @team.buspreneurs %>
 </ul>
 
+<h3>Investments</h3>
 <p>
   <%= render @team.investments %>
 </p>
-<p>Total: <%= content_tag :b, @team.funding %>
+
+<p>Total: <%= content_tag :b, number_to_currency(@team.funding) %>

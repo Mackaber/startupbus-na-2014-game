@@ -49,4 +49,8 @@ class Omniauthable < ActiveRecord::Base
     self.approved_by = approved_by
     touch :approved_at
   end
+
+  def admin?
+    false
+  end
 end

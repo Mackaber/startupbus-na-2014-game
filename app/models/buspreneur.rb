@@ -5,6 +5,8 @@ class Buspreneur < Omniauthable
   delegate :name, to: :team, prefix: true, allow_nil: true
   delegate :name, to: :bus, prefix: true, allow_nil: true
 
+  scope :pending, where(approved_at: nil)
+
   def approved?
     approved_at.present?
   end
