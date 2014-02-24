@@ -1,17 +1,21 @@
 class Conductor < Omniauthable
-  belongs_to :bus, polymorphic: true
+  belongs_to :attachable, polymorphic: true
 
   delegate :name, to: :bus, prefix: true, allow_nil: true
 
-  def approved?
-    approved_at.present?
-  end
-
-  def approve!
-    touch :approved_at
-  end
-
   def admin?
     true
+  end
+
+  def bus
+    attachable
+  end
+
+  def bus=(bus)
+    self.attachable = bus
+  end
+
+  def to_s
+    name
   end
 end

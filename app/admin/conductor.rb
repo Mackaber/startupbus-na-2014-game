@@ -1,10 +1,10 @@
-ActiveAdmin.register Buspreneur do
+ActiveAdmin.register Conductor do
+  config.filters = false
+
   index do
     selectable_column
     column :name
-    column :username
     column :email
-    column :team_name
     column :bus_name
     actions
   end
@@ -17,14 +17,12 @@ ActiveAdmin.register Buspreneur do
       f.input :sign_in_count
       f.input :provider
       f.input :uid
-      f.input :approved_at
-      f.input :approved_by
       f.input :created_at
       f.input :attachable,
-        label: "Team",
+        label: "Bus",
         as: :select,
         collection: options_from_collection_for_select(
-          Team.all,
+          Bus.all,
           :id,
           :name,
           f.object.attachable_id
@@ -33,4 +31,5 @@ ActiveAdmin.register Buspreneur do
 
     f.actions
   end
+
 end

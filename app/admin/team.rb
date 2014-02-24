@@ -24,7 +24,33 @@ ActiveAdmin.register Team do
   end
 
   form do |f|
-    render "form"
+    f.inputs "Details" do
+      f.input :name
+      f.input :bus,
+        as: :select,
+        collection: options_from_collection_for_select(
+          Bus.all,
+          :id,
+          :name,
+          f.object.bus_id
+        )
+      f.input :website
+      f.input :github_url
+      f.input :twitter_handle
+      f.input :facebook_url
+      f.input :description
+      f.input :buspreneurs,
+        as: :select,
+        multiple: true,
+        collection: options_from_collection_for_select(
+          Buspreneur.approved_without_team(f.object),
+          :id,
+          :email,
+          f.object.buspreneur_ids
+        )
+    end
+
+    f.actions
   end
 
 end
