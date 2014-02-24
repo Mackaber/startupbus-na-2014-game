@@ -8,6 +8,7 @@ gem 'rails', '4.0.0'
 group :production do
     gem 'pg'
     gem 'dm-postgres-adapter'
+    gem 'rails_12factor'
 end
 
 group :development, :test do
