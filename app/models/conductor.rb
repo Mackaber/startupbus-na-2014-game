@@ -8,4 +8,8 @@ class Conductor < Omniauthable
   def approve!
     touch :approved_at
   end
+
+  def admin?
+    true
+  end
 end

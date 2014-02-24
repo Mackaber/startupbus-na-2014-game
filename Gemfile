@@ -77,6 +77,7 @@ gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rails-erd'
 end
 
 group :test do
