@@ -23,7 +23,6 @@
 		background-color: lighten($sb-blue, 20%)
 		font-size: 1.05em
 
-
 .back-link
 	color: $gray-light
 	padding: $sb-gutter/2  0px
@@ -31,3 +30,32 @@
 	font-size: 0.85em
 	i 
 		margin-right: 3px
+
+.large-container
+	background-color: white
+	min-height: 60em
+	padding: $sb-gutter
+	h3
+		margin-top: 0px
+		margin-bottom: $sb-gutter
+
+
+.sb-container-header
+	background-color: darken($sb-blue, 40%)
+	color: lighten($sb-blue, 10%)
+	padding: $sb-gutter
+.sb-bus-img
+	border-radius: 6px
+	+box-shadow(0px 1px 2px rgba(0,0,0,0.2))
+.sb-buspreneur
+	.caption
+		position: absolute
+		bottom: 0
+		left: 0
+		width: 100%
+		background-color: rgba($gray-darker, 0.3)
+		color: #fff
+		a 
+			color: lighten($brand-info, 30%)
+	&:hover
+		background-color: $brand-info
