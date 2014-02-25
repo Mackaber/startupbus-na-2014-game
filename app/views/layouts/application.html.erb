@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<meta charset="utf-8">
-  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  	<title>The Game | Startup Bus 2014</title>
-  	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  	<%= csrf_meta_tags %>
-  	
-    <link href='http://fonts.googleapis.com/css?family=Lato|Montserrat:400,700' rel='stylesheet' type='text/css'>
-  </head>
+	<title>The Game | Startup Bus 2014</title>
+	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+	
+  <link href='http://fonts.googleapis.com/css?family=Lato|Montserrat:400,700' rel='stylesheet' type='text/css'>
+</head>
 
-  <body>
+<body>
   <nav>
     <div class="container">
       <div class="navbar-header">
@@ -24,16 +24,20 @@
       <ul class="nav navbar-nav navbar-right">
       <% if omniauthable_signed_in? %>
         <li>
-          <p class="navbar-text">Welcome, <%= current_omniauthable.name %>!</p>
+          <%= content_tag :p, class: "navbar-text" do %>
+            Welcome, <%= current_omniauthable.name %>!
+          <% end %>
         </li>
         <li>
-          <%= link_to 'Dashboard', root_path %>
+          <%= link_to 'Dashboard', current_omniauthable %>
         </li>
         <li>
           <%= link_to "Sign Out", destroy_omniauthable_session_path, :method => :delete %>
         </li>
       <% else %>
-        <a href="<%= omniauthable_omniauth_authorize_path(:facebook) %>" class="btn btn-default btn-facebook"><i class="fa fa-facebook"></i> Sign In</a>
+        <%= link_to omniauthable_omniauth_authorize_path(:facebook), class:"btn btn-default btn-facebook" do %>
+          <i class="fa fa-facebook"></i> Sign In
+        <% end %>
       <% end %>
       </ul>
     </div>
