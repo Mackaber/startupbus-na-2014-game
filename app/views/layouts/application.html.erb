@@ -10,7 +10,7 @@
 	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
-	
+
 	<!-- TODO: Should this be included elsewhere? -->
 	<link href='http://fonts.googleapis.com/css?family=Exo:400,600' rel='stylesheet' type='text/css'>
 
@@ -28,16 +28,20 @@
       <ul class="nav navbar-nav navbar-right">
       <% if omniauthable_signed_in? %>
         <li>
-          <p class="navbar-text">Welcome, <%= current_omniauthable.name %>!</p>
+          <%= content_tag :p, class: "navbar-text" do %>
+            Welcome, <%= current_omniauthable.name %>!
+          <% end %>
         </li>
         <li>
-          <%= link_to 'Dashboard', root_path %>
+          <%= link_to 'Dashboard', current_omniauthable %>
         </li>
         <li>
           <%= link_to "Sign Out", destroy_omniauthable_session_path, :method => :delete %>
         </li>
       <% else %>
-        <a href="<%= omniauthable_omniauth_authorize_path(:facebook) %>" class="btn btn-default btn-facebook"><i class="fa fa-facebook"></i> Sign In</a>
+        <%= link_to omniauthable_omniauth_authorize_path(:facebook), class:"btn btn-default btn-facebook" do %>
+          <i class="fa fa-facebook"></i> Sign In
+        <% end %>
       <% end %>
       </ul>
     </div>
