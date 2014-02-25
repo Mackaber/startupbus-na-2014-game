@@ -6,6 +6,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if omniauthable.persisted?
       flash.notice = "Signed In, Bro!"
       sign_in_and_redirect omniauthable
+      Notifier.send_signup_email(current_user).deliver if omniauthable.sign_in_count == 1
     else
       session["devise.user_attributes"] = omniauthable.attributes
       flash.notice = "This didn't work :("
