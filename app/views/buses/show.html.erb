@@ -1,12 +1,11 @@
-
 <div class="jumbotron clearfix">
-	<div class="col-md-3">
-		<%= image_tag image_path('bus-icons/cali.png'), :class => 'sb-bus-header-img' %>
-	</div>
-	<div class="col-md-9">
-		<h1><%= @bus.name %></h1>
-		<p class="lead">Travelling to Austin all the way from NYC, these teams will probably win.</p>	
-	</div>
+  <div class="col-md-3">
+    <%= image_tag image_path('bus-icons/cali.png'), :class => 'sb-bus-header-img' %>
+  </div>
+  <div class="col-md-9">
+    <h1><%= @bus.name %></h1>
+    <p class="lead">Travelling to Austin all the way from NYC, these teams will probably win.</p>
+  </div>
 </div> <!-- /jumbotron -->
 
 <h3 class="sb-collection-title">Teams</h3>
@@ -18,5 +17,5 @@
 <h3 class="sb-collection-title">Buspreneurs</h3>
 
 <div class="row">
- 	<%= render @bus.buspreneurs %>
+  <%= render @bus.buspreneurs %>
 </div>

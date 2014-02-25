@@ -11,8 +11,14 @@ DeviseApp::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :conductors
-  resources :buspreneurs
-  resources :investors
+
+  resources :buspreneurs do
+    get :not_allowed
+  end
+
+  resources :investors do
+    put :request_buspreneurship
+  end
 
   resources :dashboard
   resources :teams
