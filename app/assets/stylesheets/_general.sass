@@ -9,14 +9,19 @@
 // -----------------
 body
 	background-color: $gray-lighter
+	padding-top: 60px
+img
+	max-width: 100%
 
-nav 
+
+// NAVBAR
+// -----------------
+.navbar-default 
 	color: lighten($sb-grey, 45%)
-	background-color: $gray-darker
+	background-color: $gray-dark
 	a 
 		color: #FFF
 		text-decoration: none
-		padding: 15px 0
 		&:hover
 			color: #D1D1D1
 			text-decoration: none
@@ -24,6 +29,7 @@ nav
 	.navbar-brand
 		font-family: $headings-font-family
 		text-transform: uppercase
+		letter-spacing: -0.02em
 
 	.navbar-header .navbar-text 
 		text-transform: uppercase
@@ -35,11 +41,10 @@ nav
 	.navbar-right
 		.navbar-text
 			float: none
+			color: $gray-light
 			display: inline-block
 		.btn
 			margin-top: 8px
-img
-	max-width: 100%
 
 
 // BUTTONS
@@ -50,4 +55,3 @@ img
 	color: white
 	i
 		margin-right: 6px
-
