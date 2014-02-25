@@ -22,15 +22,16 @@ consectetur est at lobortis.</p>
   <div class="col-sm-6">
     <div class="well">
       <h3>I want to be a Fantasty Investor</h3>
-      1. Sign up with <a href="#">Twitter</a> or <a href="#">Facebook</a>
-
+      Sign up with <a href="#">Twitter</a> or <a href="#">Facebook</a>
       <br />
     </div>
   </div>
   <div class="col-sm-6">
     <div class="well">
       <h3>I'm a 2014 Busprenuer</h3>
-      1. <a href="#">Verify your status as a Busprenuer</a>
+      <%= link_to investor_request_buspreneurship_path(current_omniauthable), method: :put do %>
+        Verify your status as a Busprenuer
+      <% end %>
       <br />
     </div>
   </div>
