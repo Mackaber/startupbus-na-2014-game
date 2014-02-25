@@ -10,8 +10,9 @@
 body
 	background-color: $gray-lighter
 
+
 nav 
-	color: $brand-primary
+	color: lighten($sb-grey, 45%)
 	background-color: $gray-darker
 	a 
 		color: #FFF
@@ -20,12 +21,18 @@ nav
 		&:hover
 			color: #D1D1D1
 			text-decoration: none
+	
+	.navbar-brand
+		font-family: $headings-font-family
+		text-transform: uppercase
 
 	.navbar-header .navbar-text 
 		text-transform: uppercase
-		color: lighten($brand-primary, 20%)
+		color: lighten($sb-grey, 55%)
 		font-size: 0.8em
-		padding-top: 3px
+		padding-top: 2px
+		word-spacing: 3px
+
 	.navbar-right
 		.navbar-text
 			float: none

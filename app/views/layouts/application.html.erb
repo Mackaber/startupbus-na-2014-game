@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html>
+  <head>
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<title>The Game | Startup Bus 2014</title>
+  	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  	<%= csrf_meta_tags %>
+  	
+    <link href='http://fonts.googleapis.com/css?family=Lato|Montserrat:400,700' rel='stylesheet' type='text/css'>
+  </head>
 
-	<title>The Game | Startup Bus 2014</title>
-	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-	<%= csrf_meta_tags %>
-	
-	<!-- TODO: Should this be included elsewhere? -->
-	<link href='http://fonts.googleapis.com/css?family=Exo:400,600' rel='stylesheet' type='text/css'>
-
-</head>
-
-<body>
-
+  <body>
   <nav>
     <div class="container">
       <div class="navbar-header">
@@ -54,6 +50,5 @@
 
     <%= yield %>
   </div>
-
 </body>
 </html>
