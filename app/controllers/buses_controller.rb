@@ -1,6 +1,7 @@
 class BusesController < ApplicationController
 
   def new
+    authorize :manage, :bus
     @bus = Bus.new
   end
 

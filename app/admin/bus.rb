@@ -11,6 +11,8 @@ ActiveAdmin.register Bus do
 
   form do |f|
     f.inputs "Details" do
+      f.input :name
+      f.input :ranking
       f.input :conductors,
         as: :select,
         multiple: true,
