@@ -48,6 +48,7 @@ ActiveAdmin.register Team do
           :email,
           f.object.buspreneur_ids
         )
+      f.input :milestones
     end
 
     f.actions

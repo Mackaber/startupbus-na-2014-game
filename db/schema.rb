@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225014055) do
+ActiveRecord::Schema.define(version: 20140226030531) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -74,6 +74,11 @@ ActiveRecord::Schema.define(version: 20140225014055) do
 
   add_index "milestones", ["name"], name: "index_milestones_on_name"
   add_index "milestones", ["target_completion_date"], name: "index_milestones_on_target_completion_date"
+
+  create_table "milestones_teams", force: true do |t|
+    t.integer "milestone_id", null: false
+    t.integer "team_id",      null: false
+  end
 
   create_table "omniauthables", force: true do |t|
     t.string   "type"

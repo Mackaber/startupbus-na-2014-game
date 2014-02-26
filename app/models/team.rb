@@ -1,16 +1,16 @@
 class Team < ActiveRecord::Base
+  has_many :buspreneurs, as: :attachable
+  has_many :investments
+  has_and_belongs_to_many :milestones
 
-  delegate :name, to: :bus, prefix: true, allow_nil: false
+  belongs_to :bus
 
   validates :name, :website, :twitter_handle, :github_url, :facebook_url,
             :uniqueness => true
 
   validates :description, presence: true
 
-  has_many :buspreneurs, as: :attachable
-  has_many :investments
-
-  belongs_to :bus
+  delegate :name, to: :bus, prefix: true, allow_nil: false
 
   def buspreneur_names
     buspreneurs.pluck(:email).to_sentence
