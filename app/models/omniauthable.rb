@@ -31,27 +31,10 @@ class Omniauthable < ActiveRecord::Base
   end
 
   def self.set_type_and_approval(omniauthable)
-    type = type_from_email(omniauthable.email)
-    omniauthable.type = type_from_email(omniauthable.email)
+    omniauthable.type = 'Investor'
     omniauthable.save
     omniauthable = type.constantize.find(omniauthable.id)
     omniauthable.approve! if omniauthable.respond_to?(:approve!)
-  end
-
-  def self.type_from_email(email)
-    descendants.each do |descendant|
-      return descendant.name if descendant.email_known?(email)
-    end
-
-    "Investor"
-  end
-
-  def self.email_known?(email)
-    known_email_addresses.include?(email)
-  end
-
-  def self.known_email_addresses
-    []
   end
 
   def password_required?
