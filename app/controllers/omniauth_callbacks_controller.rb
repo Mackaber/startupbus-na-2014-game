@@ -11,6 +11,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash.notice = "Signed In!"
       sign_in_and_redirect omniauthable
       check_buspreneur_approval(current_user)
+      if omniauthable["provider"] == "facebook" && omniauthable.social_media_image_url.blank?
+        current_user.social_media_image_url = "http://graph.facebook.com/#{omniauthable["uid"]}/picture"
+        current_user.save!
+      end
     else
       session["devise.user_attributes"] = omniauthable.attributes
       flash.notice = "This didn't work :("
@@ -55,3 +59,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
   
 end
+
+

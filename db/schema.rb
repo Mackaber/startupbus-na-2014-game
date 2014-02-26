@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226192547) do
+ActiveRecord::Schema.define(version: 20140226231024) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20140226192547) do
     t.datetime "updated_at"
     t.string   "attachable_type"
     t.integer  "attachable_id"
+    t.string   "social_media_image_url"
   end
 
   add_index "omniauthables", ["email"], name: "index_omniauthables_on_email", unique: true
