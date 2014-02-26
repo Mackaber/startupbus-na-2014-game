@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe "User", pending: true do
   it "should check wordpress to see if they are a buspreneur" do
   end
 

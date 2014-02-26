@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Team do
-  it "should have multiple users" do 
+describe Team, pending: true do
+  it "should have multiple users" do
   end
 
   it "should should accept a user request to join a team and prompt current team members for approval" do
@@ -12,8 +12,7 @@ describe Team do
   it "should "
 end
 
-
-=begin  
+=begin
 Add a Team model
 
 Teams should have a Name, Website, Twitter handle, Facebook link, Github link, and description.
