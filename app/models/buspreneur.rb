@@ -17,7 +17,7 @@ class Buspreneur < Omniauthable
     approved_at.present?
   end
 
-  def approve!(approved_by)
+  def approve!(approved_by = nil)
     self.approved_by = approved_by
     touch :approved_at
   end

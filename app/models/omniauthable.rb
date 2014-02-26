@@ -26,6 +26,10 @@ class Omniauthable < ActiveRecord::Base
       omniauthable.name = auth.info.name
       omniauthable.email = auth.info.email
       omniauthable.type = type_from_email(omniauthable.email)
+
+      if omniauthable.respond_to?(:authorize!)
+        omniauthable.authorize!
+      end
     end
   end
 
