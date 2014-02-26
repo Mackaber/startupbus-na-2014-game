@@ -7,6 +7,11 @@ class Conductor < Omniauthable
     (ENV["CONDUCTOR_EMAIL_ADDRESSES"] || "").split(",").freeze
   end
 
+  def approve!(approved_by = nil)
+    self.approved_by = approved_by
+    touch :approved_at
+  end
+
   def admin?
     true
   end
