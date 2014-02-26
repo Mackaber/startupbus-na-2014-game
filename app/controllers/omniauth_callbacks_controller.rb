@@ -6,6 +6,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if omniauthable.persisted?
       flash.notice = "Signed In, Bro!"
       sign_in_and_redirect omniauthable
+      check_buspreneur_approval(current_user)
     else
       session["devise.user_attributes"] = omniauthable.attributes
       flash.notice = "This didn't work :("
@@ -26,4 +27,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   alias_method :twitter, :all
   alias_method :facebook, :all
+
+  private
+
+  def check_buspreneur_approval(current_user)
+    if ENV["BUSPRENEUR_EMAIL_ADDRESSES"].include?(current_user.email) && current_user.approved_at.nil?
+      current_user.approved_at = Time.now
+      current_user.save!
+    end
+  end
+  
 end
