@@ -1,7 +1,11 @@
 class Team < ActiveRecord::Base
   has_many :buspreneurs, as: :attachable
   has_many :investments
-  has_and_belongs_to_many :milestones
+  has_many :milestones, :through => :milestone_teams
+  has_many :milestone_teams
+
+  accepts_nested_attributes_for :milestone_teams
+  accepts_nested_attributes_for :milestones
 
   belongs_to :bus
 

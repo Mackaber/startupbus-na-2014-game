@@ -1,4 +1,5 @@
 class Milestone < ActiveRecord::Base
-  has_and_belongs_to_many :teams
-  has_many :buspreneurs, through: :teams
+  has_many :teams, :through => :milestone_teams 
+  has_many :milestone_teams
+  has_many :buspreneurs, :through => :teams
 end

@@ -33,10 +33,20 @@ ActiveAdmin.register Team do
       f.input :facebook_url
       f.input :description
       f.input :buspreneurs, multiple: true, collection: Buspreneur.approved_without_team(f.object)
-      f.input :milestones
+
+      f.has_many :milestone_teams do |app_f|
+        app_f.inputs "Completed Milestones" do
+          app_f.input :awarded_points
+          app_f.input :milestone_id
+          app_f.input :team_id
+        end
     end
 
     f.actions
+  end
+
+
+
   end
 
 end
