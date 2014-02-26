@@ -3,6 +3,10 @@ class Conductor < Omniauthable
 
   delegate :name, to: :bus, prefix: true, allow_nil: true
 
+  def self.known_email_addresses
+    (ENV["CONDUCTOR_EMAIL_ADDRESSES"] || "").split(",").freeze
+  end
+
   def admin?
     true
   end
