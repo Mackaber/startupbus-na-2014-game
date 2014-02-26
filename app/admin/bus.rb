@@ -9,6 +9,14 @@ ActiveAdmin.register Bus do
     actions
   end
 
+  show do |bus|
+    attributes_table do
+      row("Name") { bus.name }
+      row("Conductors") { bus.conductor_names }
+      row("Teams") { bus.team_names }
+    end
+  end
+
   form do |f|
     f.inputs "Details" do
       f.input :name
