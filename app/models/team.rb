@@ -11,6 +11,9 @@ class Team < ActiveRecord::Base
   validates :description, presence: true
 
   delegate :name, to: :bus, prefix: true, allow_nil: false
+  has_many :buspreneurs, as: :attachable
+  has_many :investments
+  has_many :milestones
 
   def buspreneur_names
     buspreneurs.pluck(:email).to_sentence

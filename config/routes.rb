@@ -20,6 +20,7 @@ DeviseApp::Application.routes.draw do
   resources :dashboard
   resources :teams
   resources :buses
+  resources :milestones
 
   root to: "home#index"
 end
