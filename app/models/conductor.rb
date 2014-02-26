@@ -1,7 +1,7 @@
 class Conductor < Omniauthable
   belongs_to :attachable, polymorphic: true
 
-  delegate :name, to: :bus, prefix: true, allow_nil: true
+  delegate :name, :team_names, to: :bus, prefix: true, allow_nil: true
 
   def self.known_email_addresses
     (ENV["CONDUCTOR_EMAIL_ADDRESSES"] || "").split(",").freeze
