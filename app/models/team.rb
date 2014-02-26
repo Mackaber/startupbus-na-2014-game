@@ -1,11 +1,10 @@
 class Team < ActiveRecord::Base
   has_many :buspreneurs, as: :attachable
   has_many :investments
-  has_many :milestones, :through => :milestone_teams
   has_many :milestone_teams
+  has_many :milestones, :through => :milestone_teams
 
   accepts_nested_attributes_for :milestone_teams
-  accepts_nested_attributes_for :milestones
 
   belongs_to :bus
 
@@ -39,4 +38,12 @@ class Team < ActiveRecord::Base
   def all_milestones
     Milestone.all
   end    
+
+  def milestones_completed
+    MilestoneTeam.where(:team_id => self.id).map(&:milestone)
+  end
+
+  def milestones_pending
+    Milestone.all - milestones_completed
+  end
 end

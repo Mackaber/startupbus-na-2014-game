@@ -1,3 +1,4 @@
-ActiveAdmin.register Milestone do
+ActiveAdmin.register MilestoneTeam::Milestone do
   filter :name
+
 end

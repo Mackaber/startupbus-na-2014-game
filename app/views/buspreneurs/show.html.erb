@@ -11,10 +11,44 @@
   </div>
   <div class="col-md-5">
     <h2>Your Team Status</h2>
-    <ul>
-      <li>Team: <%= link_to @buspreneur.team_name, @buspreneur.team %></li>
-      <li>Bus: <%= link_to @buspreneur.bus_name, @buspreneur.bus %></li>
-    </ul>
+      <p>Team: <%= link_to @buspreneur.team_name.try(:humanize), @buspreneur.team %></p>
+      <p>Bus: <%= link_to @buspreneur.bus_name.try(:humanize), @buspreneur.bus %></p>
+
+  <% if @buspreneur.team.present? %>
+    <h3>Milestones Completed</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Milestone</th>
+          <th>Possible Points</th>
+          <th>Points Received</th>
+          <th>Deadline</th>
+          <th>Completed At</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @buspreneur.team.milestones_completed.each do |completed_milestone| %>
+        <tr class="success">
+          <td><%= completed_milestone.name %></td>
+          <td><%= completed_milestone.max_points %></td>
+          <td><%= completed_milestone.milestone_teams.first.awarded_points %></td>
+          <td><%= completed_milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+          <td><%= completed_milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+        </tr>
+      <% end %>
+      <% @buspreneur.team.milestones_pending.each do |pending_milestone| %>
+        <tr class="warning">
+          <td><%= pending_milestone.name %></td>
+          <td><%= pending_milestone.max_points %></td>
+          <td>0</td>
+          <td><%= pending_milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+          <td><%= pending_milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+        </tr>
+      <% end %>
+     </tbody>
+  </table>
+    <% end %>
   </div>
 </div>
+
 

@@ -34,19 +34,15 @@ ActiveAdmin.register Team do
       f.input :description
       f.input :buspreneurs, multiple: true, collection: Buspreneur.approved_without_team(f.object)
 
-      f.has_many :milestone_teams do |app_f|
-        app_f.inputs "Completed Milestones" do
+      f.has_many :milestone_teams, :allow_destroy => true do |app_f|
+        app_f.inputs do
           app_f.input :awarded_points
-          app_f.input :milestone_id
-          app_f.input :team_id
+          app_f.input :milestone_id, multiple: false, :as => :select, collection: Milestone.all
+          app_f.input :team_id, :as => :select, collection: Team.all
         end
+      end
     end
 
     f.actions
   end
-
-
-
-  end
-
 end
