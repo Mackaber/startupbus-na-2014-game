@@ -25,10 +25,14 @@ class Omniauthable < ActiveRecord::Base
       omniauthable.uid = auth.uid
       omniauthable.name = auth.info.name
       omniauthable.email = auth.info.email
-      omniauthable.type = type_from_email(omniauthable.email)
 
-      omniauthable.approve! if omniauthable.respond_to?(:approve!)
+      set_type_and_approval(omniauthable)
     end
+  end
+
+  def self.set_type_and_approval(omniauthable)
+    omniauthable.type = type_from_email(omniauthable.email)
+    omniauthable.approve! if omniauthable.respond_to?(:approve!)
   end
 
   def self.type_from_email(email)
