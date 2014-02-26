@@ -66,4 +66,40 @@ end
     Investment.find_or_create_by(investor_id: investor.id, team_id: Team.first.id, amount: 82)
 end
 
+Milestone.create([{
+    name: "Landing Page", 
+    description: "Create your team landing page and collect preliminary users", 
+    max_points: 200, target_completion_date: Time.new(2014, 3, 2), 
+    validation_instructions: "Landing Page must be live. Must accept email addresses. Must be approved by conductor.", 
+    public_instructions: "Team must create a Landing Page."},
+
+  {
+    name: "Form Entity", 
+    description: "Form an entity appropriate to your company's needs", 
+    max_points: 200, target_completion_date: Time.new(2014, 3, 3), 
+    validation_instructions: "Documents must be receieved from Delaware. Must be approved by conductor.", 
+    public_instructions: "Form Entity"},
+
+  {
+    name: "Create Founders Agreement", 
+    description: "Draft and sign your company's founders agreement, deciding on equity breakout.", 
+    max_points: 200, target_completion_date: Time.new(2014, 3, 3), 
+    validation_instructions: "Founders agreement must be signed. Equity split must be decided. Must be approved by conductor.", 
+    public_instructions: "Team must sign a founders agreement."},
+
+  {
+    name: "Launch MVP", 
+    description: "Launch your minimum viable product.", 
+    max_points: 200, target_completion_date: Time.new(2014, 3, 4), 
+    validation_instructions: "Product must be live on the internets. Must be approved by conductor.", 
+    public_instructions: "Launch minimum viable product."},
+
+  {
+    name: "Create Press Release", 
+    description: "Draft and sell your press release to the media.", 
+    max_points: 200, target_completion_date: Time.new(2014, 3, 5), 
+    validation_instructions: "Team must create a press release and distribute it to the media. Must be approved by conductor.", 
+    public_instructions: "Team must put out a press release."}]
+  )
+
 

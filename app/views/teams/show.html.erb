@@ -13,4 +13,13 @@
   <%= render @team.investments %>
 </p>
 
-<p>Total: <%= content_tag :b, number_to_currency(@team.funding) %>
+<p>Total: <%= content_tag :b, number_to_currency(@team.funding) %></p>
+<br>
+<div style="float:left margin-left:300px">
+  <h3>Milestones:</h3>
+  <ul
+    <%= render @team.all_milestones %>
+  </ul>
+</div>
+
+

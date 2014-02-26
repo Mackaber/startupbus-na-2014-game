@@ -1,7 +1,3 @@
-<h1>Milestone List</h1>
-  
-<% Milestone.all.each do |milestone| %>
-
 <div class="col-xs-6 col-sm-4 col-lg-4">
   <h4><%=  milestone.name %></h4>
     <ul>
@@ -11,4 +7,3 @@
       <li><b>Validation Inx.: </b><%= milestone.validation_instructions %></li>
     </ul>
 </div>
-<% end %>
