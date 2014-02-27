@@ -26,7 +26,7 @@
         <li>
           <%= content_tag :p, class: "navbar-text" do %>
             <%= link_to current_omniauthable do %>
-              <%= image_tag current_omniauthable.photo_url(type: :square), class: "avatar" %>
+              <%= image_tag current_omniauthable.photo_url(height: 25, width: 25), class: "avatar" %>
               <%= current_omniauthable.name %>
             <% end %>
           <% end %>
