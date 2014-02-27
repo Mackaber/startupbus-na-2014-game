@@ -83,7 +83,7 @@ class Omniauthable < ActiveRecord::Base
       [
         "http://placehold.it/#{options.fetch(:height, 50)}x#{options.fetch(:width, 50)}",
         "http://placekitten.com/g/#{options.fetch(:height, 50)}/#{options.fetch(:width, 50)}"
-      ].suffle.first
+      ].shuffle.first
     end
   end
 
