@@ -20,14 +20,15 @@ class Omniauthable < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    find_or_create_by(uid: auth.uid, provider: auth.provider) do |omniauthable|
+    omniauthable = find_or_create_by(uid: auth.uid, provider: auth.provider) do |omniauthable|
       omniauthable.provider = auth.provider
       omniauthable.uid = auth.uid
       omniauthable.name = auth.info.name
       omniauthable.email = auth.info.email
-
-      set_type_and_approval(omniauthable)
     end
+
+    set_type_and_approval(omniauthable)
+    omniauthable
   end
 
   def self.set_type_and_approval(omniauthable)
@@ -40,18 +41,14 @@ class Omniauthable < ActiveRecord::Base
 
   def self.type_from_email(email)
     descendants.each do |descendant|
-      return descendant.name if descendant.email_known?(email)
+      return descendant.name if descendant.knows_about?(email)
     end
 
     "Investor"
   end
 
-  def self.email_known?(email)
-    known_email_addresses.include?(email)
-  end
-
-  def self.known_email_addresses
-    []
+  def self.knows_about?(email)
+    false
   end
 
   def password_required?

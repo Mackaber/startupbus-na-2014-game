@@ -3,8 +3,8 @@ class Conductor < Omniauthable
 
   delegate :name, :team_names, to: :bus, prefix: true, allow_nil: true
 
-  def self.known_email_addresses
-    (ENV["CONDUCTOR_EMAIL_ADDRESSES"] || "").split(",").freeze
+  def self.knows_about?(email)
+    AccountChecker.knows_about?(email, AccountChecker::Type::CONDUCTORS)
   end
 
   def approve!(approved_by = nil)

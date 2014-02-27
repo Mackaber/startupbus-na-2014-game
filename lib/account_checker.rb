@@ -53,6 +53,7 @@ module AccountChecker
   def http
     Net::HTTP.new(hostname, port).tap do |http|
       http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
   end
 
