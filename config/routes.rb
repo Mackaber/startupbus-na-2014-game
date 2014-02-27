@@ -18,7 +18,9 @@ DeviseApp::Application.routes.draw do
   end
 
   resources :dashboard
-  resources :teams
+  resources :teams do
+    resources :investments, only: [:create, :new]
+  end
   resources :buses
   resources :milestones
 

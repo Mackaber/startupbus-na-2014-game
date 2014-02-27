@@ -20,11 +20,11 @@ class Omniauthable < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    omniauthable = find_or_initialize_by(uid: auth.uid, provider: auth.provider) do |omniauthable|
-      omniauthable.provider = auth.provider
-      omniauthable.uid = auth.uid
+    omniauthable = find_or_initialize_by(uid: auth.uid, provider: auth.provider) do |obj|
+      obj.provider = auth.provider
+      obj.uid = auth.uid
       if auth.provider == "facebook"
-        omniauthable.generate_facebook_social_image_url
+        obj.generate_facebook_social_image_url
       end
     end
 
@@ -80,8 +80,10 @@ class Omniauthable < ActiveRecord::Base
     if social_media_image_url.present?
       return "#{social_media_image_url}?#{options.to_param}"
     else
-      #"http://placehold.it/#{options.fetch(:height, 50)}x#{options.fetch(:width, 50)}"
-      "http://placekitten.com/g/#{options.fetch(:height, 50)}/#{options.fetch(:width, 50)}"
+      [
+        "http://placehold.it/#{options.fetch(:height, 50)}x#{options.fetch(:width, 50)}",
+        "http://placekitten.com/g/#{options.fetch(:height, 50)}/#{options.fetch(:width, 50)}"
+      ].suffle.first
     end
   end
 
