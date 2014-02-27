@@ -24,7 +24,7 @@ class Omniauthable < ActiveRecord::Base
       omniauthable.provider = auth.provider
       omniauthable.uid = auth.uid
       if auth.provider == "facebook"
-        omniauthable.social_media_image_url = "http://graph.facebook.com/#{auth.uid}/picture"
+        omniauthable.generate_facebook_social_image_url
       end
     end
 
@@ -60,6 +60,10 @@ class Omniauthable < ActiveRecord::Base
 
   def password_required?
     false
+  end
+
+  def generate_facebook_social_image_url
+    social_media_image_url = "http://graph.facebook.com/#{auth.uid}/picture"
   end
 
   def update_with_password(params, *options)
