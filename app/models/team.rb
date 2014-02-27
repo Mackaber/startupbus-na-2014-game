@@ -1,4 +1,6 @@
 class Team < ActiveRecord::Base
+  include Enumerable
+
   has_many :buspreneurs, as: :attachable
   has_many :investments
   has_many :milestone_teams
@@ -28,22 +30,22 @@ class Team < ActiveRecord::Base
   #end
 
   def funding
-    @funding ||= investments.pluck(:amount).reduce(:+)
+    @funding ||= investments.pluck(:amount).reduce(:+) || 0
   end
 
   def score
-    0
+    funding
+  end
+
+  def <=>(other)
+    other.score <=> score
   end
 
   def all_milestones
     Milestone.all
-  end    
-
-  def milestones_completed
-    MilestoneTeam.where(:team_id => self.id).map(&:milestone)
   end
 
   def milestones_pending
-    Milestone.all - milestones_completed
+    Milestone.where.not(id: milestone_ids)
   end
 end
