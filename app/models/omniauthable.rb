@@ -20,13 +20,15 @@ class Omniauthable < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    omniauthable = find_or_create_by(uid: auth.uid, provider: auth.provider) do |omniauthable|
+    omniauthable = find_or_initialize_by(uid: auth.uid, provider: auth.provider) do |omniauthable|
       omniauthable.provider = auth.provider
       omniauthable.uid = auth.uid
-      omniauthable.name = auth.info.name
-      omniauthable.email = auth.info.email
+      if auth.provider == "facebook"
+        omniauthable.social_media_image_url = "http://graph.facebook.com/#{auth.uid}/picture"
+      end
     end
 
+    omniauthable.set_attributes(auth)
     set_type_and_approval(omniauthable)
     omniauthable
   end
@@ -51,6 +53,11 @@ class Omniauthable < ActiveRecord::Base
     false
   end
 
+  def set_attributes(auth)
+    self.name = auth.info.name
+    self.email = auth.info.email
+  end
+
   def password_required?
     false
   end
@@ -61,6 +68,10 @@ class Omniauthable < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def photo_url(options = {})
+    "#{social_media_image_url}?#{options.to_param}"
   end
 
   def approved?

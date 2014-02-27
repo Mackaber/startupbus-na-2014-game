@@ -5,11 +5,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if omniauthable.persisted?
       flash.notice = "Signed In!"
-      if omniauthable["provider"] == "facebook" && omniauthable.social_media_image_url.blank?
-        current_user.social_media_image_url = "http://graph.facebook.com/#{omniauthable["uid"]}/picture"
-        current_user.save!
-      end
-
       sign_in_and_redirect omniauthable
     else
       session["devise.user_attributes"] = omniauthable.attributes
