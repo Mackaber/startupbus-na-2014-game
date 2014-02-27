@@ -1,0 +1,8 @@
+<p>About to invest on <%= @team.name %></p>
+
+<p>You have <%= number_to_currency @investment.investor.bank %> available.</p>
+
+<%= simple_form_for [@team, @investment] do |f| %>
+  <%= f.input :amount %>
+  <%= f.submit %>
+<% end %>

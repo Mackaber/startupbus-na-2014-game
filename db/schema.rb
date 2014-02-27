@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20140227030307) do
     t.string   "attachable_type"
     t.integer  "attachable_id"
     t.string   "social_media_image_url"
-    t.decimal  "bank",                   precision: 2, scale: 0
+    t.decimal  "bank",                   precision: 2, scale: 0, default: 0
   end
 
   add_index "omniauthables", ["email"], name: "index_omniauthables_on_email", unique: true
