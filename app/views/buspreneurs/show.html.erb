@@ -35,23 +35,24 @@
           </tr>
         </thead>
         <tbody>
-          <% @buspreneur.team.milestones_completed.each do |completed_milestone| %>
-            <tr class="success">
-              <td><%= completed_milestone.name %></td>
-              <td><%= completed_milestone.max_points %></td>
-              <td><%= completed_milestone.milestone_teams.first.awarded_points %></td>
-              <td><%= completed_milestone.target_completion_date.strftime("%d-%m-%y") %></td>
-              <td><%= completed_milestone.target_completion_date.strftime("%d-%m-%y") %></td>
-            </tr>
-          <% end %>
-          <% @buspreneur.team.milestones_pending.each do |pending_milestone| %>
-            <tr class="warning">
-              <td><%= pending_milestone.name %></td>
-              <td><%= pending_milestone.max_points %></td>
-              <td>0</td>
-              <td><%= pending_milestone.target_completion_date.strftime("%d-%m-%y") %></td>
-              <td><%= pending_milestone.target_completion_date.strftime("%d-%m-%y") %></td>
-            </tr>
+          <% @buspreneur.team.all_milestones.each do |milestone| %>
+            <% if @buspreneur.team.milestones.include?(milestone) %>
+              <tr class="success">
+                <td><%= milestone.name %></td>
+                <td><%= milestone.max_points %></td>
+                <td><%= milestone.milestone_teams.first.awarded_points %></td>
+                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+              </tr>
+            <% else %>
+              <tr class="warning">
+                <td><%= milestone.name %></td>
+                <td><%= milestone.max_points %></td>
+                <td>0</td>
+                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
