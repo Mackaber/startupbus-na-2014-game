@@ -28,15 +28,19 @@ class Ability
   end
 
   def conductor_abilities(user)
+    cannot :request, Buspreneur
   end
 
   def buspreneur_abilities(user)
     can :read, Buspreneur do |buspreneur|
       user == buspreneur && buspreneur.approved?
     end
+
+    cannot :request, Buspreneur
   end
 
   def investor_abilities(user)
+    can :request, Buspreneur
   end
 
   def visitor_abilities(user)

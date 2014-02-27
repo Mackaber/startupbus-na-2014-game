@@ -4,7 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     omniauthable = Omniauthable.from_omniauth(request.env["omniauth.auth"])
 
     if omniauthable.persisted?
-      flash.notice = "Signed In, Bro!"
+      flash.notice = "Signed In!"
       sign_in_and_redirect omniauthable
       Notifier.send_signup_email(current_user).deliver if omniauthable.sign_in_count == 1
     else

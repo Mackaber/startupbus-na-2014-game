@@ -1,6 +1,61 @@
 <h1>You're a buspreneur, congrats!</h1>
 
-<ul>
-  <li>Team: <%= link_to @buspreneur.team_name, @buspreneur.team %></li>
-  <li>Bus: <%= link_to @buspreneur.bus_name, @buspreneur.bus %></li>
-</ul>
+<div class="row">
+  <div class="col-md-7">
+    <h2>Your Profile</h2>
+
+    <h3>Your Pic:</h3>
+    <%= image_tag @buspreneur.photo_url(type: :large), class: "img-rounded" %>
+
+    <h3>Your Bio:</h3>
+    <p class="lead">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+      sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+      laborum.
+    </p>
+  </div>
+  <div class="col-md-5">
+    <% if @buspreneur.team.present? %>
+      <h2>Your Team Status</h2>
+      <p>Team: <%= link_to @buspreneur.team_name.try(:humanize), @buspreneur.team %></p>
+      <p>Bus: <%= link_to @buspreneur.bus_name.try(:humanize), @buspreneur.bus %></p>
+
+      <h3>Milestones Completed</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>Possible Points</th>
+            <th>Points Received</th>
+            <th>Deadline</th>
+            <th>Completed At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @buspreneur.team.all_milestones.each do |milestone| %>
+            <% if @buspreneur.team.milestones.include?(milestone) %>
+              <tr class="success">
+                <td><%= milestone.name %></td>
+                <td><%= milestone.max_points %></td>
+                <td><%= milestone.milestone_teams.first.awarded_points %></td>
+                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+              </tr>
+            <% else %>
+              <tr class="warning">
+                <td><%= milestone.name %></td>
+                <td><%= milestone.max_points %></td>
+                <td>0</td>
+                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

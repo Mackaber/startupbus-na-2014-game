@@ -1,16 +1,21 @@
 class Team < ActiveRecord::Base
+  include Enumerable
 
-  delegate :name, to: :bus, prefix: true, allow_nil: false
+  has_many :buspreneurs, as: :attachable
+  has_many :investments
+  has_many :milestone_teams
+  has_many :milestones, :through => :milestone_teams
+
+  accepts_nested_attributes_for :milestone_teams
+
+  belongs_to :bus
 
   validates :name, :website, :twitter_handle, :github_url, :facebook_url,
             :uniqueness => true
 
   validates :description, presence: true
 
-  has_many :buspreneurs, as: :attachable
-  has_many :investments
-
-  belongs_to :bus
+  delegate :name, :photo_url, to: :bus, prefix: true, allow_nil: true
 
   def buspreneur_names
     buspreneurs.pluck(:email).to_sentence
@@ -25,10 +30,30 @@ class Team < ActiveRecord::Base
   #end
 
   def funding
-    @funding ||= investments.pluck(:amount).reduce(:+)
+    @funding ||= investments.pluck(:amount).reduce(:+) || 0
   end
 
   def score
-    0
+    funding
   end
+
+  def <=>(other)
+    other.score <=> score
+  end
+
+  def all_milestones
+    Milestone.all
+  end
+
+  def milestones_pending
+    Milestone.where.not(id: milestone_ids)
+  end
+
+  def photo_url(options = {})
+    [
+      "http://placehold.it/#{options.fetch(:height, 50)}x#{options.fetch(:width, 50)}",
+      "http://placekitten.com/g/#{options.fetch(:height, 50)}/#{options.fetch(:width, 50)}"
+    ].shuffle.first
+  end
+
 end

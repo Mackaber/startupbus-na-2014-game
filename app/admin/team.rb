@@ -26,31 +26,23 @@ ActiveAdmin.register Team do
   form do |f|
     f.inputs "Details" do
       f.input :name
-      f.input :bus,
-        as: :select,
-        collection: options_from_collection_for_select(
-          Bus.all,
-          :id,
-          :name,
-          f.object.bus_id
-        )
+      f.input :bus
       f.input :website
       f.input :github_url
       f.input :twitter_handle
       f.input :facebook_url
       f.input :description
-      f.input :buspreneurs,
-        as: :select,
-        multiple: true,
-        collection: options_from_collection_for_select(
-          Buspreneur.approved_without_team(f.object),
-          :id,
-          :email,
-          f.object.buspreneur_ids
-        )
+      f.input :buspreneurs, multiple: true, collection: Buspreneur.approved_without_team(f.object)
+
+      f.has_many :milestone_teams, :allow_destroy => true do |app_f|
+        app_f.inputs do
+          app_f.input :awarded_points
+          app_f.input :milestone_id, multiple: false, :as => :select, collection: Milestone.all
+          app_f.input :team_id, :as => :select, collection: Team.all
+        end
+      end
     end
 
     f.actions
   end
-
 end

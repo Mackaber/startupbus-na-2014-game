@@ -12,12 +12,15 @@ group :production do
 end
 
 group :development, :test do
-    gem 'sqlite3'
-    gem 'dm-sqlite-adapter'
+  gem 'sqlite3'
+  gem 'dm-sqlite-adapter'
+  gem 'fakeweb'
 end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+
+gem 'simple_form'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -66,6 +69,8 @@ group :development do
   gem 'meta_request'
   gem 'better_errors', git: 'https://github.com/charliesome/better_errors.git'
   gem 'binding_of_caller'
+  gem 'pry-debugger'
+  gem 'pry-rails'
 end
 
 gem 'bootstrap-sass', '~> 3.1.1'

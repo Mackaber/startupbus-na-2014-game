@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @teams = Team.all
+    @teams = Team.all.sort
   end
 
   def create

@@ -14,22 +14,19 @@ ActiveAdmin.register Conductor do
       f.input :email
       f.input :name
       f.input :username
-      f.input :sign_in_count
-      f.input :provider
-      f.input :uid
-      f.input :created_at
-      f.input :attachable,
-        label: "Bus",
-        as: :select,
-        collection: options_from_collection_for_select(
-          Bus.all,
-          :id,
-          :name,
-          f.object.attachable_id
-        )
+      f.input :attachable, label: "Bus", collection: Bus.all
     end
 
     f.actions
   end
 
+  show do |conductor|
+    attributes_table do
+      row("Name") { conductor.name }
+      row("Username") { conductor.username }
+      row("Email") { conductor.email }
+      row("Bus") { conductor.bus_name }
+      row("Teams") { conductor.bus_team_names }
+    end
+  end
 end

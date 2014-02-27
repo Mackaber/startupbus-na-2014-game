@@ -34,9 +34,13 @@ Examples of milestones:
 === Get started
 $ bundle install
 
-$ rails s
-
 $ rake db:migrate RAILS_ENV=development
+
+$ rake db:seed
+
+$ BUSPRENEUR_EMAIL_ADDRESSES=blane.cordes@gmail.com FACEBOOK_APP_ID=734756139882163 FACEBOOK_APP_SECRET=de410f8d8bb7511bdea8a47f03a8568b rails s
+- put your email that you use for facebook in where I have mine
+
 
 
 === User Types

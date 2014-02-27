@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223204035) do
+ActiveRecord::Schema.define(version: 20140227030307) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20140223204035) do
     t.decimal  "amount",      precision: 2, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "milestone_teams", force: true do |t|
+    t.integer "milestone_id",   null: false
+    t.integer "team_id",        null: false
+    t.integer "awarded_points"
   end
 
   create_table "milestones", force: true do |t|
@@ -44,12 +50,12 @@ ActiveRecord::Schema.define(version: 20140223204035) do
 
   create_table "omniauthables", force: true do |t|
     t.string   "type"
-    t.string   "email",                  default: ""
-    t.string   "encrypted_password",     default: ""
+    t.string   "email",                                          default: ""
+    t.string   "encrypted_password",                             default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                                  default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -64,6 +70,8 @@ ActiveRecord::Schema.define(version: 20140223204035) do
     t.datetime "updated_at"
     t.string   "attachable_type"
     t.integer  "attachable_id"
+    t.string   "social_media_image_url"
+    t.decimal  "bank",                   precision: 2, scale: 0, default: 0
   end
 
   add_index "omniauthables", ["email"], name: "index_omniauthables_on_email", unique: true

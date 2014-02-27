@@ -15,7 +15,7 @@ class BuspreneursController < ApplicationController
   private
 
   def find_buspreneur
-    @buspreneur = Buspreneur.find_by(params[:id] || params[:buspreneur_id])
+    @buspreneur = Buspreneur.find(params[:id] || params[:buspreneur_id])
   end
 
   def authenticate_show

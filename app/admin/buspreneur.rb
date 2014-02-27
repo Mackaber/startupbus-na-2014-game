@@ -14,23 +14,20 @@ ActiveAdmin.register Buspreneur do
       f.input :email
       f.input :name
       f.input :username
-      f.input :sign_in_count
-      f.input :provider
-      f.input :uid
-      f.input :approved_at
-      f.input :approved_by
-      f.input :created_at
-      f.input :attachable,
-        label: "Team",
-        as: :select,
-        collection: options_from_collection_for_select(
-          Team.all,
-          :id,
-          :name,
-          f.object.attachable_id
-        )
+      f.input :approved?, as: :radio, input_html: { disabled: true }
+      f.input :attachable, label: "Team", collection: Team.all
     end
 
     f.actions
+  end
+
+  show do |buspreneur|
+    attributes_table do
+      row("name") { buspreneur.name }
+      row("username") { buspreneur.username }
+      row("email") { buspreneur.email }
+      row("team") { buspreneur.team }
+      row("bus") { buspreneur.bus }
+    end
   end
 end
