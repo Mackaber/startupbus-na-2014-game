@@ -8,7 +8,7 @@ DeviseApp::Application.initialize!
 ActionMailer::Base.smtp_settings = {
   :address => "smtp.sendgrid.net",
   :port => 25,
-  :domain => "game.startupbus.com",
+  :domain => "startupbus.com",
   :authentication => :plain,
   :user_name => ENV['SENDGRID_USERNAME'],
   :password => ENV['SENDGRID_PASSWORD']
