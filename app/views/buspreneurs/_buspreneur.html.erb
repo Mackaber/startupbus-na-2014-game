@@ -1,12 +1,16 @@
+<% for_team ||= false %>
+
 <div class="col-xs-6 col-sm-4 col-lg-3">
 	<%= link_to buspreneur do %>
 		<div class="thumbnail sb-item-summary">
-			<img src=<%= buspreneur.social_media_image_url || 'http://placehold.it/50x50' %> alt="Team name">
+			<%= image_tag buspreneur.photo_url(width: 50, height: 50), alt: "team name" %>
 			<!-- TODO: maybe have the caption slide up on hover -->
-	  		<div class="caption">
-	    		<h4><%= content_tag :b, buspreneur.name %><%= buspreneur.username %></h4>
-	    		<a href="#"><%= buspreneur.team_name %></a>
-	  		</div>
+			<div class="caption">
+				<h4><%= content_tag :b, buspreneur.name %><%= buspreneur.username %></h4>
+				<% unless for_team %>
+					<a href="#"><%= buspreneur.team_name %></a>
+				<% end %>
+			</div>
 		</div>
 	<% end %>
 </div>

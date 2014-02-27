@@ -77,7 +77,12 @@ class Omniauthable < ActiveRecord::Base
   end
 
   def photo_url(options = {})
-    "#{social_media_image_url}?#{options.to_param}"
+    if social_media_image_url.present?
+      return "#{social_media_image_url}?#{options.to_param}"
+    else
+      #"http://placehold.it/#{options.fetch(:height, 50)}x#{options.fetch(:width, 50)}"
+      "http://placekitten.com/g/#{options.fetch(:height, 50)}/#{options.fetch(:width, 50)}"
+    end
   end
 
   def approved?

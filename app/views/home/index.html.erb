@@ -39,7 +39,10 @@ consectetur est at lobortis.</p>
             <div class="well">
                 <h3>I'm a 2014 Buspreneur</h3>
                 <br />
-                <%= link_to investor_request_buspreneurship_path(current_omniauthable), :class => "btn btn-primary btn-block", method: :put do %>
+                <%= link_to investor_request_buspreneurship_path(current_omniauthable),
+                  class: "btn btn-primary btn-block",
+                  confirm: "Are you sure? You won't be able to participate until you've been approved!",
+                  method: :put do %>
                     Verify your status as a Buspreneur
                 <% end %>
             </div>

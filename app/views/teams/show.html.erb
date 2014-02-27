@@ -1,25 +1,29 @@
 <h1><%= @team.name %></h1>
 
-<p>Bus: <%= content_tag :b, link_to(@team.bus_name, @team.bus) %></p>
-<p>Score: <%= content_tag :b, @team.score %></p>
-
-<h3>Buspreneurs</h3>
-<ul>
-  <%= render @team.buspreneurs %>
-</ul>
-
-<h3>Investments</h3>
-<p>
-  <%= render @team.investments %>
-</p>
-
-<p>Total: <%= content_tag :b, number_to_currency(@team.funding) %></p>
-<br>
-<div style="float:left margin-left:300px">
-  <h3>Milestones:</h3>
-  <ul
-    <%= render @team.all_milestones %>
-  </ul>
+<div class="container">
+  <p>Bus: <%= content_tag :b, link_to(@team.bus_name, @team.bus) %></p>
+  <p>Score: <%= content_tag :b, @team.score %></p>
 </div>
 
+<div class="container">
+  <h3>Buspreneurs</h3>
+  <%= render @team.buspreneurs, for_team: true %>
+</div>
 
+<div class="container">
+  <h3>Investments</h3>
+  <p>
+  Total: <%= content_tag :b, number_to_currency(@team.funding) %>
+    (<%= @team.investments.count %>)
+  </p>
+</div>
+
+<div class="container">
+  <h3>Completed Milestones:</h3>
+  <%= render @team.milestones %>
+</div>
+
+<div class="container">
+  <h3>Pending Milestones:</h3>
+  <%= render @team.milestones_pending %>
+</div>
