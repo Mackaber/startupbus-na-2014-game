@@ -64,7 +64,7 @@ class Omniauthable < ActiveRecord::Base
 
   def generate_facebook_social_image_url
     if provider == "facebook" && uid.present?
-      social_media_image_url = "http://graph.facebook.com/#{uid}/picture"
+      self.social_media_image_url = "http://graph.facebook.com/#{uid}/picture"
     end
   end
 
