@@ -9,7 +9,7 @@
 	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
-	
+
   <link href='http://fonts.googleapis.com/css?family=Lato:400,700,800|Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 
@@ -25,7 +25,10 @@
       <% if omniauthable_signed_in? %>
         <li>
           <%= content_tag :p, class: "navbar-text" do %>
-            Welcome, <%= current_omniauthable.name %>!
+            <%= link_to current_omniauthable do %>
+              <%= image_tag current_omniauthable.photo_url(type: :square), class: "avatar" %>
+              <%= current_omniauthable.name %>
+            <% end %>
           <% end %>
         </li>
         <% if can?(:manage, :all) %>
@@ -33,9 +36,6 @@
             <%= link_to "Admin", admin_root_path %>
           </li>
         <% end %>
-        <li>
-          <%= link_to 'Dashboard', current_omniauthable %>
-        </li>
         <li>
           <%= link_to "Sign Out", destroy_omniauthable_session_path, :method => :delete %>
         </li>
