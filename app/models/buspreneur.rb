@@ -9,6 +9,10 @@ class Buspreneur < Omniauthable
   scope :approved, -> { where("approved_at IS NOT NULL") }
   scope :approved_without_team, ->(user) { approved.where("attachable_id IS NULL OR attachable_id = ?", user.id) }
 
+  def self.known_email_addresses
+    (ENV["BUSPRENEUR_EMAIL_ADDRESSES"] || "").split(",").freeze
+  end
+
   def approved?
     approved_at.present?
   end

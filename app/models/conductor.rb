@@ -2,7 +2,11 @@ class Conductor < Omniauthable
   belongs_to :attachable, polymorphic: true
 
   delegate :name, :team_names, to: :bus, prefix: true, allow_nil: true
-  
+
+  def self.known_email_addresses
+    (ENV["CONDUCTOR_EMAIL_ADDRESSES"] || "").split(",").freeze
+  end
+
   def approve!(approved_by = nil)
     self.approved_by = approved_by
     touch :approved_at
