@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226231024) do
+ActiveRecord::Schema.define(version: 20140227030307) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -83,12 +83,12 @@ ActiveRecord::Schema.define(version: 20140226231024) do
 
   create_table "omniauthables", force: true do |t|
     t.string   "type"
-    t.string   "email",                  default: ""
-    t.string   "encrypted_password",     default: ""
+    t.string   "email",                                          default: ""
+    t.string   "encrypted_password",                             default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                                  default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20140226231024) do
     t.string   "attachable_type"
     t.integer  "attachable_id"
     t.string   "social_media_image_url"
+    t.decimal  "bank",                   precision: 2, scale: 0
   end
 
   add_index "omniauthables", ["email"], name: "index_omniauthables_on_email", unique: true
