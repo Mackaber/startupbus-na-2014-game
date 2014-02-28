@@ -10,6 +10,7 @@ ActiveAdmin.register Investor do
   batch_action :make_buspreneur do |collection|
     Investor.find(collection).each do |object|
       object.update_attribute(:type, "Buspreneur")
+      object.becomes(Buspreneur).approve!(current_user)
     end
 
     redirect_to collection_path, notice: "Buspreneur approved!"
