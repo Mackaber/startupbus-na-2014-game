@@ -3,6 +3,8 @@ class Message < ActiveRecord::Base
   has_many :team_messages
 	has_many :teams, :through => :team_messages
 
+  attr_accessible :body, :subject, :delivery_method, :conductor_id, :team_ids
+
   def team_names
     teams.pluck(:name).to_sentence
   end
@@ -10,7 +12,7 @@ class Message < ActiveRecord::Base
   after_create :send_message
   def send_message
     self.sent = 0
-    if type == "SMS" then
+    if delivery_method == "SMS" then
     else
       teams.each do |team|
         team.buspreneurs.each do |buspreneur|

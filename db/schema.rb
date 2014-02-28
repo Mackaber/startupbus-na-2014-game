@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228185301) do
+ActiveRecord::Schema.define(version: 20140228202223) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -30,12 +30,12 @@ ActiveRecord::Schema.define(version: 20140228185301) do
 
   create_table "messages", force: true do |t|
     t.string   "subject"
-    t.string   "type"
     t.text     "body"
     t.integer  "conductor_id"
     t.integer  "sent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "delivery_method"
   end
 
   create_table "milestone_teams", force: true do |t|
