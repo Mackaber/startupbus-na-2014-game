@@ -52,6 +52,6 @@ ActiveAdmin.register Team do
   end
 
   action_item do
-    link_to('Message', message_path(team))
+    link_to 'Message', message_admin_team_path(team))
   end
 end
