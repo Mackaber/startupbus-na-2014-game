@@ -7,6 +7,14 @@ ActiveAdmin.register Investor do
     redirect_to collection_path, notice: "Conductor approved!"
   end
 
+  batch_action :make_buspreneur do |collection|
+    Investor.find(collection).each do |object|
+      object.update_attribute(:type, "Buspreneur")
+    end
+
+    redirect_to collection_path, notice: "Buspreneur approved!"
+  end
+
   index do
     selectable_column
     column :name
