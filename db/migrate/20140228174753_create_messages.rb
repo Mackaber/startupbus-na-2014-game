@@ -5,7 +5,6 @@ class CreateMessages < ActiveRecord::Migration
       t.string   :type
       t.text     :body
       t.integer  :conductor_id
-      t.integer  :team_id
       t.integer  :sent
       t.timestamps
     end
