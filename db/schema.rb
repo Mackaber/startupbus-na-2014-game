@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227030307) do
+ActiveRecord::Schema.define(version: 20140228210515) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20140227030307) do
     t.decimal  "amount",      precision: 2, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "conductor_id"
+    t.integer  "sent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "delivery_method"
   end
 
   create_table "milestone_teams", force: true do |t|
@@ -72,10 +82,18 @@ ActiveRecord::Schema.define(version: 20140227030307) do
     t.integer  "attachable_id"
     t.string   "social_media_image_url"
     t.decimal  "bank",                   precision: 2, scale: 0, default: 0
+    t.string   "phone_number"
   end
 
   add_index "omniauthables", ["email"], name: "index_omniauthables_on_email", unique: true
   add_index "omniauthables", ["reset_password_token"], name: "index_omniauthables_on_reset_password_token", unique: true
+
+  create_table "team_messages", force: true do |t|
+    t.integer  "message_id"
+    t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "teams", force: true do |t|
     t.string   "name"

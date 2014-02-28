@@ -31,6 +31,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'twilio-ruby'
 gem 'sendgrid'
 
 # Use jquery as the JavaScript library
@@ -71,6 +72,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-debugger'
   gem 'pry-rails'
+  gem 'guard-rails'
 end
 
 gem 'bootstrap-sass', '~> 3.1.1'

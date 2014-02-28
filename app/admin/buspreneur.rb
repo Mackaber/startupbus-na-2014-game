@@ -6,6 +6,7 @@ ActiveAdmin.register Buspreneur do
     column :email
     column :team_name
     column :bus_name
+    column :phone_number
     actions
   end
 
@@ -16,6 +17,7 @@ ActiveAdmin.register Buspreneur do
       f.input :username
       f.input :approved?, as: :radio, input_html: { disabled: true }
       f.input :attachable, label: "Team", collection: Team.all
+      f.input :phone_number
     end
 
     f.actions
@@ -28,6 +30,7 @@ ActiveAdmin.register Buspreneur do
       row("email") { buspreneur.email }
       row("team") { buspreneur.team }
       row("bus") { buspreneur.bus }
+      row("phone number") { buspreneur.phone_number }
     end
   end
 end

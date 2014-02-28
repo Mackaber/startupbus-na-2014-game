@@ -1,6 +1,8 @@
 class Conductor < Omniauthable
   belongs_to :attachable, polymorphic: true
 
+  has_many :messages
+
   delegate :name, :team_names, to: :bus, prefix: true, allow_nil: true
 
   def self.knows_about?(email)
