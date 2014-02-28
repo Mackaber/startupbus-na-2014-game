@@ -2,8 +2,6 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-require 'twilio-ruby'
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
@@ -23,8 +21,6 @@ module DeviseApp
     # config.i18n.default_locale = :de
     config.active_record.whitelist_attributes = false
     config.autoload_paths += %W( #{config.root}/lib )
-
-    config.twilio_client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
   end
 end

@@ -14,7 +14,8 @@ class MessageSender < ActionMailer::Base
   end
 
   def send_message_sms(body, conductor, buspreneur)
-    DeviseApp::Application.config.twilio_client.account.messages.create(
+    client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+    client.account.messages.create(
       :from => ENV['TWILIO_FROM_NUMBER'],
       :to => buspreneur.phone_number,
       :body => "StartupBus Message From #{conductor.name}: #{body}"
