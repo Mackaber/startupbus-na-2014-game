@@ -29,13 +29,16 @@ class Omniauthable < ActiveRecord::Base
     end
 
     omniauthable.set_attributes(auth)
-    set_type_and_approval(omniauthable)
+    if !omniauthable.imported
+      set_type_and_approval(omniauthable)
+    end
     omniauthable
   end
 
   def self.set_type_and_approval(omniauthable)
     type = type_from_email(omniauthable.email)
     omniauthable.type = type_from_email(omniauthable.email)
+    omniauthable.imported = true
     omniauthable.save
     omniauthable = type.constantize.find(omniauthable.id)
     omniauthable.approve! if omniauthable.respond_to?(:approve!)

@@ -14,10 +14,10 @@ class Message < ActiveRecord::Base
     self.sent = 0
     teams.each do |team|
       team.buspreneurs.each do |buspreneur|
-        if delivery_method == "SMS" and buspreneur.phone_number? then
+        if delivery_method == "SMS" and buspreneur.phone_number?
           MessageSender.send_message_sms(body, conductor, buspreneur).deliver
           self.sent = self.sent + 1 
-        elsif delivery_method == "E-Mail" and buspreneur.email? then
+        elsif delivery_method == "E-Mail" and buspreneur.email?
             MessageSender.send_message_email(subject, body, conductor, buspreneur).deliver
             self.sent = self.sent + 1
         end

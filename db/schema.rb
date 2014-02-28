@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228210515) do
+ActiveRecord::Schema.define(version: 20140228223601) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -58,35 +58,8 @@ ActiveRecord::Schema.define(version: 20140228210515) do
   add_index "milestones", ["name"], name: "index_milestones_on_name"
   add_index "milestones", ["target_completion_date"], name: "index_milestones_on_target_completion_date"
 
-  create_table "omniauthables", force: true do |t|
-    t.string   "type"
-    t.string   "email",                                          default: ""
-    t.string   "encrypted_password",                             default: ""
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                  default: 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "username"
-    t.string   "name"
-    t.datetime "approved_at"
-    t.integer  "approved_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "attachable_type"
-    t.integer  "attachable_id"
-    t.string   "social_media_image_url"
-    t.decimal  "bank",                   precision: 2, scale: 0, default: 0
-    t.string   "phone_number"
-  end
-
-  add_index "omniauthables", ["email"], name: "index_omniauthables_on_email", unique: true
-  add_index "omniauthables", ["reset_password_token"], name: "index_omniauthables_on_reset_password_token", unique: true
+# Could not dump table "omniauthables" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "team_messages", force: true do |t|
     t.integer  "message_id"
