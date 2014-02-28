@@ -12,15 +12,18 @@ class Message < ActiveRecord::Base
   after_create :send_message
   def send_message
     self.sent = 0
-    if delivery_method == "SMS" then
-    else
-      teams.each do |team|
-        team.buspreneurs.each do |buspreneur|
-          MessageSender.send_message_email(subject, body, conductor, buspreneur).deliver
-          self.sent = self.sent + 1
+    teams.each do |team|
+      team.buspreneurs.each do |buspreneur|
+        if delivery_method == "SMS" and buspreneur.phone_number? then
+          MessageSender.send_message_sms(body, conductor, buspreneur).deliver
+          self.sent = self.sent + 1 
+        elsif delivery_method == "E-Mail" and buspreneur.email? then
+            MessageSender.send_message_email(subject, body, conductor, buspreneur).deliver
+            self.sent = self.sent + 1
         end
       end
     end
+
     self.save
   end
 end

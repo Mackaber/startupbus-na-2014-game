@@ -1,3 +1,5 @@
+require "twilio-ruby"
+
 class MessageSender < ActionMailer::Base
   include SendGrid
   sendgrid_category "ConductorMail"
@@ -9,5 +11,13 @@ class MessageSender < ActionMailer::Base
           :to => buspreneur.email,
           :subject => subject,
           :body => body)
+  end
+
+  def send_message_sms(body, conductor, buspreneur)
+    DeviseApp::Application.config.twilio_client.account.messages.create(
+      :from => ENV['TWILIO_FROM_NUMBER'],
+      :to => buspreneur.phone_number,
+      :body => "StartupBus Message From #{conductor.name}: #{body}"
+    )
   end
 end

@@ -21,5 +21,8 @@ module DeviseApp
     # config.i18n.default_locale = :de
     config.active_record.whitelist_attributes = false
     config.autoload_paths += %W( #{config.root}/lib )
+
+    config.twilio_client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+
   end
 end
