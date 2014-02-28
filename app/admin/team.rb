@@ -48,7 +48,7 @@ ActiveAdmin.register Team do
 
   member_action :message, :method => :get do
     team = Team.find(params[:id])
-    puts team.inspect
+    puts team.buspreneurs.inspect
   end
 
   action_item :only => :show do
