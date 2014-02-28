@@ -46,12 +46,12 @@ ActiveAdmin.register Team do
     f.actions
   end
 
-  member_action :message, :method => :post do
+  member_action :message, :method => :get do
     team = Team.find(params[:id])
     puts team.inspect
   end
 
-  action_item do
+  action_item :only => :show do
     link_to 'Message', message_admin_team_path(team)
   end
 end
