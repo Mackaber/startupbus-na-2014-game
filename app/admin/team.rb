@@ -45,4 +45,13 @@ ActiveAdmin.register Team do
 
     f.actions
   end
+
+  member_action :message, :method => :post do
+    team = Team.find(params[:id])
+    puts team.inspect
+  end
+
+  action_item do
+    link_to('Message', message_path(team))
+  end
 end
