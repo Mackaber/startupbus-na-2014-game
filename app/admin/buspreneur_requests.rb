@@ -10,14 +10,14 @@ ActiveAdmin.register Buspreneur, as: "Buspreneur Requests" do
     redirect_to collection_path, notice: "Buspreneurs approved!"
   end
 
-  member_action :approve, method: :put do
+  member_action :approve, :method => :get do
     buspreneur = Buspreneur.find(params[:id])
     buspreneur.approve!(current_omniauthable)
     redirect_to collection_path, notice: "Buspreneur approved!"
   end
 
-  action_item only: [:index] do |resource|
-    link_to "Approve", approve_admin_buspreneur_request_path(resource)
+  action_item :only => :show do
+    link_to "Approve", approve_admin_buspreneur_request_path(params[:id])
   end
 
   index do
