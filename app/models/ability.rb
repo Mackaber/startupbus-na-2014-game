@@ -36,6 +36,8 @@ class Ability
       user == buspreneur && buspreneur.approved?
     end
 
+    can :create_team, :all
+
     cannot :request, Buspreneur
   end
 
