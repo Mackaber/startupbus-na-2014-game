@@ -5,23 +5,18 @@
 		teams = teams.reverse
 %>
 
+
 <div class="jumbotron">
 	<h1>Welcome, Investor!</h1>
-	<p>...or are you a buspreneur?</p>
-  <%= link_to investor_request_buspreneurship_path(current_omniauthable),
-    class: "btn btn-primary",
-    confirm: "Are you sure? You won't be able to participate until you've been approved!",
-    method: :put do %>
-    Request Verification
-  <% end %>
+
 </div> <!-- /jumbotron -->
 
 <div class="clearfix">
 
-	<h2 class="sb-collection-title">Top teams</h2>
+	<h2 class="sb-collection-title">Your Portfolio</h2>
 
 	<div class="row">
-		<%= render partial: "team", collection: top_teams %>
+		<%= render partial: "investments", collection: @investor.investments %>
 	</div>
 
 	<h2 class="sb-collection-title">On the rise</h2>

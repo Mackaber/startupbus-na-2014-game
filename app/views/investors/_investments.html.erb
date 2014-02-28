@@ -1,0 +1,26 @@
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail sb-item-summary">
+    <%= image_tag investments.team.bus_photo_url(width: 50, height: 50), class: "sb-bus-icon" %>
+    <%= image_tag investments.team.photo_url(width: 300, height: 600), alt: investments.team.name %>
+
+    <div class="caption">
+      <%= content_tag :h3, investments.team.name %>
+      <p>
+        Your Investment:<span class="sb-funding-amount">
+           <%= number_to_currency investments.amount %>
+        </span> </br>
+
+        Total Funding:<span class="sb-funding-amount">
+           <%= number_to_currency investments.team.funding %>
+        </span> </br>
+
+         Current Ranking: 2</br>
+
+         Description:  <%= investments.team.description %>
+      </p>
+
+
+  
+    </div>
+  </div>
+</div>

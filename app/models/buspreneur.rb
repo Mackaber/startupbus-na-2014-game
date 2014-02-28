@@ -33,4 +33,5 @@ class Buspreneur < Omniauthable
   def to_s
     "#{name} (#{username}) <#{email}>"
   end
+
 end
