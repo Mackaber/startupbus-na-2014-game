@@ -30,7 +30,7 @@ ActiveAdmin.register Message do
 
   form do |f|
     f.inputs "Details" do
-      f.input :type
+      f.input :type, :as => :radio, :collection => ["SMS", "E-Mail"], :value_method => :type
       f.input :subject
       f.input :body
       f.input :conductor
