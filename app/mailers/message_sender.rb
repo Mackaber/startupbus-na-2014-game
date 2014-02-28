@@ -18,7 +18,7 @@ class MessageSender < ActionMailer::Base
     client.account.messages.create(
       :from => ENV['TWILIO_FROM_NUMBER'],
       :to => buspreneur.phone_number,
-      :body => "StartupBus Message From #{conductor.name}: #{body}"
+      :body => "From #{conductor.name} :: #{body} :: StartupBus SMS Powered by Twilio"
     )
   end
 end
