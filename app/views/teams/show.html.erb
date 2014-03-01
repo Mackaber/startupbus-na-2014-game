@@ -1,4 +1,22 @@
 <h1><%= @team.name %></h1>
+      <p><%= @team.description %></p>
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail sb-item-summary">
+    <%= image_tag @team.bus_photo_url(width: 50, height: 50), class: "sb-bus-icon" %>
+    <%= image_tag @team.photo_url(width: 300, height: 600), alt: @team.name %>
+
+    <div class="caption">
+  
+
+      <div class="clearfix">
+        <%= link_to new_team_investment_path(@team),
+          class: "btn btn-success col-xs-6", role: "button" do %>
+          <i class="fa fa-dollar"></i> Invest
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <p>Bus: <%= content_tag :b, link_to(@team.bus_name, @team.bus) %></p>
