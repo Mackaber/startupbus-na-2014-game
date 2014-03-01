@@ -19,6 +19,10 @@ class Omniauthable < ActiveRecord::Base
     false
   end
 
+  def self.checker_type
+    nil
+  end
+
   def self.from_omniauth(auth)
     omniauthable = find_or_initialize_by(uid: auth.uid, provider: auth.provider) do |obj|
       obj.provider = auth.provider
