@@ -20,6 +20,7 @@ ActiveAdmin.register Team do
       row("Created")        { team.created_at }
       row("Bus")            { team.bus_name }
       row("Buspreneurs")    { team.buspreneurs.map(&:email).join(", ") }
+      row("RSS Feed")       { team.rss_feed }
     end
   end
 
@@ -41,6 +42,7 @@ ActiveAdmin.register Team do
           app_f.input :team_id, :as => :select, collection: Team.all
         end
       end
+      f.input :rss_feed
     end
 
     f.actions
