@@ -1,0 +1,2 @@
+module InvestorGamesHelper
+end
