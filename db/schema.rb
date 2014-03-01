@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228234937) do
+ActiveRecord::Schema.define(version: 20140301012513) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140228234937) do
     t.decimal  "amount",      precision: 2, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url"
   end
 
   create_table "messages", force: true do |t|
