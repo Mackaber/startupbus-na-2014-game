@@ -17,6 +17,8 @@ class Team < ActiveRecord::Base
 
   validates :description, presence: true
 
+  validates_format_of :website, :with => URI::regexp(%w(http https))
+
   delegate :name, :photo_url, to: :bus, prefix: true, allow_nil: true
 
   def buspreneur_names

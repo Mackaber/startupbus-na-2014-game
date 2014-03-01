@@ -15,6 +15,10 @@ class InvestmentsController < ApplicationController
     @investment = Investment.new do |investment|
       investment.investor = current_omniauthable
       investment.team = @team
+      Bitly.use_api_version_3
+      bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
+      bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=#{current_omniauthable.name}")
+      investment.url = bit.short_url
     end
 
     ActiveRecord::Base.transaction do
