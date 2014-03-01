@@ -47,11 +47,11 @@ class Team < ActiveRecord::Base
   end
 
   def all_milestones
-    Milestone.all
+    Milestone.where("start_at <= :start", :start => Date.today)
   end
 
   def milestones_uncompleted
-    Milestone.where.not(id: milestone_ids).where.not(id: team_milestone_request_ids)
+    Milestone.where("start_at <= :start", :start => Date.today).where.not(id: milestone_ids).where.not(id: team_milestone_request_ids)
   end
 
   def milestones_pending
