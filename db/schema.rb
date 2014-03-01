@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301160624) do
+ActiveRecord::Schema.define(version: 20140301163117) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20140301160624) do
     t.text     "public_instructions"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_at"
   end
 
   add_index "milestones", ["name"], name: "index_milestones_on_name"

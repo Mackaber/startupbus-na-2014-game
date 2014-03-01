@@ -46,6 +46,7 @@ class Ability
     cannot :request, Buspreneur
     cannot :invest, Team
     can :edit_team, Team
+    can :request_milestone, Milestone
   end
 
   def investor_abilities(user)
