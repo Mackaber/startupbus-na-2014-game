@@ -37,6 +37,7 @@ class Ability
     end
 
     can :create_team, :all
+    can :approve_teammates, Team
 
     cannot :request, Buspreneur
   end
