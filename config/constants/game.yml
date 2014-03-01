@@ -1,0 +1,2 @@
+development: &defaults
+  :default_game_id: 1

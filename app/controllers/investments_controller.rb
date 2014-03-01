@@ -13,6 +13,7 @@ class InvestmentsController < ApplicationController
     amount = investment_params[:amount]
 
     @investment = Investment.new do |investment|
+      investment.game = Game.find(GAME[:default_game_id])
       investment.investor = current_omniauthable
       investment.team = @team
       Bitly.use_api_version_3

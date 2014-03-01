@@ -26,6 +26,7 @@ DeviseApp::Application.routes.draw do
 
   resources :buses
   resources :milestones
+  resources :investor_games
 
   root to: "home#index"
 end
