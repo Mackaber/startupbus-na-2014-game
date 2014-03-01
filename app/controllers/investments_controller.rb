@@ -35,6 +35,7 @@ class InvestmentsController < ApplicationController
 
     if current_omniauthable.save && @investment.save
       flash.notice = "#{@team.name} thanks you for investing #{@investment.amount}!"
+      InvestorGame.create({:investment_id => @investment.id, :game_id => @investment.game_id, :investor_id => @investment.investor.id, :team_id => @investment.team_id})
       redirect_to @investment.investor
     else
       flash.alert = "Error with the transaction!"

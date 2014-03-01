@@ -1,6 +1,7 @@
 class Investor < Omniauthable
   has_many :investments
   has_many :teams, through: :investments
+  has_many :investor_games
 
   validates :bank, numericality: { greater_than_or_equal_to: 0 }
 
