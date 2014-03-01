@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301012513) do
+ActiveRecord::Schema.define(version: 20140301020037) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20140301012513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bus_id"
+    t.string   "rss_feed"
   end
 
   add_index "teams", ["bus_id"], name: "index_teams_on_bus_id"
