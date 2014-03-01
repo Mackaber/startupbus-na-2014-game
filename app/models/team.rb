@@ -4,6 +4,7 @@ class Team < ActiveRecord::Base
   belongs_to :bus
 
   has_many :buspreneurs
+  has_many :team_updates
   has_many :investments, :dependent => :delete_all
   has_many :milestone_teams
   has_many :milestones, :through => :milestone_teams
