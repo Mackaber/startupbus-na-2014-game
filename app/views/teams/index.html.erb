@@ -1,7 +1,13 @@
-<h1>Listing Teams</h1>
+<h2>
 
-<%= render @teams %>
+	Teams
 
 <% if can?(:create_team, :all) %>
-  <%= link_to 'New Team', new_team_path %>
+Ms  
+  <%= new_team_path %>
+
 <% end %>
+</h2>
+
+
+<%= render @teams %>
