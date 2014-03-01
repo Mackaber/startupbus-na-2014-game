@@ -6,6 +6,7 @@ ActiveAdmin.register Team do
     selectable_column
     column :name
     column :buspreneur_names
+    column :short_url
     actions
   end
 
@@ -13,6 +14,7 @@ ActiveAdmin.register Team do
     attributes_table do
       row("Name")           { team.name }
       row("Website")        { team.website }
+      row("Short URL")      { team.short_url }
       row("Twitter Handle") { team.twitter_handle }
       row("Facebook URL")   { team.facebook_url }
       row("Github URL")     { team.github_url }

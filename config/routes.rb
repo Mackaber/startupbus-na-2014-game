@@ -28,4 +28,7 @@ DeviseApp::Application.routes.draw do
   resources :milestones
 
   root to: "home#index"
+
+  get 'leaderboard' => 'leaderboard#index'
+
 end

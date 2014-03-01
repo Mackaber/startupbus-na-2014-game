@@ -29,7 +29,7 @@
   <div class="form-group">
     <%= f.label "Milestone", :class => "col-sm-3 control-label" %>
     <div class="col-sm-9">
-      <%= f.select(:milestone_id, Milestone.where.not(id: current_omniauthable.team.milestone_ids).where.not(id: current_omniauthable.team.team_milestone_request_ids).map {|m| [m.name, m.id]}) %>
+      <%= f.select(:milestone_id, @team.milestones_uncompleted) %>
     </div>
   </div>
 

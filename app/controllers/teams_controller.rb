@@ -17,6 +17,10 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+    Bitly.use_api_version_3
+    bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
+    bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")
+    @team.short_url = bit.short_url
     if @team.save
       current_omniauthable.team = @team
       current_omniauthable.save

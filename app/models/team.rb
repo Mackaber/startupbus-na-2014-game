@@ -4,16 +4,18 @@ class Team < ActiveRecord::Base
   belongs_to :bus
 
   has_many :buspreneurs
-  has_many :investments
+  has_many :investments, :dependent => :delete_all
   has_many :milestone_teams
   has_many :milestones, :through => :milestone_teams
   has_many :team_milestone_requests
   has_many :messages, :through => :team_messages
 
-  accepts_nested_attributes_for :milestone_teams
+  accepts_nested_attributes_for :milestone_teams, :allow_destroy => true
 
-  validates :name, :website, :twitter_handle, :github_url, :facebook_url,
-            :uniqueness => true
+  validates :name, :website, :uniqueness => true
+
+  validates_uniqueness_of :twitter_handle, :github_url, :facebook_url, :allow_blank => true, :allow_nil => true
+
 
   validates :description, presence: true
 
@@ -47,11 +49,11 @@ class Team < ActiveRecord::Base
   end
 
   def all_milestones
-    Milestone.all
+    Milestone.where("start_at <= :start", :start => Date.today)
   end
 
   def milestones_uncompleted
-    Milestone.where.not(id: milestone_ids).where.not(id: team_milestone_request_ids)
+    Milestone.where("start_at <= :start", :start => Date.today).where.not(id: milestone_ids).where.not(id: team_milestone_request_ids)
   end
 
   def milestones_pending

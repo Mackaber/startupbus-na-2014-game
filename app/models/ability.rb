@@ -51,6 +51,7 @@ class Ability
     can :request_milestone, Team do |team|
       user.team == team
     end
+    can :edit_profile, Buspreneur
   end
 
   def investor_abilities(user)
