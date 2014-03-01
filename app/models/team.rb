@@ -10,7 +10,7 @@ class Team < ActiveRecord::Base
   has_many :team_milestone_requests
   has_many :messages, :through => :team_messages
 
-  accepts_nested_attributes_for :milestone_teams
+  accepts_nested_attributes_for :milestone_teams, :allow_destroy => true
 
   validates :name, :website, :twitter_handle, :github_url, :facebook_url,
             :uniqueness => true
