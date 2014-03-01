@@ -14,4 +14,15 @@ class Bus < ActiveRecord::Base
   def team_names
     teams.pluck(:name).to_sentence
   end
+
+  def photo_url(options = {})
+    if image_url.present?
+      return "#{image_url}?#{options.to_param}"
+    else
+      [
+        "http://placehold.it/#{options.fetch(:height, 50)}x#{options.fetch(:width, 50)}",
+        "http://placekitten.com/g/#{options.fetch(:height, 50)}/#{options.fetch(:width, 50)}"
+      ].shuffle.first
+    end
+  end
 end

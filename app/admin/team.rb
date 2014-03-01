@@ -21,6 +21,7 @@ ActiveAdmin.register Team do
       row("Bus")            { team.bus_name }
       row("Buspreneurs")    { team.buspreneurs.map(&:email).join(", ") }
       row("RSS Feed")       { team.rss_feed }
+      row("Logo URL")       { team.logo_url }
     end
   end
 
@@ -43,6 +44,7 @@ ActiveAdmin.register Team do
         end
       end
       f.input :rss_feed
+      f.input :logo_url
     end
 
     f.actions
