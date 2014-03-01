@@ -4,9 +4,11 @@ class Game < ActiveRecord::Base
 
   def investor_score(investor)
     current_score = [0]
-    investor.investments.each do |investment|
-      current_score << milestone_points(investment)
-      current_score << investment.team.funding
+    if investor && investor.investments.any?
+      investor.investments.each do |investment|
+        current_score << milestone_points(investment)
+        current_score << investment.team.funding
+      end
     end
     current_score.inject(:+)
   end
