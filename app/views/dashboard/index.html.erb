@@ -5,7 +5,7 @@
     <h2>Pick a team or <%= link_to 'Create One', "teams/new" %></h2>
   <% end %>  
 
-  <% if can?(:approve_teammates, :all) && current_omniauthable.team && current_omniauthable.team.pending_approvals.present? %>
+  <% if current_omniauthable.is_a?(Buspreneur) && can?(:approve_teammates, current_omniauthable.team) && current_omniauthable.team.pending_approvals.present? %>
      <% current_omniauthable.team.pending_approvals.each do |approval_request_user| %>
       <h3>New Teammate Pending Approval for <%= approval_request_user.team.name %>: <%= approval_request_user.name %> 
         <%= link_to 'Approve', controller: "users", action: "team_approval_confirm", user_id: approval_request_user.id %></h3>
