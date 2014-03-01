@@ -7,7 +7,7 @@ class Team < ActiveRecord::Base
   has_many :investments
   has_many :milestone_teams
   has_many :milestones, :through => :milestone_teams
-
+  has_many :team_milestone_requests
   has_many :messages, :through => :team_messages
 
   accepts_nested_attributes_for :milestone_teams
