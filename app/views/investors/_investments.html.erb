@@ -4,7 +4,7 @@
     <%= image_tag investments.team.photo_url(width: 300, height: 600), alt: investments.team.name %>
 
     <div class="caption">
-      <%= content_tag :h3, investments.team.name %>
+      <%= content_tag :h3, link_to(investments.team.name, team_path(investments.team)) %>
       <p>
         Your Investment:<span class="sb-funding-amount">
            <%= number_to_currency investments.amount %>
