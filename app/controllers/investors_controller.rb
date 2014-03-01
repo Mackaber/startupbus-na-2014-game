@@ -23,11 +23,13 @@ class InvestorsController < ApplicationController
   def tally_links
     Bitly.use_api_version_3
     bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
-    @click_count = 0
+    @total_clicks = 0
+    @click_count = {}
     @investor.investments.each do |investment|
       if investment.url?
         bit = bitly_client.clicks(investment.url)
-          @click_count = @click_count + bit.global_clicks
+          @total_clicks = @total_clicks + bit.user_clicks
+          @click_count[investment.url] = bit.user_clicks
       end
     end
   end
