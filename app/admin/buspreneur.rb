@@ -12,12 +12,23 @@ ActiveAdmin.register Buspreneur do
 
   form do |f|
     f.inputs "Details" do
-      f.input :email
       f.input :name
+      f.input :email
       f.input :username
-      f.input :approved?, as: :radio, input_html: { disabled: true }
-      f.input :attachable, label: "Team", collection: Team.all
       f.input :phone_number
+      f.input :description
+      f.input :approved?, as: :radio, input_html: { disabled: true }
+      f.input :bus, collection: Bus.all
+      f.input :team, collection: f.object.bus.teams,
+        label: "Team (only teams that are in selected bus)"
+      f.input :phone_number
+      f.input :blog
+      f.input :facebook
+      f.input :foursquare
+      f.input :github
+      f.input :linkedin
+      f.input :twitter
+      f.input :website
     end
 
     f.actions

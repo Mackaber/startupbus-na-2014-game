@@ -1,12 +1,16 @@
 class Conductor < Omniauthable
-  belongs_to :attachable, polymorphic: true
+  belongs_to :bus
 
   has_many :messages
 
   delegate :name, :team_names, to: :bus, prefix: true, allow_nil: true
 
   def self.knows_about?(email)
-    AccountChecker.knows_about?(email, AccountChecker::Type::CONDUCTORS)
+    AccountChecker.knows_about?(email, checker_type)
+  end
+
+  def self.checker_type
+    AccountChecker::Type::CONDUCTORS
   end
 
   def approve!(approved_by = nil)
@@ -16,14 +20,6 @@ class Conductor < Omniauthable
 
   def admin?
     true
-  end
-
-  def bus
-    attachable
-  end
-
-  def bus=(bus)
-    self.attachable = bus
   end
 
   def to_s

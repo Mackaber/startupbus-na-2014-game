@@ -1,7 +1,9 @@
 class Team < ActiveRecord::Base
   include Enumerable
 
-  has_many :buspreneurs, as: :attachable
+  belongs_to :bus
+
+  has_many :buspreneurs
   has_many :investments
   has_many :milestone_teams
   has_many :milestones, :through => :milestone_teams
@@ -9,8 +11,6 @@ class Team < ActiveRecord::Base
   has_many :messages, :through => :team_messages
 
   accepts_nested_attributes_for :milestone_teams
-
-  belongs_to :bus
 
   validates :name, :website, :twitter_handle, :github_url, :facebook_url,
             :uniqueness => true

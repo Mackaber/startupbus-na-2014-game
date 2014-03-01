@@ -1,11 +1,12 @@
 class Bus < ActiveRecord::Base
   validates :name, :uniqueness => true
 
-  validates_format_of :image_url, :with => URI::regexp(%w(http https))
+  validates_format_of :image_url, with: URI::regexp(%w(http https)), allow_blank: true
 
-  has_many :conductors, as: :attachable
+  has_many :conductors
   has_many :teams
-  has_many :buspreneurs, through: :teams
+  has_many :team_buspreneurs, through: :teams
+  has_many :buspreneurs
 
   def conductor_names
     conductors.pluck(:name).to_sentence

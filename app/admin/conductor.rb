@@ -11,10 +11,19 @@ ActiveAdmin.register Conductor do
 
   form do |f|
     f.inputs "Details" do
-      f.input :email
       f.input :name
+      f.input :email
       f.input :username
-      f.input :attachable, label: "Bus", collection: Bus.all
+      f.input :phone_number
+      f.input :description
+      f.input :bus, collection: Bus.all
+      f.input :blog
+      f.input :facebook
+      f.input :foursquare
+      f.input :github
+      f.input :linkedin
+      f.input :twitter
+      f.input :website
     end
 
     f.actions

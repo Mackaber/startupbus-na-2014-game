@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301034047) do
+ActiveRecord::Schema.define(version: 20140301125352) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -62,8 +62,46 @@ ActiveRecord::Schema.define(version: 20140301034047) do
   add_index "milestones", ["name"], name: "index_milestones_on_name"
   add_index "milestones", ["target_completion_date"], name: "index_milestones_on_target_completion_date"
 
-# Could not dump table "omniauthables" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "omniauthables", force: true do |t|
+    t.string   "type"
+    t.string   "email",                            default: ""
+    t.string   "encrypted_password",               default: ""
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                    default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "username"
+    t.string   "name"
+    t.datetime "approved_at"
+    t.integer  "approved_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bank",                   limit: 2, default: 0
+    t.string   "phone_number"
+    t.boolean  "imported"
+    t.integer  "bus_id"
+    t.text     "description"
+    t.string   "blog"
+    t.string   "facebook"
+    t.string   "foursquare"
+    t.string   "github"
+    t.string   "linkedin"
+    t.string   "twitter"
+    t.string   "website"
+    t.integer  "team_id"
+  end
+
+  add_index "omniauthables", ["bus_id"], name: "index_omniauthables_on_bus_id"
+  add_index "omniauthables", ["email"], name: "index_omniauthables_on_email", unique: true
+  add_index "omniauthables", ["provider", "uid"], name: "index_omniauthables_on_provider_and_uid", unique: true
+  add_index "omniauthables", ["reset_password_token"], name: "index_omniauthables_on_reset_password_token", unique: true
+  add_index "omniauthables", ["team_id"], name: "index_omniauthables_on_team_id"
 
   create_table "team_messages", force: true do |t|
     t.integer  "message_id"

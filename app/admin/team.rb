@@ -19,9 +19,10 @@ ActiveAdmin.register Team do
       row("Description")    { team.description }
       row("Created")        { team.created_at }
       row("Bus")            { team.bus_name }
-      row("Buspreneurs")    { team.buspreneurs.map(&:email).join(", ") }
+      row("Buspreneurs")    { team.buspreneurs.map(&:email).to_sentence }
       row("RSS Feed")       { team.rss_feed }
       row("Logo URL")       { team.logo_url }
+      row("Milestones")     { team.milestones.map(&:name).to_sentence }
     end
   end
 
