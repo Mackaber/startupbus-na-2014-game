@@ -37,7 +37,9 @@ class Ability
     end
 
     can :create_team, :all
-    can :approve_teammates, Team
+    can :approve_teammates, Team do |team|
+      user.team == team
+    end
 
     cannot :request, Buspreneur
   end
