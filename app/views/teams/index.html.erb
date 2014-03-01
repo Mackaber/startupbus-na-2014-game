@@ -1,7 +1,26 @@
-<h1>Listing Teams</h1>
+<section class="first">
+	<div class="row">
+		<div class="col-sm-5">
+			<h3>
+				Teams
+				<% if can?(:create_team, :all) %>  
+					<a href="<%= new_team_path %>" class="sb-header-meta-link">Create New</a>
+				<% end %>
+			</h3>
+		</div>
 
-<%= render @teams %>
+		<!-- @jon help -->
+		<div class="col-sm-7">
+			<ul class="nav nav-pills pull-right sb-bus-filter">
+				<li><p>Filter by:</p></li>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Profile</a></li>
+				<li><a href="#">Messages</a></li>
+			</ul>
+		</div>
+	</div>
 
-<% if can?(:create_team, :all) %>
-  <%= link_to 'New Team', new_team_path %>
-<% end %>
+	<div class="row">
+		<%= render @teams %>
+	</div>
+</section>

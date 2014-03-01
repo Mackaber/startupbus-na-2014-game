@@ -1,65 +1,89 @@
-<h1><%= link_to @team.name, @team.short_url %></h1>
-<p><%= @team.description %></p>
-<% if current_omniauthable.team == @team %>
-  <b>Short URL: </b> <%= link_to @team.short_url, @team.short_url %>
-<% end %>
+<header>
+  <div class="row">
+    <div class="col-sm-1">
+      <%= image_tag @team.photo_url(width: 120, height: 120), alt: @team.name, class: "pull-left" %>
+    </div>
 
-<div class="col-sm-6 col-md-4">
-  <div class="thumbnail sb-item-summary">
-    <%= image_tag @team.bus_photo_url(width: 50, height: 50), class: "sb-bus-icon" %>
-    <%= image_tag @team.photo_url(width: 300, height: 600), alt: @team.name %>
+    <div class="col-sm-9">
+      <h2><%= @team.name %></h2>
+      <p class="sb-team-desc"><%= @team.description %></p>
+    <% if current_omniauthable.team == @team %>
+      <b>Short URL: </b> <%= link_to @team.short_url, @team.short_url %>
+    <% end %>
+    </div>
+    <div class="col-sm-2  sm-team-actions">
+      <%= link_to @team.bus_name, @team.bus, class: "sb-team-bus" %>
 
-    <div class="caption">
-
-      <div class="clearfix">
-        <% if can?(:invest, @team) %>
-          <%= link_to new_team_investment_path(@team),
-            class: "btn btn-success col-xs-6", role: "button" do %>
-            <i class="fa fa-dollar"></i> Invest
-          <% end %>
-        <% elsif can?(:edit_team, @team) %>
-          <%= link_to edit_team_path(@team),
-            class: "btn btn-success col-xs-6", role: "button" do %>
-            Edit
-          <% end %>
+      <% if can?(:invest, @team) %>
+        <%= link_to new_team_investment_path(@team),
+          class: "btn btn-xs btn-success", role: "button" do %>
+          <i class="fa fa-dollar"></i> Invest
         <% end %>
-      </div>
+      <% elsif can?(:edit_team, @team) %>
+        <br />
+        <br />
+        <%= link_to edit_team_path(@team),
+          class: "btn btn-xs btn-default", role: "button" do %>
+          Edit your team
+        <% end %>
+      <% end %>
     </div>
   </div>
-</div>
+</header>
 
-<div class="container">
-  <p>Bus: <%= content_tag :b, link_to(@team.bus_name, @team.bus) %></p>
-  <p>Score: <%= content_tag :b, @team.score %></p>
-</div>
+<section class="sb-team-leaders">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Total score</h3> 
 
-<div class="container">
+      <%= content_tag :strong, @team.score, class: "sb-team-score" %>
+    </div>
+
+    <div class="col-sm-4">
+      <h3>Total Investment</h3> 
+      <%= content_tag :strong, number_to_currency(@team.funding), class: "sb-team-score" %>
+      <br />
+      <small class="sb-team-leader-meta  muted-text"><%= @team.investments.count %> Investments</small>
+    </div>
+
+    <div class="col-sm-4">
+      <h3>Total Clicks</h3> 
+      <% if omniauthable_signed_in? %>
+        <!-- @jon need clicks -->
+        <%= content_tag :strong, @team.score, class: "sb-team-score" %>
+      <% else %>
+        <p><a href="<%= root_path %>">Log in or register</a> to see click stats for this team.</p>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section>
   <h3>Buspreneurs</h3>
-  <%= render @team.buspreneurs, for_team: true %>
-</div>
+  <div class="row">
+    <%= render @team.buspreneurs, for_team: true %>
+  </div>
+  <div class="clearfix"></div>
+</section>
 
-<div class="container">
-  <h3>Investments</h3>
-  <p>
-  Total: <%= content_tag :b, number_to_currency(@team.funding) %>
-    (<%= @team.investments.count %>)
-  </p>
-</div>
-
-<div class="container">
-  <h3>Completed Milestones:</h3>
+<section class="last">
+  <h3>Completed Milestones</h3>
   <%= render @team.milestones %>
-</div>
 
-<div class="container">
-  <h3>Pending Milestones:</h3>
-  <%= render @team.milestones_pending %>
-</div>
+  <br />
+  <br />
 
-<div class="container">
-  <% if can?(:request_milestone, @team) %>
-    <li><%= link_to "Submit Milestone Request", new_team_milestone_request_path %></li>
-  <% end %>
-  <h3>Uncompleted Milestones:</h3>
+  <div class="row">
+    <div class="col-md-9">
+      <h3>Uncompleted Milestones</h3>
+    </div>
+
+    <% if can?(:request_milestone, @team) %>
+      <div class="col-md-3">
+        <%= link_to "Submit milestone for review", new_team_milestone_request_path, class:"btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
   <%= render @team.milestones_uncompleted %>
-</div>
+</section>
