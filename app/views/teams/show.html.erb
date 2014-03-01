@@ -42,7 +42,10 @@
 <div class="col-sm-4">
   <h3>Total Investment</h3> 
 
-  <%= content_tag :strong, @team.score, class: "sb-team-score" %>
+  <%= content_tag :strong, number_to_currency(@team.funding), class: "sb-team-score" %>
+
+<br />
+  <small class="sb-team-leader-meta  muted-text"><%= @team.investments.count %> Investments</small>
 </div>
 
 <div class="col-sm-4">
@@ -64,13 +67,6 @@
   <h3>Buspreneurs</h3>
   <%= render @team.buspreneurs, for_team: true %>
 
-
-
-  <h3>Investments</h3>
-  <p>
-  Total: <%= content_tag :b, number_to_currency(@team.funding) %>
-    (<%= @team.investments.count %>)
-  </p>
 
 
   <h3>Completed Milestones:</h3>
