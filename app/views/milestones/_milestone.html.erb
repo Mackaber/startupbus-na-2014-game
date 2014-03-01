@@ -4,8 +4,5 @@
       <li><b>Description: </b><%= milestone.description %></li>
       <li><b>Max Points: </b><%= milestone.max_points %></li>
       <li><b>Target Completion Date: </b><%= milestone.target_completion_date %></li>
-      <% if can?(:request_milestone, milestone) %>
-      	<li><%= link_to "Submit Request", new_milestone_team_team_milestone_request_path(milestone, current_omniauthable.team) %></li>
-      <% end %>
     </ul>
 </div>

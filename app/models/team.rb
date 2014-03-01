@@ -50,8 +50,12 @@ class Team < ActiveRecord::Base
     Milestone.all
   end
 
+  def milestones_uncompleted
+    Milestone.where.not(id: milestone_ids).where.not(id: team_milestone_request_ids)
+  end
+
   def milestones_pending
-    Milestone.where.not(id: milestone_ids)
+    Milestone.where(id: TeamMilestoneRequest.where(id: team_milestone_request_ids).map(&:milestone_id))
   end
 
   def photo_url(options = {})

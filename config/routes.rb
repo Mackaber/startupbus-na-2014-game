@@ -22,18 +22,10 @@ DeviseApp::Application.routes.draw do
     resources :investments, only: [:create, :new]
   end
 
-  resources :team_milestone_requests, only: [:create, :edit] do
-
-  end
-
-
+  resources :team_milestone_requests, only: [:create, :edit, :new]
 
   resources :buses
-  resources :milestones do
-    resources :teams do
-      resources :team_milestone_requests
-    end
-  end
+  resources :milestones
 
   root to: "home#index"
 end

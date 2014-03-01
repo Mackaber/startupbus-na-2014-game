@@ -52,3 +52,11 @@
   <h3>Pending Milestones:</h3>
   <%= render @team.milestones_pending %>
 </div>
+
+<div class="container">
+  <% if can?(:request_milestone, @team) %>
+    <li><%= link_to "Submit Milestone Request", new_team_milestone_request_path %></li>
+  <% end %>
+  <h3>Uncompleted Milestones:</h3>
+  <%= render @team.milestones_uncompleted %>
+</div>

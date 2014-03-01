@@ -45,8 +45,12 @@ class Ability
 
     cannot :request, Buspreneur
     cannot :invest, Team
-    can :edit_team, Team
-    can :request_milestone, Milestone
+    can :edit_team, Team do |team|
+      user.team == team
+    end
+    can :request_milestone, Team do |team|
+      user.team == team
+    end
   end
 
   def investor_abilities(user)

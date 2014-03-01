@@ -1,4 +1,4 @@
-<%= form_for(@team_milestone_request, :url => milestone_team_team_milestone_requests_path, :html => {:class => 'form-horizontal'}) do |f| %>
+<%= form_for(@team_milestone_request, :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @team_milestone_request.errors.any? %>
     <div class="alert alert-danger">
       <button type="button" class="close" data-dismiss="alert">x</button>
@@ -23,6 +23,13 @@
     <%= f.label "Description", :class => "col-sm-3 control-label" %>
     <div class="col-sm-9">
       <%= f.text_field :description, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Milestone", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.select(:milestone_id, Milestone.where.not(id: current_omniauthable.team.milestone_ids).where.not(id: current_omniauthable.team.team_milestone_request_ids).map {|m| [m.name, m.id]}) %>
     </div>
   </div>
 

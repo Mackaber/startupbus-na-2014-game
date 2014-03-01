@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301163117) do
+ActiveRecord::Schema.define(version: 20140301173157) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140301163117) do
     t.integer  "awarded_points"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "approved_by"
   end
 
   create_table "milestones", force: true do |t|

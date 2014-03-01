@@ -2,7 +2,7 @@ ActiveAdmin.register TeamMilestoneRequest do
   filter :team
   filter :bus
   filter :milestone
-
+  actions :index, :show, :destroy
   index do
     selectable_column
     column :team
@@ -34,5 +34,21 @@ ActiveAdmin.register TeamMilestoneRequest do
     end
 
     f.actions
+  end
+
+  member_action :approve, :method => :get do
+    team_milestone_request = TeamMilestoneRequest.find(params[:id])
+    mt = MilestoneTeam.new
+    mt.approved_by = current_omniauthable
+    mt.milestone = team_milestone_request.milestone
+    mt.awarded_points = team_milestone_request.milestone.max_points
+    mt.team = team_milestone_request.team
+    mt.save!
+    team_milestone_request.destroy!
+    redirect_to collection_path, notice: "Milestone approved!"
+  end
+
+  action_item :only => [:show] do
+    link_to "Approve", approve_admin_team_milestone_request_path(params[:id])
   end
 end
