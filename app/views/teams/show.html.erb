@@ -1,5 +1,8 @@
-<h1><%= @team.name %></h1>
+<h1><%= link_to @team.name, @team.short_url %></h1>
 <p><%= @team.description %></p>
+<% if current_omniauthable.team == @team %>
+  <b>Short URL: </b> <%= link_to @team.short_url, @team.short_url %>
+<% end %>
 
 <div class="col-sm-6 col-md-4">
   <div class="thumbnail sb-item-summary">

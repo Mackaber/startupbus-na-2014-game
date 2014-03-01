@@ -12,8 +12,10 @@ class Team < ActiveRecord::Base
 
   accepts_nested_attributes_for :milestone_teams, :allow_destroy => true
 
-  validates :name, :website, :twitter_handle, :github_url, :facebook_url,
-            :uniqueness => true
+  validates :name, :website, :uniqueness => true
+
+  validates_uniqueness_of :twitter_handle, :github_url, :facebook_url, :allow_blank => true, :allow_nil => true
+
 
   validates :description, presence: true
 
