@@ -1,7 +1,7 @@
 class LeaderboardController < ApplicationController
 
   def index
-  	@teams = Team.all
+  	@teams = Team.all.sort_by { |team| total_milestone_points(team.id) }.reverse
   end
 
   def total_milestone_points(team_id)
