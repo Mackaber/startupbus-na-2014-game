@@ -1,4 +1,19 @@
-<h1><%= @team.name %></h1>
+<section class="sb-container-header">
+  <div class="row">
+    <div class="col-md-3">
+      <%= image_tag image_path('bus-icons/cali.png'), :class => 'sb-bus-img' %>
+    </div>
+    <div class="col-md-9">
+      <h2><%= @team.name %></h2>
+      <p class="lead">Travelling to Austin all the way from NYC, these teams will probably win.</p> 
+    </div>
+  </div>
+</section>
+
+<div class="large-container">
+
+
+  <h1><%= @team.name %></h1>
 
 <div class="container">
   <p>Bus: <%= content_tag :b, link_to(@team.bus_name, @team.bus) %></p>
@@ -26,4 +41,5 @@
 <div class="container">
   <h3>Pending Milestones:</h3>
   <%= render @team.milestones_pending %>
+</div>
 </div>

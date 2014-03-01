@@ -1,7 +1,7 @@
-<section class="sb-container-header">
+<section class="sb-container-header sb-bus-<%= @bus.name %>">
   <div class="row">
     <div class="col-md-3">
-      <%= image_tag image_path('bus-icons/cali.png'), :class => 'sb-bus-img' %>
+      <img src="sb-bus-icon-<%= @bus.name %>" class="sb-bus-img" />
     </div>
     <div class="col-md-9">
       <h2><%= @bus.name %></h2>
@@ -13,7 +13,7 @@
 <div class="large-container">
   <h3 class="sb-collection-title">Teams</h3>
 
-  <!-- Use same team summary template -->
+
   <ul>
     <%= render @bus.teams %>
   </ul>

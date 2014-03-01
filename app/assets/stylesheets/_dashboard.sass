@@ -43,15 +43,22 @@
 		margin-top: 0px
 		margin-bottom: $sb-gutter
 
+// BUSES
+// -------------------------
+.sb-bus-midwest
+	background-image: url(/assets/sb-midwest.png)
+	background-repeat: no-repeat
+	background-position: right center
+	background-size: auto 350px
 
 .sb-container-header
-	background-color: darken($sb-blue, 40%)
+	background-color: darken($gray, 12%)
 	color: lighten($sb-blue, 10%)
 	padding: $sb-gutter
 .sb-bus-img
 	border-radius: 6px
 	+box-shadow(0px 1px 2px rgba(0,0,0,0.2))
-.sb-buspreneur
+.sb-buspreneur-old
 	.caption
 		position: absolute
 		bottom: 0
@@ -63,3 +70,19 @@
 			color: lighten($brand-info, 30%)
 	&:hover
 		background-color: $brand-info
+
+.sb-buspreneur-container
+	margin-bottom: 15px
+
+.sb-buspreneur
+	img
+		float: left
+		margin-right: 8px
+	.caption
+		float: left
+	h4
+		margin: 0px
+.sb-buspreneur-team
+
+
+

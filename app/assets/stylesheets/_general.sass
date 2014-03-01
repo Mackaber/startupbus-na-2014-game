@@ -9,7 +9,7 @@
 // -----------------
 body
 	background-color: $gray-lighter
-	padding-top: 60px
+	padding-top: 50px
 img
 	max-width: 100%
 
@@ -19,25 +19,23 @@ img
 .navbar-default 
 	color: lighten($sb-grey, 45%)
 	background-color: $gray-dark
+	border: 0px
 	a 
 		color: #FFF
 		text-decoration: none
 		&:hover
 			color: #D1D1D1
 			text-decoration: none
-	
 	.navbar-brand
 		font-family: $headings-font-family
 		text-transform: uppercase
 		letter-spacing: -0.02em
-
 	.navbar-header .navbar-text 
 		text-transform: uppercase
 		color: lighten($sb-grey, 55%)
 		font-size: 0.8em
 		padding-top: 2px
 		word-spacing: 3px
-
 	.navbar-right
 		.navbar-text
 			float: none
@@ -47,6 +45,10 @@ img
 			margin-top: 8px
 		img
 			border-radius: 2px
+			max-height: 20px
+			max-width: 20px
+			margin-right: 6px
+
 
 // BUTTONS
 // -----------------
@@ -56,3 +58,12 @@ img
 	color: white
 	i
 		margin-right: 6px
+
+
+// FOOTER
+// -----------------
+.sb-footer
+	padding: 50px 0px 15px
+	text-align: center
+	color: $gray-light
+	font-size: 0.8em

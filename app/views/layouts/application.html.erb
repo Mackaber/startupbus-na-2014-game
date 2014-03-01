@@ -23,6 +23,17 @@
 
       <ul class="nav navbar-nav navbar-right">
 
+
+<li>
+  <a href="/milestones">
+    Milestones
+  </a>
+</li>
+<li>
+  <a href="/teams">
+    Teams
+  </a>
+</li>
       <% if omniauthable_signed_in? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -68,6 +79,11 @@
     <% end %>
 
     <%= yield %>
+  
+  <div class="sb-footer">
+    Startup Bus &copy; 2014
   </div>
+  </div>
+
 </body>
 </html>
