@@ -1,7 +1,9 @@
 class Team < ActiveRecord::Base
   include Enumerable
 
-  has_many :buspreneurs, as: :attachable
+  belongs_to :bus
+
+  has_many :buspreneurs
   has_many :investments
   has_many :milestone_teams
   has_many :milestones, :through => :milestone_teams
@@ -10,14 +12,13 @@ class Team < ActiveRecord::Base
 
   accepts_nested_attributes_for :milestone_teams
 
-  belongs_to :bus
-
   validates :name, :website, :twitter_handle, :github_url, :facebook_url,
             :uniqueness => true
 
   validates :description, presence: true
 
   validates_format_of :website, :with => URI::regexp(%w(http https))
+  validates_format_of :logo_url, :with => URI::regexp(%w(http https))
 
   delegate :name, :photo_url, to: :bus, prefix: true, allow_nil: true
 
@@ -54,10 +55,14 @@ class Team < ActiveRecord::Base
   end
 
   def photo_url(options = {})
-    [
-      "http://placehold.it/#{options.fetch(:height, 50)}x#{options.fetch(:width, 50)}",
-      "http://placekitten.com/g/#{options.fetch(:height, 50)}/#{options.fetch(:width, 50)}"
-    ].shuffle.first
+    if logo_url.present?
+      return "#{logo_url}?#{options.to_param}"
+    else
+      [
+        "http://placehold.it/#{options.fetch(:height, 50)}x#{options.fetch(:width, 50)}",
+        "http://placekitten.com/g/#{options.fetch(:height, 50)}/#{options.fetch(:width, 50)}"
+      ].shuffle.first
+    end
   end
 
 end

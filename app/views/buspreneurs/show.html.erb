@@ -1,48 +1,34 @@
-<h1>You're a buspreneur, congrats!</h1>
+<h1><%= @buspreneur.name %></h1>
 
-<% if @buspreneur.social_media_image_url.nil? %>
-  <%= form_for(@buspreneur, :html => {:class => 'form-horizontal'}) do |f| %>
-    <% if @buspreneur.errors.any? %>
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <h4><%= pluralize(@buspreneur.errors.count, "error") %> prohibited this team from being saved:</h4>
+<% if can? :edit, @buspreneur %>
+  <%= link_to "Edit profile", edit_buspreneur_path(@buspreneur) %>
 
-        <ul>
-        <% @buspreneur.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
+  <% unless @buspreneur.team.present? %>
+    <h5>Join an existing team:</h5>
+    <%= simple_form_for @buspreneur do |f| %>
+      <%= f.input :team_id, as: :select, collection: Team.all %>
+      <%= f.submit value: "Set Team" %>
     <% end %>
 
-    <div class="form-group">
-      <%= f.label "Image URL", :class => "col-sm-3 control-label" %>
-      <div class="col-sm-9">
-        <%= f.text_field :image_url, :class => "form-control" %>
-      </div>
-    </div>
+    OR
 
-    <%= f.submit "Create team", :class => "btn btn-block btn-primary"  %>
+    <h5>
+      <%= link_to "Create a team", new_team_path %>
+    </h5>
   <% end %>
 <% end %>
 
 <div class="row">
   <div class="col-md-7">
-    <h2>Your Profile</h2>
+    <h2>Profile</h2>
 
     <h3>Your Pic:</h3>
     <%= image_tag @buspreneur.photo_url(type: :large), class: "img-rounded" %>
 
     <h3>Your Bio:</h3>
-    <p class="lead">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-      sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-      laborum.
-    </p>
+    <%= content_tag :p, @buspreneur.description, class: "lead" %>
   </div>
+
   <div class="col-md-5">
     <% if @buspreneur.team.present? %>
       <h2>Your Team Status</h2>

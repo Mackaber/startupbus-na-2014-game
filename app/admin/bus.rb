@@ -14,6 +14,8 @@ ActiveAdmin.register Bus do
       row("Name") { bus.name }
       row("Conductors") { bus.conductor_names }
       row("Teams") { bus.team_names }
+      row("Buspreneurs") { bus.buspreneurs.pluck(:name).to_sentence }
+      row("Image URL") { bus.image_url }
     end
   end
 
@@ -23,6 +25,8 @@ ActiveAdmin.register Bus do
       f.input :ranking
       f.input :conductors
       f.input :teams
+      f.input :image_url
+      f.input :buspreneurs
     end
 
     f.actions

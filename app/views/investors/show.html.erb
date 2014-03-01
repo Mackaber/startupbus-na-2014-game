@@ -1,7 +1,9 @@
 <%
 		teams = Team.all.sort.reverse
-		top_teams = teams.pop(2).reverse
-		rising_teams = teams.pop(1).reverse
+		if teams.count > 3
+			top_teams = teams.pop(2).reverse
+			rising_teams = teams.pop(1).reverse
+		end
 		teams = teams.reverse
 %>
 

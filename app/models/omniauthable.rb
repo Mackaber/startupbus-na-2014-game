@@ -19,29 +19,34 @@ class Omniauthable < ActiveRecord::Base
     false
   end
 
+  def self.checker_type
+    nil
+  end
+
   def self.from_omniauth(auth)
     omniauthable = find_or_initialize_by(uid: auth.uid, provider: auth.provider) do |obj|
       obj.provider = auth.provider
       obj.uid = auth.uid
-      if auth.provider == "facebook"
-        obj.generate_facebook_social_image_url
-      end
     end
 
-    omniauthable.set_attributes(auth)
-    if !omniauthable.imported
-      set_type_and_approval(omniauthable)
+    unless omniauthable.imported?
+      omniauthable.set_provider_attributes(auth)
+      omniauthable = set_type_and_approval(omniauthable)
+      omniauthable.set_wp_attributes
+      omniauthable.save
     end
+
     omniauthable
   end
 
   def self.set_type_and_approval(omniauthable)
     type = type_from_email(omniauthable.email)
     omniauthable.type = type_from_email(omniauthable.email)
-    omniauthable.imported = true
     omniauthable.save
-    omniauthable = type.constantize.find(omniauthable.id)
-    omniauthable.approve! if omniauthable.respond_to?(:approve!)
+
+    type.constantize.find(omniauthable.id).tap do |obj|
+      obj.approve! if obj.respond_to?(:approve!)
+    end
   end
 
   def self.type_from_email(email)
@@ -56,18 +61,40 @@ class Omniauthable < ActiveRecord::Base
     false
   end
 
-  def set_attributes(auth)
+  def set_provider_attributes(auth)
     self.name = auth.info.name
     self.email = auth.info.email
+  end
+
+  def set_wp_attributes
+    info = AccountChecker.info_for(email, self.class.checker_type) || {}
+
+    self.blog         = info["blog"].presence
+    self.description  = info["bio"].presence
+    self.facebook     = info["facebook"].presence
+    self.foursquare   = info["foursquare"].presence
+    self.github       = info["github"].presence
+    self.linkedin     = info["linkedin"].presence
+    self.phone_number = info["phone"].presence
+    self.twitter      = info["twitter"].presence
+    self.website      = info["website"].presence
+
+    if info["bus"].present?
+      self.bus = Bus.find_by(name: info["bus"])
+    end
+
+    self.imported = true
   end
 
   def password_required?
     false
   end
 
-  def generate_facebook_social_image_url
+  def social_media_image_url
     if provider == "facebook" && uid.present?
-      self.social_media_image_url = "http://graph.facebook.com/#{uid}/picture"
+      "http://graph.facebook.com/#{uid}/picture"
+    else
+      nil
     end
   end
 

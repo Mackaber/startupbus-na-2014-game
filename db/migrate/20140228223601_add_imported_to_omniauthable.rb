@@ -1,6 +1,6 @@
 class AddImportedToOmniauthable < ActiveRecord::Migration
   def up
-    add_column :omniauthables, :imported, :bool
+    add_column :omniauthables, :imported, :boolean
   end
 
   def down

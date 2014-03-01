@@ -23,5 +23,15 @@
 
   
     </div>
+      <div class="clearfix">
+        <%= link_to new_team_investment_path(investments.team),
+          class: "btn btn-success col-xs-6", role: "button" do %>
+          <i class="fa fa-dollar"></i> Invest
+        <% end %>
+
+        <%= link_to investments.team, class: "btn btn-default col-xs-6", role: "button" do %>
+          Learn More
+        <% end %>
+      </div>
   </div>
 </div>

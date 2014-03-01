@@ -1,0 +1,22 @@
+<%= simple_form_for @buspreneur do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :phone_number %>
+  <%= f.input :description %>
+  <%= f.input :blog %>
+  <%= f.input :facebook %>
+  <%= f.input :foursquare %>
+  <%= f.input :github %>
+  <%= f.input :linkedin %>
+  <%= f.input :twitter %>
+  <%= f.input :website %>
+
+  <% if can?(:manage, :all) %>
+    <%= f.input :bus_id, as: :select, collection: Bus.all %>
+    <p class="note small">If changing buses, please save and refresh to gather the list
+    of teams in that bus</p>
+    <%= f.input :team_id, as: :select, collection: @buspreneur.bus.teams %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
