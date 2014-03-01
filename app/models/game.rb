@@ -14,6 +14,6 @@ class Game < ActiveRecord::Base
   end
 
   def milestone_points(investment)
-    investment.team.milestones.map(&:awarded_points).inject(:+)
+    investment.team.milestone_teams.map(&:awarded_points).inject(:+)
   end
 end
