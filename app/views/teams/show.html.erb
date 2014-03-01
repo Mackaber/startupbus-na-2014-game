@@ -9,9 +9,16 @@
     <div class="caption">
 
       <div class="clearfix">
-        <%= link_to new_team_investment_path(@team),
-          class: "btn btn-success col-xs-6", role: "button" do %>
-          <i class="fa fa-dollar"></i> Invest
+        <% if can?(:invest, @team) %>
+          <%= link_to new_team_investment_path(@team),
+            class: "btn btn-success col-xs-6", role: "button" do %>
+            <i class="fa fa-dollar"></i> Invest
+          <% end %>
+        <% elsif can?(:edit_team, @team) %>
+          <%= link_to edit_team_path(@team),
+            class: "btn btn-success col-xs-6", role: "button" do %>
+            Edit
+          <% end %>
         <% end %>
       </div>
     </div>

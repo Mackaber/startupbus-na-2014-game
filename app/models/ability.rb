@@ -44,11 +44,14 @@ class Ability
     can :edit, Buspreneur, id: user.id
 
     cannot :request, Buspreneur
+    cannot :invest, Team
+    can :edit_team, Team
   end
 
   def investor_abilities(user)
     can :request, Buspreneur
     can :show, Buspreneur
+    can :invest, Team
   end
 
   def visitor_abilities(user)
