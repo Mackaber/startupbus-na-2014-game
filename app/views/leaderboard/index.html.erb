@@ -1,0 +1,19 @@
+<table>
+	<tr><h3>
+		<td><h3>Team</h3></td>
+		<td><h3>Website</h3></td>
+		<td><h3>Bus</h3></td>
+		<td><h3>Milestone Points</h3></td>
+		<td><h3>Investment Points</h3></td>
+	</tr>
+
+	<% @teams.each do |team| %>
+		<tr>
+		<td width="20%"><h4><%= team.name %></h4></td>
+		<td width="33%"><h4><a href="<%= team.website %>" target="_blank"><%= team.website %></a></h4></td>
+		<td width="5%"><h4><%= team.bus_id %></h4></td>
+		<td width="5%"><h4><%= total_milestone_points(team.id) %></h4></td>
+		<td width="5%"><h4><%= Team.find_by_id(team.id).score %></h4></td>
+	</tr>
+	<% end %>
+</table>
