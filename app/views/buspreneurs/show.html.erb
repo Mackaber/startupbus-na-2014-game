@@ -1,11 +1,36 @@
-<section class="first">
+<header class="sb-profile-header">
+  <div class="row">
 
-<h1><%= @buspreneur.name %></h1>
+    <div class="col-sm-9">
+      <%= image_tag @buspreneur.photo_url(type: :large), class: "img-rounded" %>
+      <h2><%= @buspreneur.name %></h2>
+
+      <% if @buspreneur.team.present? %>
+        <span class="sb-profile-meta">
+          Team: <%= link_to @buspreneur.team_name.try(:humanize), @buspreneur.team %>
+        </span>
+
+        <span class="sb-profile-meta">
+          Bus: <%= link_to @buspreneur.bus_name.try(:humanize), @buspreneur.bus %>
+        </span>
+      <% end %>
+    </div>
+
+    <div class="col-sm-3">
+      <% if can? :edit, @buspreneur %>
+        <%= link_to "Edit profile", edit_buspreneur_path(@buspreneur),  class: "btn btn-sm btn-primary" %>
+      <% end %>
+    </div>
+
+  <div class="clearfix"></div>
+</header>
+
+<section class="last">
 
 <% if can? :edit, @buspreneur %>
-  <%= link_to "Edit profile", edit_buspreneur_path(@buspreneur) %>
 
-  <% unless @buspreneur.team.present? %>
+
+<% unless @buspreneur.team.present? %>
     <h5>Join an existing team:</h5>
     <%= simple_form_for @buspreneur do |f| %>
       <%= f.input :team_id, as: :select, collection: Team.all %>
@@ -22,12 +47,7 @@
 
 <div class="row">
   <div class="col-md-7">
-    <h2>Profile</h2>
 
-    <h3>Your Pic:</h3>
-    <%= image_tag @buspreneur.photo_url(type: :large), class: "img-rounded" %>
-
-    <h3>Your Bio:</h3>
     <%= content_tag :p, @buspreneur.description, class: "lead" %>
   </div>
 
