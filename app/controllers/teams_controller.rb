@@ -18,6 +18,8 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     if @team.save
+      current_omniauthable.team = @team
+      current_omniauthable.save
       redirect_to @team, notice: 'Team was successfully created.'
     else
       render action: "new"

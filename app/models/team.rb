@@ -7,7 +7,7 @@ class Team < ActiveRecord::Base
   has_many :investments
   has_many :milestone_teams
   has_many :milestones, :through => :milestone_teams
-
+  has_many :team_milestone_requests
   has_many :messages, :through => :team_messages
 
   accepts_nested_attributes_for :milestone_teams
@@ -18,7 +18,7 @@ class Team < ActiveRecord::Base
   validates :description, presence: true
 
   validates_format_of :website, :with => URI::regexp(%w(http https))
-  validates_format_of :logo_url, :with => URI::regexp(%w(http https))
+  validates_format_of :logo_url, :with => URI::regexp(%w(http https)), :allow_nil => true
 
   delegate :name, :photo_url, to: :bus, prefix: true, allow_nil: true
 
@@ -50,8 +50,12 @@ class Team < ActiveRecord::Base
     Milestone.all
   end
 
+  def milestones_uncompleted
+    Milestone.where.not(id: milestone_ids).where.not(id: team_milestone_request_ids)
+  end
+
   def milestones_pending
-    Milestone.where.not(id: milestone_ids)
+    Milestone.where(id: TeamMilestoneRequest.where(id: team_milestone_request_ids).map(&:milestone_id))
   end
 
   def photo_url(options = {})

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301125352) do
+ActiveRecord::Schema.define(version: 20140301173157) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140301125352) do
     t.integer  "awarded_points"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "approved_by"
   end
 
   create_table "milestones", force: true do |t|
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140301125352) do
     t.text     "public_instructions"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "start_at"
   end
 
   add_index "milestones", ["name"], name: "index_milestones_on_name"
@@ -106,6 +108,15 @@ ActiveRecord::Schema.define(version: 20140301125352) do
   create_table "team_messages", force: true do |t|
     t.integer  "message_id"
     t.integer  "team_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "team_milestone_requests", force: true do |t|
+    t.integer  "milestone_id"
+    t.integer  "team_id"
+    t.string   "url"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

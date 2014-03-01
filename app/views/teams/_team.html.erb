@@ -1,17 +1,33 @@
-<li>
-  <%= link_to team.name, team %> (<%= team.score %>) (<%= number_to_currency(team.funding) %>)
-  <br />
-<br />
-<%= team.bus_name %>
-<br />
-<br />
-<%= team.name %>
-<br />
-<br />
+<div class="col-sm-4">
+	<div class="sb-team-module">
 
-<%= team.score %>
-<%= number_to_currency(team.funding) %>
+		<div class="sb-team-module-header">
+		<h4 class="sb-team-name">
+			<%= link_to team.name, team %>
+		</h4>
+
+		<p class="sb-team-desc">
+			<%= team.description %>
+		</p>
+	</div>
+
+		<div class="sb-team-logo">
+			<%= image_tag team.photo_url, alt: team.name %>
+		</div>
 
 
-</li>
 
+		<div class="sb-team-module-footer">
+
+score: <%= team.score %>
+
+funding: <%= number_to_currency(team.funding) %>
+
+
+
+	<%= team.bus_name %>
+
+
+</div>
+	</div>
+</div>

@@ -2,13 +2,13 @@
 // LAYOUT
 // -----------------
 .container
-	max-width: 990px
+	max-width: 1000px
 
 
 // DEFAULTS
 // -----------------
 body
-	background-color: $gray-lighter
+	background-color: $sb-dark-blue
 	padding-top: 50px
 img
 	max-width: 100%
@@ -17,9 +17,10 @@ img
 // NAVBAR
 // -----------------
 .navbar-default 
-	color: lighten($sb-grey, 45%)
-	background-color: $gray-dark
+	color: white
+	background-color: $sb-sky-blue
 	border: 0px
+	+box-shadow(0px 1px 6px rgba(0,0,0,0.3))
 	a 
 		color: #FFF
 		text-decoration: none
@@ -58,6 +59,61 @@ img
 	color: white
 	i
 		margin-right: 6px
+
+
+// NEW DESIGN
+// -----------------
+section.first
+	border-radius: 8px 
+	margin-top: $sb-gutter
+
+section
+	background-color: white
+	padding: 20px
+	border-bottom: $border-dark
+	h3
+		margin: 0px
+		text-transform: uppercase
+		color: $gray
+
+.sb-header-meta-link
+	font-size: 0.5em
+	margin-left: 5px
+	border-radius: 3px
+	font-weight: 300
+.sb-team-module
+	border: 1px solid $border-light
+	margin-bottom: $sb-gutter
+.sb-team-module-header
+	padding: 8px
+	
+.sb-team-module-footer
+	padding: 8px
+.sb-team-name
+	margin: 0px
+	font-weight: 300
+	font-size: 1.5em
+	a
+		color: $dark-blue
+.sb-team-logo
+	background-color: $gray-lighter
+	height: 130px
+	overflow: hidden
+	text-align: center
+	img 
+.sb-team-desc
+	margin: 0px
+	color: $gray
+	font-size: 0.9em
+	font-family: $font-family-serif
+	padding: 0px
+
+
+.sb-bus-filter
+	p
+		padding: 10px 15px
+
+
 
 
 // FOOTER

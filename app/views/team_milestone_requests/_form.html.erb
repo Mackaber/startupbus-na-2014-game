@@ -1,0 +1,37 @@
+<%= form_for(@team_milestone_request, :html => {:class => 'form-horizontal'}) do |f| %>
+  <% if @team_milestone_request.errors.any? %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <h4><%= pluralize(@team_milestone_request.errors.count, "error") %> prohibited this milestone request from being saved:</h4>
+
+      <ul>
+      <% @team_milestone_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "URL", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :url, :class => "form-control", :value => "http://" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Description", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :description, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Milestone", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.select(:milestone_id, Milestone.where.not(id: current_omniauthable.team.milestone_ids).where.not(id: current_omniauthable.team.team_milestone_request_ids).map {|m| [m.name, m.id]}) %>
+    </div>
+  </div>
+
+  <%= f.submit "Submit Milestone Request", :class => "btn btn-block btn-primary"  %>
+<% end %>

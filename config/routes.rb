@@ -21,6 +21,9 @@ DeviseApp::Application.routes.draw do
   resources :teams do
     resources :investments, only: [:create, :new]
   end
+
+  resources :team_milestone_requests, only: [:create, :edit, :new]
+
   resources :buses
   resources :milestones
 
