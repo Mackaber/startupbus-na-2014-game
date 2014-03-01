@@ -43,6 +43,7 @@ class Ability
 
   def investor_abilities(user)
     can :request, Buspreneur
+    can :show, Buspreneur
   end
 
   def visitor_abilities(user)
