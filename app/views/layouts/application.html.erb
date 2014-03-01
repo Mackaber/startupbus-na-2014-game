@@ -14,10 +14,13 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default  navbar-static-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <%= link_to "The Game", root_path, class: "navbar-brand" %>
+        <div class="navbar-brand">
+          <%= link_to image_tag('sb-game-logo.svg'), root_path %>
+        </div>
+
         <% unless omniauthable_signed_in? %>
           <p class="navbar-text">StartupBus North America 2014</p>
         <% end %>

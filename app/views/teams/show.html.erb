@@ -1,49 +1,36 @@
-<<<<<<< HEAD
-<section class="sb-container-header">
+<header>
   <div class="row">
-    <div class="col-md-3">
-      <%= image_tag image_path('bus-icons/cali.png'), :class => 'sb-bus-img' %>
-    </div>
-    <div class="col-md-9">
-      <h2><%= @team.name %></h2>
-      <p class="lead">Travelling to Austin all the way from NYC, these teams will probably win.</p> 
+  <div class="col-sm-10">
+    <%= image_tag @team.photo_url(width: 100, height: 100), alt: @team.name, class: "pull-left" %>
+
+    <h2><%= @team.name %></h2>
+    <p><%= @team.description %></p>
+  </div>
+    <div class="col-sm-2">
+      <%= @team.bus_name %>
+
+      <% if can?(:invest, @team) %>
+        <%= link_to new_team_investment_path(@team),
+          class: "btn btn-sm btn-success", role: "button" do %>
+          <i class="fa fa-dollar"></i> Invest
+        <% end %>
+      <% elsif can?(:edit_team, @team) %>
+        <%= link_to edit_team_path(@team),
+          class: "btn btn-sm btn-success", role: "button" do %>
+          Edit
+        <% end %>
+      <% end %>
     </div>
   </div>
-</section>
+</header>
 
-<div class="large-container">
-
-
-  <h1><%= @team.name %></h1>
-=======
-<h1><%= @team.name %></h1>
-<p><%= @team.description %></p>
-
+<section>
 <div class="col-sm-6 col-md-4">
   <div class="thumbnail sb-item-summary">
     <%= image_tag @team.bus_photo_url(width: 50, height: 50), class: "sb-bus-icon" %>
-    
-    <%= image_tag @team.photo_url(width: 300, height: 600), alt: @team.name %>
-
-    <div class="caption">
-
-      <div class="clearfix">
-        <% if can?(:invest, @team) %>
-          <%= link_to new_team_investment_path(@team),
-            class: "btn btn-success col-xs-6", role: "button" do %>
-            <i class="fa fa-dollar"></i> Invest
-          <% end %>
-        <% elsif can?(:edit_team, @team) %>
-          <%= link_to edit_team_path(@team),
-            class: "btn btn-success col-xs-6", role: "button" do %>
-            Edit
-          <% end %>
-        <% end %>
-      </div>
-    </div>
   </div>
 </div>
->>>>>>> ceaca747bd75baf23c242829d53570ed6d4362be
+
 
 <div class="container">
   <p>Bus: <%= content_tag :b, link_to(@team.bus_name, @team.bus) %></p>
@@ -68,12 +55,7 @@
   <%= render @team.milestones %>
 </div>
 
-<div class="container">
-  <h3>Pending Milestones:</h3>
-  <%= render @team.milestones_pending %>
-</div>
-<<<<<<< HEAD
-=======
+
 
 <div class="container">
   <% if can?(:request_milestone, @team) %>
@@ -81,5 +63,7 @@
   <% end %>
   <h3>Uncompleted Milestones:</h3>
   <%= render @team.milestones_uncompleted %>
->>>>>>> 99e3843244c2809cfc36efeb3a270f2c8fe4a0f9
+
 </div>
+</div>
+</section>
