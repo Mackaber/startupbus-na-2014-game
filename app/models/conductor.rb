@@ -5,6 +5,8 @@ class Conductor < Omniauthable
 
   delegate :name, :team_names, to: :bus, prefix: true, allow_nil: true
 
+  scope :approved, -> { where.not(approved_at: nil) }
+
   def self.knows_about?(email)
     AccountChecker.knows_about?(email, checker_type)
   end

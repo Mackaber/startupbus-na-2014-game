@@ -1,10 +1,23 @@
 class BuspreneursController < ApplicationController
   respond_to :html
 
-  before_filter :find_buspreneur
-  before_filter :authenticate_show, only: [:show]
+  before_filter :find_buspreneur, except: [:index]
+  before_filter :authorize_update, only: [:edit, :update]
+
+  def index
+    @buspreneurs = Buspreneur.approved
+    respond_with @buspreneurs
+  end
 
   def show
+    respond_with @buspreneur
+  end
+
+  def edit
+  end
+
+  def update
+    @buspreneur.update_attributes(params[:buspreneur])
     respond_with @buspreneur
   end
 
@@ -18,8 +31,8 @@ class BuspreneursController < ApplicationController
     @buspreneur = Buspreneur.find(params[:id] || params[:buspreneur_id])
   end
 
-  def authenticate_show
-    authorize! :show, @buspreneur
+  def authorize_update
+    authorize! :edit, @buspreneur
   end
 
   rescue_from CanCan::AccessDenied do |exception|

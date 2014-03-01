@@ -1,14 +1,18 @@
-<h1><%= @conductor.name %>
+<h1><%= @conductor.name %></h1>
+
+<% if can? :edit, @conductor %>
+  <%= link_to "Edit profile", edit_conductor_path(@conductor) %>
+<% end %>
 
 <div class="row">
   <div class="col-md-7">
-    <h2>Your Profile</h2>
+    <h2>Profile</h2>
 
     <h3>Your Pic:</h3>
     <%= image_tag @conductor.photo_url(type: :large), class: "img-rounded" %>
 
     <h3>Your Bio:</h3>
-    <%= content_tag :p, @buspreneur.description, class: "lead" %>
+    <%= content_tag :p, @conductor.description, class: "lead" %>
   </div>
 
   <div class="col-md-5">

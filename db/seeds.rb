@@ -29,6 +29,7 @@ end
     username: username,
     name: username,
     description: "Hello!",
+    approved_at: Time.zone.now,
     bus: Bus.find_by(name: "Northeast")
 end
 

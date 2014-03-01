@@ -41,7 +41,7 @@
               <%= link_to "My profile", current_omniauthable  %>
             </li>
             <li>
-              <%= link_to "Edit my profile", current_omniauthable  %>
+              <%= link_to "Edit my profile", url_for([:edit, current_omniauthable]) %>
             </li>
             <li>
               <%= link_to "Sign Out", destroy_omniauthable_session_path, :method => :delete %>

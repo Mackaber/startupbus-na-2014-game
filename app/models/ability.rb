@@ -41,6 +41,8 @@ class Ability
       user.team == team
     end
 
+    can :edit, Buspreneur, id: user.id
+
     cannot :request, Buspreneur
   end
 
