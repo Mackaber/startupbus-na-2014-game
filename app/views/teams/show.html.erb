@@ -58,12 +58,14 @@
 
 <section>
   <h3>Buspreneurs</h3>
-  <%= render @team.buspreneurs, for_team: true %>
+  <div class="row">
+    <%= render @team.buspreneurs, for_team: true %>
+  </div>
   <div class="clearfix"></div>
 </section>
 
-<section>
-  <h3>Completed Milestones:</h3>
+<section class="last">
+  <h3>Completed Milestones</h3>
   <%= render @team.milestones %>
 
   <br />
@@ -71,7 +73,7 @@
 
   <div class="row">
     <div class="col-md-9">
-      <h3>Uncompleted Milestones:</h3>
+      <h3>Uncompleted Milestones</h3>
     </div>
 
     <% if can?(:request_milestone, @team) %>

@@ -1,17 +1,13 @@
 <section class="box">
+	<div class="col-sm-8 col-sm-offset-2">
+		<div class="component-box">
+			<h2>Submit Your Milestone Request</h2>
+			<%= render 'form' %>
+		</div>
+		<br />
+		<a href="<%= team_path(@team) %>" class="back-link"><i class="fa fa-arrow-left"></i> Back to team</a>
+	</div>
 
-
-<div class="col-sm-8 col-sm-offset-2">
-  <div class="component-box">
-    <h2>Submit Your Milestone Request</h2>
-
-    <%= render 'form' %>
-  </div>
-<br />
-  <a href="<%= team_path(@team) %>" class="back-link"><i class="fa fa-arrow-left"></i> Back to team</a>
-</div>
-
-
-<div class="clearfix"></div>
-<br />
+	<div class="clearfix"></div>
+	<br />
 </section>
