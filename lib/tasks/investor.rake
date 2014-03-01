@@ -11,21 +11,17 @@ namespace :investor do
 
   task :update => :environment do
     Investor.find_each do |investor|
-    	admins.map {|a| [a.name, a.orders.collect(&:operation)]}
       updates = TeamUpdate.includes(investor.teams.collect(&:team_update_ids).flatten).where.not(id: investor.team_update_ids)
-      puts updates
-    #  investor.add_funds(amount)
-     # investor.save!
+      update_body = ""
+      updates.each do |update|
+      	update_body.concat("<br><img src='#{update.team.photo_url}' /><br><h1>#{update.subject}</h1><p>#{update.body}</p>")
+      	iu = InvestorTeamUpdate.new
+      	iu.team_update = update
+      	iu.investor = investor
+      	iu.save
+      end
+      subject = "Investment Update: Your StartupBus Teams"
+      UpdateSender.send_update_email(subject, update_body, investor).deliver
     end
-
-  	# TeamUpdate.find_each do |team_update|
-  	# 	Investor.where.not(id: team_update.investor_ids).find_each do |investor|
-  	# 		iu = InvestorTeamUpdate.new
-  	# 		iu.team_update = team_update
-  	# 		iu.investor = investor
-  	# 		iu.save
-  	# 	end
-  	# end
-
   end
 end
