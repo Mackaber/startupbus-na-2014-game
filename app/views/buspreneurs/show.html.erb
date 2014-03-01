@@ -68,7 +68,7 @@
                 <td><%= milestone.max_points %></td>
                 <td><%= milestone.milestone_teams.first.awarded_points %></td>
                 <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
-                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+                <td><%= milestone.milestone_teams.first.created_at.strftime("%d-%m-%y") %></td>
               </tr>
             <% else %>
               <tr class="warning">
@@ -76,7 +76,7 @@
                 <td><%= milestone.max_points %></td>
                 <td>0</td>
                 <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
-                <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
+                <td>N/A</td>
               </tr>
             <% end %>
           <% end %>
