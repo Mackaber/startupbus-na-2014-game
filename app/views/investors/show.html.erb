@@ -1,5 +1,5 @@
 <%
-		teams = Team.all.sort.reverse
+		teams = Team.where.not(id: @investor.investments.map(&:team_id)).sort.reverse
 		if teams.count > 3
 			top_teams = teams.pop(2).reverse
 			rising_teams = teams.pop(1).reverse
