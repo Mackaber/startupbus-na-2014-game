@@ -25,7 +25,7 @@
   <div class="clearfix"></div>
 </header>
 
-<section class="last">
+<section>
 
 <% if can? :edit, @buspreneur %>
 
@@ -44,18 +44,12 @@
     </h5>
   <% end %>
 <% end %>
-
-<div class="row">
-  <div class="col-md-7">
-
-    <%= content_tag :p, @buspreneur.description, class: "lead" %>
-  </div>
-
-  <div class="col-md-5">
+  <%= content_tag :p, @buspreneur.description, class: "sb-profile-lead" %>
+</section>
+<section class="last">
+  
     <% if @buspreneur.team.present? %>
-      <h2>Your Team Status</h2>
-      <p>Team: <%= link_to @buspreneur.team_name.try(:humanize), @buspreneur.team %></p>
-      <p>Bus: <%= link_to @buspreneur.bus_name.try(:humanize), @buspreneur.bus %></p>
+
 
       <h3>Milestones Completed</h3>
       <table class="table">
@@ -92,7 +86,7 @@
       </table>
     <% end %>
   </div>
-</div>
+
 
 
 </section>
