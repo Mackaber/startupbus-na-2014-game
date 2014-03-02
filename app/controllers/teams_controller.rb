@@ -30,12 +30,13 @@ class TeamsController < ApplicationController
     if current_omniauthable.is_a?(Investor)
       @teams = Team.where.not(id: current_omniauthable.investments.collect(&:team_id).uniq).sort_by { |team| team.total_points }.reverse
     else
-      @teams = Team.sort_by { |team| team.total_points }.reverse
+      @teams = Team.all.sort_by { |team| team.total_points }.reverse
     end
 
  
     if current_omniauthable.is_a?(Investor)
       @investor = current_omniauthable
+
       tally_links
     end
   end
