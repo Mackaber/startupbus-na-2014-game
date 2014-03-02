@@ -34,8 +34,8 @@ class InvestmentsController < ApplicationController
     end
 
     if current_omniauthable.save && @investment.save
-      flash.notice = "#{@team.name} thanks you for investing #{@investment.amount}!"
-      redirect_to @investment.investor
+      flash.notice = "#{@team.name} thanks you for investing $#{@investment.amount}!"
+      redirect_to teams_path
     else
       flash.alert = "Error with the transaction!"
       current_omniauthable.reload
