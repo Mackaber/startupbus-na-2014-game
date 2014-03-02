@@ -28,6 +28,9 @@ class TeamsController < ApplicationController
       url = URI.parse(@team.website)
       req = Net::HTTP.new(url.host, url.port)
       res = req.request_head(url.path)
+      rescue Errno::ENOENT
+        false # false if can't find the server
+      end
       if res.code == "200"
         Bitly.use_api_version_3
         bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
@@ -59,6 +62,9 @@ class TeamsController < ApplicationController
     url = URI.parse(@team.website)
     req = Net::HTTP.new(url.host, url.port)
     res = req.request_head(url.path)
+    rescue Errno::ENOENT
+      false # false if can't find the server
+    end
     if res.code == "200"
       Bitly.use_api_version_3
       bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
