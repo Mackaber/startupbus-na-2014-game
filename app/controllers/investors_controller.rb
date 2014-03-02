@@ -25,12 +25,15 @@ class InvestorsController < ApplicationController
     bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
     @total_clicks = 0
     @click_count = {}
-    @investor.investments.each do |investment|
-      if investment.url?
-        bit = bitly_client.clicks(investment.url)
-          @total_clicks = @total_clicks + bit.user_clicks
-          @click_count[investment.url] = bit.user_clicks
-      end
+    links = @investor.investments.map(&:url).uniq
+
+    links.each do |link|
+      bit = bitly_client.clicks(link)
+      investment = Investment.find_by_url(link)
+      investment.clicks = bit.user_clicks
+      investment.save
+      @total_clicks = @total_clicks + bit.user_clicks
+      @click_count[link] = bit.user_clicks
     end
   end
 end

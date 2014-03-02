@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    if current_omniauthable.is_a?(Buspreneur) and current_omniauthable.team == @team
+    if @team.short_url.present?
       Bitly.use_api_version_3
       bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
       bit = bitly_client.clicks(@team.short_url)
@@ -65,12 +65,14 @@ class TeamsController < ApplicationController
     bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
     @total_clicks = 0
     @click_count = {}
-    @investor.investments.each do |investment|
-      if investment.url?
-        bit = bitly_client.clicks(investment.url)
-          @total_clicks = @total_clicks + bit.user_clicks
-          @click_count[investment.url] = bit.user_clicks
-      end
+    links = @investor.investments.collect(&:url).uniq
+    links.each do |link|
+      bit = bitly_client.clicks(link)
+      investment = Investment.find_by_url(link)
+      investment.clicks = bit.user_clicks
+      investment.save
+      @total_clicks = @total_clicks + bit.user_clicks
+      @click_count[link] = bit.user_clicks
     end
   end
 end

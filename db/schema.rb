@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302011726) do
+ActiveRecord::Schema.define(version: 20140302025832) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140302011726) do
     t.datetime "updated_at"
     t.string   "url"
     t.integer  "game_id"
+    t.integer  "clicks"
   end
 
   create_table "investor_games", force: true do |t|
