@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @team.update_attributes(params[:team])
     if !@team.short_url.present?
-      if url.exist?(@team.website)
+      if url_exist?(@team.website)
         Bitly.use_api_version_3
         bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
         bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")
@@ -53,7 +53,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    if url.exist?(@team.website)
+    if url_exist?(@team.website)
       Bitly.use_api_version_3
       bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
       bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")
