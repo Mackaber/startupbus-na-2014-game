@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
   validates :description, presence: true
 
   validates_format_of :website, :with => URI::regexp(%w(http https))
-  validates_format_of :logo_url, :with => URI::regexp(%w(http https)), :allow_nil => true
+  validates_format_of :logo_url, :with => URI::regexp(%w(http https)), :allow_nil => true, :allow_blank => true
 
   delegate :name, :photo_url, to: :bus, prefix: true, allow_nil: true
 
