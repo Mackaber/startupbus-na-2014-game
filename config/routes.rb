@@ -11,11 +11,6 @@ DeviseApp::Application.routes.draw do
 
   resources :buspreneurs, only: [:show, :edit]
 
-  #resources :investors
-  #  do
-  #   put :request_buspreneurship
-  # end
-
   #resources :dashboard
   resources :teams, except: [:destroy] do
     resources :investments, only: [:create, :new]
@@ -30,4 +25,6 @@ DeviseApp::Application.routes.draw do
 
   get 'leaderboard' => 'leaderboard#index'
   get 'leaderboard/iframe' => 'leaderboard#iframe'
+
+  get 'request_buspreneurship' => 'investors#request_buspreneurship'
 end

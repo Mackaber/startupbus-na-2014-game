@@ -9,9 +9,8 @@ class InvestorsController < ApplicationController
   end
 
   def request_buspreneurship
-    @investor = Investor.find(params[:investor_id])
-    @investor.request_buspreneurship
-    redirect_to Buspreneur.find(@investor.id)
+    current_omniauthable.request_buspreneurship
+    redirect_to root_path
   end
 
   private
