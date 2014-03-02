@@ -25,4 +25,16 @@ class Investor < Omniauthable
   def add_funds(funds)
     self.bank += Float(funds)
   end
+
+  def get_points
+    total_points = 0
+    team_investments = []
+    investments.each do | investment |
+      team_investments[investment.team_id] += investment.amount
+    end
+    teams.each do | team |
+      total_points += team.milestone_points * (team_investments[team.id] / team.funding)
+    end
+    total_points
+  end
 end
