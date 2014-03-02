@@ -77,12 +77,12 @@ class Team < ActiveRecord::Base
     milestone_teams.each do |point|
       total_points += point.milestone.max_points
     end
-    total_points
+    [total_points,0].max.floor
   end
 
   def total_points
     total_points = funding
-    max_points = Milestone.all.pluck(:max_points).reduce(:+)
+    max_points ||= Milestone.all.pluck(:max_points).reduce(:+) || 0
     #max_funds = Investment.all.pluck(:amount).reduce(:+)
     #mult = [funding / max_funds, 0.1].max
     mult = [milestone_points / max_points, 0.1].max
