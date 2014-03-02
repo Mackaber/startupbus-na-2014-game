@@ -87,7 +87,7 @@ class TeamsController < ApplicationController
     req = Net::HTTP.new(url.host, url.port)
     req.use_ssl = (url.scheme == 'https')
     path = url.path if url.path.present?
-    req.request_head(path || '/')
+    res = req.request_head(path || '/')
     if res.kind_of?(Net::HTTPRedirection)
       url_exist?(res['location']) # Go after any redirect and make sure you can access the redirected URL 
     else
