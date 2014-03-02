@@ -84,6 +84,11 @@
               <li>
                 <%= link_to "Edit my profile", url_for([:edit, current_omniauthable]) %>
               </li>
+              <% if current.omniauthable.team? %>
+                <li>
+                  <%= link_to "My Team", team_path(current_omniauthable.team) %>
+                </li>
+              <% end %>
             <% end %>
             <li>
               <%= link_to "Sign Out", destroy_omniauthable_session_path, :method => :delete %>
