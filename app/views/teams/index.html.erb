@@ -1,28 +1,17 @@
-
-        <% unless omniauthable_signed_in? %>
-
-<h2>The Startup Bus is en route to Austin, TX</h2>
-<h3>Become a Fantasy Investor and help your favorite picks win.</h3> 
-
-        <% end %>
-
-
-
+<% unless omniauthable_signed_in? %>
+	<h2>The Startup Bus is en route to Austin, TX</h2>
+	<h3>Become a Fantasy Investor and help your favorite picks win.</h3>
+<% end %>
 
 <section class="box">
+	<h3 class="pull-left">All Teams</h3>
 
+	<% if can?(:create_team, :all) %>  
+		<a href="<%= new_team_path %>" class="pull-right btm btn-primary btn-sm">Create New</a>
+	<% end %>
 
-			<h3 class="pull-left">
-				All Teams
-			</h3>
-				<% if can?(:create_team, :all) %>  
-					<a href="<%= new_team_path %>" class="pull-right btm btn-primary btn-sm">Create New</a>
-				<% end %>
-
-<div class="clearfix"></div>
-<br />
-
-
+	<div class="clearfix"></div>
+	<br />
 
 	<div class="row">
 		<%= render @teams %>

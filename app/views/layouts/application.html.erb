@@ -74,11 +74,39 @@
     <% end %>
 
     <%= yield %>
-  
+
     <div class="clearfix"></div>
+  
     <div class="sb-footer">
-      Startup Bus &copy; 2014
-      Neeeds logos
+      <div class="container">
+        Startup Bus &copy; 2014
+
+        <br />
+        <br />
+        <br />
+
+        <center><b>Thanks to our awesome sponsors</b></center>
+
+        <br />
+
+        <div class="row">
+          <div class="col-sm-2  col-sm-offset-1">
+            <%=  image_tag('elance.png') %>
+          </div>
+          <div class="col-sm-2">
+            <%=  image_tag('rackspace.png') %>
+          </div>
+          <div class="col-sm-2">
+            <%=  image_tag('kauffman.png') %>
+          </div>
+          <div class="col-sm-2">
+            <%=  image_tag('possible.png') %>
+          </div>
+          <div class="col-sm-2">
+            <%=  image_tag('vmware.png') %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
