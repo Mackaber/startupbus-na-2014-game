@@ -66,23 +66,56 @@
 </section>
 
 <section class="last">
-  <h3>Completed Milestones</h3>
-  <%= render @team.milestones %>
+<% if current_omniauthable.is_a?(Buspreneur) and current_omniauthable.team == @team %>
 
-  <br />
-  <br />
+      <h3>Pending Milestones</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>URL</th>
+            <th>Description</th>
+            <th>Submitted At</th>
+          </tr>
+        </thead>
+        <tbody>
+  <%= render @team.team_milestone_requests %>
+        </tbody>
+      </table>
+      <% end %>
+      <h3>Milestones Completed</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>Points</th>
+            <th>Deadline</th>
+            <th>Completed At</th>
+          </tr>
+        </thead>
+        <tbody>
+  <%= render @team.milestone_teams %>
+        </tbody>
+      </table>
 
-  <div class="row">
-    <div class="col-md-9">
       <h3>Uncompleted Milestones</h3>
-    </div>
-
-    <% if can?(:request_milestone, @team) %>
-      <div class="col-md-3">
-        <%= link_to "Submit milestone for review", new_team_milestone_request_path, class:"btn btn-primary" %>
-      </div>
-    <% end %>
-  </div>
-
-  <%= render @team.milestones_uncompleted %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>Points</th>
+            <th>Deadline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @team.milestones_uncompleted %>
+          <% if can?(:request_milestone, @team) %>
+            <tr>
+              <td colspan="3">
+                <%= link_to "Submit milestone for review", new_team_milestone_request_path, class:"btn btn-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 </section>

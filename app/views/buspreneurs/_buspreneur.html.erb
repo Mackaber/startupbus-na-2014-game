@@ -1,18 +1,17 @@
 <% for_team ||= false %>
 
 <div class="col-xs-6 col-sm-4  sb-buspreneur-container">
-	<%= link_to buspreneur do %>
+	
 	<div class="sb-buspreneur">
-		<%= image_tag buspreneur.photo_url(width: 50, height: 50), alt: "team name" %>
+		<%= image_tag buspreneur.photo_url(width: 50, height: 50), alt: buspreneur.name %>
 		<h4>
-			<%= buspreneur.name %>
+			<%= link_to buspreneur.name, buspreneur_path(buspreneur) %>
 		</h4>
 		<p>
 			<%= buspreneur.description %>
 		</p>
 		<% unless for_team %>
-			<span class="sb-buspreneur-team">Team: <a href="#"><%= buspreneur.team_name %></a></span>
+			<span class="sb-buspreneur-team">Team: <%= link_to buspreneur.team_name, team_path(buspreneur.team) %></span>
 		<% end %>
 		</div>
-	<% end %>
 </div>
