@@ -93,7 +93,7 @@ class TeamsController < ApplicationController
     else
       ! %W(4 5).include?(res.code[0]) # Not from 4xx or 5xx families
     end
-  rescue Errno::ENOENT
+  rescue Exception => e
     false #false if can't find the server
   end
 
