@@ -1,26 +1,16 @@
-<section class="sb-container-header sb-bus-<%= @bus.name %>">
-  <div class="row">
-    <div class="col-md-3">
-      <img src="sb-bus-icon-<%= @bus.name %>" class="sb-bus-img" />
-    </div>
-    <div class="col-md-9">
-      <h2><%= @bus.name %></h2>
-      <p class="lead">Travelling to Austin all the way from NYC, these teams will probably win.</p>	
-    </div>
-  </div>
-</section>
 
-<div class="large-container">
+<header>
+  <h2><%= @bus.name %></h2>
+</header>
+
+<section class="last">
   <h3 class="sb-collection-title">Teams</h3>
-
-
   <ul>
     <%= render @bus.teams %>
   </ul>
 
   <h3 class="sb-collection-title">Buspreneurs</h3>
-
   <div class="row">
-   	<%= render @bus.buspreneurs %>
+    <%= render @bus.buspreneurs %>
   </div>
-</div>
+</section>
