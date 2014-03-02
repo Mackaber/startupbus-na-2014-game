@@ -43,9 +43,12 @@ class Omniauthable < ActiveRecord::Base
     type = type_from_email(omniauthable.email)
     omniauthable.type = type_from_email(omniauthable.email)
     omniauthable.save
-
-    type.constantize.find(omniauthable.id).tap do |obj|
-      obj.approve! if obj.respond_to?(:approve!)
+    if omniauthable.id then
+      type.constantize.find(omniauthable.id).tap do |obj|
+        obj.approve! if obj.respond_to?(:approve!)
+      end
+    else
+      false
     end
   end
 

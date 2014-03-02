@@ -5,6 +5,7 @@ ActiveAdmin.register Team do
   index do
     selectable_column
     column :name
+    column :bus_name
     column :buspreneur_names
     column :short_url
     actions
