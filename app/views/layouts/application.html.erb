@@ -45,16 +45,9 @@
       <div class="navbar-header">
         <div class="navbar-brand">
           <%= link_to image_tag('sb-game-logo.svg'), root_path %>
-
         </div>
-        <p class="navbar-text">
-          <%= link_to 'Dashboard', root_path %>
 
-        </p>
-        <p class="navbar-text">
-          <%= link_to 'Leaderboard', leaderboard_path %>
 
-        </p>
        <div style="float: left;">
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://game.startupbus.com/" data-text="Join me and play the StartupBus game at" data-via="TheStartupBus" data-size="small" data-related="TheStartupBus" data-hashtags="StartupBus">Tweet</a>
        <div class="fb-share-button" data-href="http://game.startupbus.com/" data-type="button_count"></div>
@@ -63,7 +56,14 @@
       </div>
 
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to 'Leaderboard', leaderboard_path %>
+        </li>
+
       <% if omniauthable_signed_in? %>
+        <li>
+          <%= link_to 'Dashboard', root_path %>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%= image_tag current_omniauthable.photo_url(height: 25, width: 25), class: "avatar" %>
