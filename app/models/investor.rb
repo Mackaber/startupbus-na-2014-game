@@ -6,7 +6,7 @@ class Investor < Omniauthable
   validates :bank, numericality: { greater_than_or_equal_to: 0 }
 
   def total_invested
-    tot ||= investments.pluck(:amount).reduce(:+) || 0
+    tot ||= investments.pluck(:amount).reduce(:+) || 1
   end
 
   def teams_invested
