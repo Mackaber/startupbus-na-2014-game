@@ -42,6 +42,8 @@ ActiveAdmin.register TeamMilestoneRequest do
     mt.approved_by = current_omniauthable
     mt.milestone = team_milestone_request.milestone
     mt.team = team_milestone_request.team
+    mt.url = team_milestone_request.url
+    mt.description = team_milestone_request.description
     mt.save!
     team_milestone_request.destroy!
     redirect_to collection_path, notice: "Milestone approved!"

@@ -43,6 +43,8 @@ ActiveAdmin.register Team do
         app_f.inputs do
           app_f.input :milestone_id, multiple: false, :as => :select, collection: Milestone.all
           app_f.input :team_id, :as => :select, collection: Team.all
+          app_f.input :description
+          app_f.input :url
         end
       end
       f.input :rss_feed

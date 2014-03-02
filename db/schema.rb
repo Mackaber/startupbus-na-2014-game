@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302025832) do
+ActiveRecord::Schema.define(version: 20140302102455) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20140302025832) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "approved_by"
+    t.string   "url"
+    t.text     "description"
   end
 
   create_table "milestones", force: true do |t|
@@ -73,12 +75,12 @@ ActiveRecord::Schema.define(version: 20140302025832) do
 
   create_table "omniauthables", force: true do |t|
     t.string   "type"
-    t.string   "email",                            default: ""
-    t.string   "encrypted_password",               default: ""
+    t.string   "email",                                          default: ""
+    t.string   "encrypted_password",                             default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    default: 0
+    t.integer  "sign_in_count",                                  default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -91,7 +93,7 @@ ActiveRecord::Schema.define(version: 20140302025832) do
     t.integer  "approved_by"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "bank",                   limit: 2, default: 0
+    t.decimal  "bank",                   precision: 2, scale: 0, default: 1000
     t.string   "phone_number"
     t.boolean  "imported"
     t.integer  "bus_id"

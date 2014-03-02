@@ -22,6 +22,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     @team.update_attributes(params[:team])
+
     @team.save
     redirect_to team_path @team
   end
@@ -43,6 +44,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+    if @team.short_url.present?
     Bitly.use_api_version_3
     bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
     bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")

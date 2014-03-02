@@ -4,7 +4,7 @@ namespace :investor do
     if [1,4,7,10].include?(Time.now.hour)
       amount = opts.to_hash.fetch(:amount, 1000)
       Investor.find_each do |investor|
-        investor.add_funds([investor.get_points * amount,100].max)
+        investor.add_funds(amount) #[investor.get_points * amount,100].max)
         investor.save!
       end
     end
@@ -16,7 +16,8 @@ namespace :investor do
         updates = TeamUpdate.where.not(id: investor.team_update_ids).find(investor.teams.collect(&:team_update_ids).flatten.uniq)
         update_body = "<strong>You now have $#{investor.bank} to invest in <a href='http://game.startupbus.com/teams'>StartupBus companies</a>!</strong>"
         updates.each do |update|
-        	update_body.concat("<h1><a href='http://game.startupbus.com/teams/#{update.team_id}'>#{update.team.name}</a></h1><br><img src='#{update.team.photo_url}' /><br><h2>#{update.subject}</h2><p><strong>New Score: #{update.team.total_points}</strong><br>#{update.body}</p><br>")
+          #<strong>New Score: #{update.team.total_points}</strong>
+        	update_body.concat("<h1><a href='http://game.startupbus.com/teams/#{update.team_id}'>#{update.team.name}</a></h1><br><img src='#{update.team.photo_url}' /><br><h2>#{update.subject}</h2><p><br>#{update.body}</p><br>")
         	iu = InvestorTeamUpdate.new
         	iu.team_update = update
         	iu.investor = investor
