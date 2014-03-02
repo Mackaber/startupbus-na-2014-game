@@ -20,6 +20,10 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.all.sort
+    if current_omniauthable.is_a?(Investor)
+      @investor = current_omniauthable
+      tally_links
+    end
   end
 
   def create
@@ -48,4 +52,17 @@ class TeamsController < ApplicationController
       :name, :website, :twitter_handle, :facebook_url, :github_url, :bus_id
   end
 
+  def tally_links
+    Bitly.use_api_version_3
+    bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
+    @total_clicks = 0
+    @click_count = {}
+    @investor.investments.each do |investment|
+      if investment.url?
+        bit = bitly_client.clicks(investment.url)
+          @total_clicks = @total_clicks + bit.user_clicks
+          @click_count[investment.url] = bit.user_clicks
+      end
+    end
+  end
 end

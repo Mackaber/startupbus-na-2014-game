@@ -16,9 +16,15 @@
 		</div>
 	</div>
 <% end %>
+<% if @investor.present? %>
+	<h2 class="sb-collection-title">Your Portfolio (<%= @total_clicks %> clicks)</h2>
 
+	<div class="row">
+		<%= render partial: "investments", collection: @investor.investments %>
+	</div>
+<% end %>
 <section class="box">
-	<h3 class="pull-left">All Teams</h3>
+	<h3 class="pull-left">StartupBus Teams</h3>
 
 	<% if can?(:create_team, :all) %>  
 		<a href="<%= new_team_path %>" class="pull-right btm btn-primary btn-sm">Create New</a>
