@@ -34,7 +34,7 @@ class InvestmentsController < ApplicationController
     end
 
     if current_omniauthable.save && @investment.save
-      flash.notice = "#{@team.name} thanks you for investing $#{@investment.amount}!"
+      flash.notice = "#{@team.name} thanks you for investing $#{@investment.amount}!<br /><strong>Make sure to share your unique Team Short Link so that your score and the team's score goes up: <a href='#{@investment.url}'>#{@investment.url}</a></strong>"
       redirect_to teams_path
     else
       flash.alert = "Error with the transaction!"
