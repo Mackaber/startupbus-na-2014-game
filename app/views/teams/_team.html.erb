@@ -18,6 +18,19 @@
 			score: <%= team.score %>
 			funding: <%= number_to_currency(team.funding) %>
 			<%= team.bus_name %>
+		    <% if can?(:invest, team) %>
+		        <%= link_to new_team_investment_path(team),
+		          class: "btn btn-xs btn-success", role: "button" do %>
+		          <i class="fa fa-dollar"></i> Invest
+		        <% end %>
+		      <% elsif can?(:edit_team, team) %>
+		        <br />
+		        <br />
+		        <%= link_to edit_team_path(team),
+		          class: "btn btn-xs btn-default", role: "button" do %>
+		          Edit your team
+		        <% end %>
+		      <% end %>
 		</div>
 	</div>
 </div>
