@@ -93,7 +93,7 @@ class Team < ActiveRecord::Base
     if clicks
       total_points += clicks * mult * 15
     end
-    total_points.floor
+    [total_points,0].max.floor
   end
 
 end
