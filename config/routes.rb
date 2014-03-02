@@ -9,7 +9,7 @@ DeviseApp::Application.routes.draw do
 
   #resources :conductors
 
-  resources :buspreneurs, only: [:show]
+  resources :buspreneurs, only: [:show, :edit]
 
   #resources :investors
   #  do
