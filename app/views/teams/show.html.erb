@@ -35,15 +35,25 @@
   <div class="row">
     <div class="col-sm-4">
       <h3>Total score</h3> 
+      <% if omniauthable_signed_in? %>
+        <%= content_tag :strong, @team.total_points, class: "sb-team-score" %>
+      <% else %>
+        <p><a href="<%= root_path %>">Log in or register</a> to see score for this team.</p>
+      <% end %>
 
-      <%= content_tag :strong, @team.total_points, class: "sb-team-score" %>
     </div>
 
     <div class="col-sm-4">
       <h3>Total Investment</h3> 
-      <%= content_tag :strong, number_to_currency(@team.funding), class: "sb-team-score" %>
-      <br />
-      <small class="sb-team-leader-meta  muted-text"><%= @team.investments.count %> Investments</small>
+      <% if omniauthable_signed_in? %>
+        <%= content_tag :strong, number_to_currency(@team.funding), class: "sb-team-score" %>
+
+        <br />
+        <small class="sb-team-leader-meta  muted-text"><%= @team.investments.count %> Investments</small>
+      <% else %>
+        <p><a href="<%= root_path %>">Log in or register</a> to see investment stats for this team.</p>
+      <% end %>
+
     </div>
 
     <div class="col-sm-4">
