@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302102455) do
+ActiveRecord::Schema.define(version: 20140302115201) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20140302102455) do
     t.string   "image_url"
   end
 
+  create_table "games", force: true do |t|
+    t.string   "name"
+    t.datetime "start_of_game"
+    t.datetime "end_of_game"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "investments", force: true do |t|
     t.integer  "investor_id"
     t.integer  "team_id"
@@ -28,7 +37,17 @@ ActiveRecord::Schema.define(version: 20140302102455) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
+    t.integer  "game_id"
     t.integer  "clicks"
+  end
+
+  create_table "investor_games", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "team_id"
+    t.integer  "investor_id"
+    t.integer  "investment_id"
+    t.integer  "game_id"
   end
 
   create_table "investor_team_updates", force: true do |t|
@@ -75,12 +94,12 @@ ActiveRecord::Schema.define(version: 20140302102455) do
 
   create_table "omniauthables", force: true do |t|
     t.string   "type"
-    t.string   "email",                                          default: ""
-    t.string   "encrypted_password",                             default: ""
+    t.string   "email",                            default: ""
+    t.string   "encrypted_password",               default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                  default: 0
+    t.integer  "sign_in_count",                    default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -93,7 +112,7 @@ ActiveRecord::Schema.define(version: 20140302102455) do
     t.integer  "approved_by"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "bank",                   precision: 2, scale: 0, default: 1000
+    t.integer  "bank",                   limit: 2, default: 1000
     t.string   "phone_number"
     t.boolean  "imported"
     t.integer  "bus_id"

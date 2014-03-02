@@ -19,11 +19,11 @@ class Investor < Omniauthable
   end
 
   def remove_funds(funds)
-    self.bank -= Float(funds)
+    self.bank -= funds
   end
 
   def add_funds(funds)
-    self.bank += Float(funds)
+    self.bank += funds
   end
 
   def get_points
