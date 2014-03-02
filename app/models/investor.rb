@@ -11,7 +11,7 @@ class Investor < Omniauthable
   end
 
   def total_invested
-    investments.pluck(:amount).reduce(:+)
+    tot ||= investments.pluck(:amount).reduce(:+) || 0
   end
 
   def teams_invested
