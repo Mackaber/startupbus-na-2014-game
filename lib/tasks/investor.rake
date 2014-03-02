@@ -16,7 +16,8 @@ namespace :investor do
         updates = TeamUpdate.where.not(id: investor.team_update_ids).find(investor.teams.collect(&:team_update_ids).flatten.uniq)
         update_body = "<strong>You now have $#{investor.bank} to invest in <a href='http://game.startupbus.com/teams'>StartupBus companies</a>!</strong>"
         updates.each do |update|
-        	update_body.concat("<h1><a href='http://game.startupbus.com/teams/#{update.team_id}'>#{update.team.name}</a></h1><br><img src='#{update.team.photo_url}' /><br><h2>#{update.subject}</h2><p><strong>New Score: #{update.team.total_points}</strong><br>#{update.body}</p><br>")
+          #<strong>New Score: #{update.team.total_points}</strong>
+        	update_body.concat("<h1><a href='http://game.startupbus.com/teams/#{update.team_id}'>#{update.team.name}</a></h1><br><img src='#{update.team.photo_url}' /><br><h2>#{update.subject}</h2><p><br>#{update.body}</p><br>")
         	iu = InvestorTeamUpdate.new
         	iu.team_update = update
         	iu.investor = investor

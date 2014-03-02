@@ -17,7 +17,6 @@
 
 		<div class="sb-team-module-footer">
 	    	<% if omniauthable_signed_in? %>
-				<span class="label label-warning"><%= team.score %> Points</span>
 				<span class="label label-primary"><%= number_to_currency(team.funding) %> Total Funding</span>
 	      	<% else %>
 		        <p><a href="<%= root_path %>">Log in or register</a> to see stats for this team.</p>

@@ -15,7 +15,6 @@
 		</div>
 
 		<div class="sb-team-module-footer">
-			<span class="label label-warning"><%= investments.team.score %> Points</span>
 			<span class="label label-primary"><%= number_to_currency(@investor.investments.group(:team_id).sum(:amount)[investments.team_id]) %> Invested</span>
 			
 			
