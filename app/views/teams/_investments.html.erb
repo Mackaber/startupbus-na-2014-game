@@ -18,6 +18,7 @@
 			score: <%= investments.team.score %>
 			total funding: <%= number_to_currency(investments.team.funding) %>
 			your investment: <%= number_to_currency investments.amount %>
+			Your Short URL: <%= link_to investments.url, investments.url %>
 			<%= investments.team.bus_name %>
 	        <% if can?(:invest, investments.team) %>
 		        <%= link_to new_team_investment_path(investments.team),
