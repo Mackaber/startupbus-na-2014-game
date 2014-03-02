@@ -41,10 +41,10 @@
               <%= link_to "Admin", admin_root_path %>
             </li>
             <% end %>
-            <li>
-              <%= link_to "My profile", current_omniauthable  %>
-            </li>
             <% if can?(:edit_profile, current_omniauthable) %>
+              <li>
+                <%= link_to "My profile", current_omniauthable  %>
+              </li>
               <li>
                 <%= link_to "Edit my profile", url_for([:edit, current_omniauthable]) %>
               </li>
