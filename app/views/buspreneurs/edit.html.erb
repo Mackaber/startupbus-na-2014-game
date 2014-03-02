@@ -19,7 +19,14 @@
       </ul>
     </div>
   <% end %>
-
+  <% if @buspreneur.team.nil? %>
+      <div class="form-group">
+      <%= f.label "Your Team", :class => "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.select(:team_id, @buspreneur.bus.teams.map {|t| [t.name, t.id]}, :include_blank => true) %>
+      </div>
+    </div>
+    <% end %>
   <div class="form-group">
     <%= f.label "Name", :class => "col-sm-3 control-label" %>
     <div class="col-sm-9">
@@ -104,13 +111,9 @@
         <%= f.select(:bus_id, Bus.all.map {|b| [b.name, b.id]}) %>
       </div>
     </div>
-    <div class="form-group">
-      <%= f.label "Your Team", :class => "col-sm-3 control-label" %>
-      <div class="col-sm-9">
-        <%= f.select(:team_id, @buspreneur.bus.teams.map {|t| [t.name, t.id]}) %>
-      </div>
-    </div>
   <% end %>
+
+
 
   <%= f.submit "Save Profile", :class => "btn btn-block btn-primary"  %>
 <% end %>
