@@ -21,6 +21,7 @@ ActiveAdmin.register Investor do
     column :name
     column :total_invested
     column :teams_invested
+    column :bank
 
     actions
   end
@@ -30,6 +31,7 @@ ActiveAdmin.register Investor do
       f.input :email
       f.input :name
       f.input :username
+      f.input :bank
     end
 
     f.actions
@@ -41,6 +43,7 @@ ActiveAdmin.register Investor do
       row("username") { investor.username }
       row("email") { investor.email }
       row("investments") { investor.investments.map(&:amount).reduce(:+) }
+      row("bank") { investor.bank }
     end
   end
 end
