@@ -84,7 +84,7 @@
               <li>
                 <%= link_to "Edit my profile", url_for([:edit, current_omniauthable]) %>
               </li>
-              <% if current.omniauthable.team? %>
+              <% if current_omniauthable.team? %>
                 <li>
                   <%= link_to "My Team", team_path(current_omniauthable.team) %>
                 </li>
