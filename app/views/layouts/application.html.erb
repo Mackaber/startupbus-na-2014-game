@@ -84,7 +84,7 @@
               <li>
                 <%= link_to "Edit my profile", url_for([:edit, current_omniauthable]) %>
               </li>
-              <% if current_omniauthable.team? %>
+              <% if current_omniauthable.is_a?(Buspreneur) and !current_omniauthable.team.nil? %>
                 <li>
                   <%= link_to "My Team", team_path(current_omniauthable.team) %>
                 </li>
