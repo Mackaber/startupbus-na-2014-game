@@ -27,7 +27,7 @@ DeviseApp::Application.routes.draw do
   resources :buses
   resources :milestones
 
-  root to: "home#index"
+  root to: "teams#index"
 
   get 'leaderboard' => 'leaderboard#index'
 
