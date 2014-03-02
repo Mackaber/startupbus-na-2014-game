@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
       Bitly.use_api_version_3
       bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
       bit = bitly_client.clicks(@team.short_url)
-      @team.clicks = bit.user_clicks
+      @team.clicks = bit.global_clicks
       @team.save
     end
   end
