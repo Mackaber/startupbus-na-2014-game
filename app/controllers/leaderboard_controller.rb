@@ -1,7 +1,7 @@
 class LeaderboardController < ApplicationController
 
   def index
-  	@teams = Team.all.sort_by { |team| team.milestone_points }.reverse
+  	@investors = Investor.all.sort_by { |investor| investor.get_points }.reverse
   end
 
 end

@@ -27,7 +27,12 @@ class Investor < Omniauthable
   end
 
   def get_points
-    teams.pluck(:total_points).reduce(:+)
-
+    total_points = 0
+    teams.each do |team|
+      total_points += team.total_points
+    end
+    max_funds = Investment.all.pluck(:amount).reduce(:+)
+    total_points *= (total_invested / max_funds) * 0.37
+    total_points
   end
 end

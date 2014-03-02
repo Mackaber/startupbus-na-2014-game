@@ -42,7 +42,7 @@ class Team < ActiveRecord::Base
   end
 
   def score
-    funding
+    total_points
   end
 
   def <=>(other)
@@ -93,7 +93,7 @@ class Team < ActiveRecord::Base
     if clicks
       total_points += clicks * mult * 15
     end
-    total_points
+    total_points.floor
   end
 
 end
