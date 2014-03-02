@@ -67,7 +67,7 @@
               <%= link_to "Admin", admin_root_path %>
             </li>
             <% end %>
-            <% if can?(:edit_profile, current_omniauthable) %>
+            <% if can?(:edit_profile, current_omniauthable) and current_omniauthable.is_a?(Buspreneur) %>
               <li>
                 <%= link_to "My profile", current_omniauthable  %>
               </li>
