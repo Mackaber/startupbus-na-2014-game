@@ -5,11 +5,6 @@ class Investor < Omniauthable
   has_many :team_updates, through: :investor_team_updates
   validates :bank, numericality: { greater_than_or_equal_to: 0 }
 
-  def request_buspreneurship
-    self.type = "Buspreneur"
-    self.save
-  end
-
   def total_invested
     tot ||= investments.pluck(:amount).reduce(:+) || 0
   end

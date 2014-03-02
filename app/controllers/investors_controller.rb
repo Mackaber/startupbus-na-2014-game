@@ -9,7 +9,8 @@ class InvestorsController < ApplicationController
   end
 
   def request_buspreneurship
-    current_omniauthable.request_buspreneurship
+    current_omniauthable.type = 'Buspreneur'
+    current_omniauthable.save
     redirect_to root_path
   end
 
