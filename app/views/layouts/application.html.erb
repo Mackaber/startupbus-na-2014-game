@@ -9,8 +9,7 @@
 	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	<%= csrf_meta_tags %>
-  <script type="text/javascript" src="//use.typekit.net/qgw6ayk.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
 <style type="text/css" media="screen">
   #twitter-widget-0 {
     display: block;
@@ -35,6 +34,9 @@
   ga('send', 'pageview');
 
 </script>
+
+  <script type="text/javascript" src="//use.typekit.net/qgw6ayk.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 
 <body>
@@ -57,9 +59,7 @@
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://game.startupbus.com/" data-text="Join me and play the StartupBus game at" data-via="TheStartupBus" data-size="small" data-related="TheStartupBus" data-hashtags="StartupBus">Tweet</a>
        <div class="fb-share-button" data-href="http://game.startupbus.com/" data-type="button_count"></div>
     </div>
-        <% unless omniauthable_signed_in? %>
-          <p class="navbar-text">StartupBus North America 2014</p>
-        <% end %>
+
       </div>
 
       <ul class="nav navbar-nav navbar-right">
