@@ -1,3 +1,5 @@
+require "net/http"
+
 class TeamsController < ApplicationController
 
   def new
@@ -22,7 +24,17 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     @team.update_attributes(params[:team])
-
+    if !@team.short_url.present?
+      url = URI.parse(@team.website)
+      req = Net::HTTP.new(url.host, url.port)
+      res = req.request_head(url.path)
+      if res.code == "200"
+        Bitly.use_api_version_3
+        bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
+        bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")
+        @team.short_url = bit.short_url
+      end
+    end
     @team.save
     redirect_to team_path @team
   end
@@ -44,11 +56,15 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    if @team.short_url.present?
-    Bitly.use_api_version_3
-    bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
-    bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")
-    @team.short_url = bit.short_url
+    url = URI.parse(@team.website)
+    req = Net::HTTP.new(url.host, url.port)
+    res = req.request_head(url.path)
+    if res.code == "200"
+      Bitly.use_api_version_3
+      bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
+      bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")
+      @team.short_url = bit.short_url
+    end
     if @team.save
       current_omniauthable.team = @team
       current_omniauthable.save
