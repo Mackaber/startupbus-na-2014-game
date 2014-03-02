@@ -49,8 +49,7 @@
     <div class="col-sm-4">
       <h3>Total Clicks</h3> 
       <% if omniauthable_signed_in? %>
-        <!-- @jon need clicks -->
-        <%= content_tag :strong, @team.score, class: "sb-team-score" %>
+        <%= content_tag :strong, @team.clicks, class: "sb-team-score" %>
       <% else %>
         <p><a href="<%= root_path %>">Log in or register</a> to see click stats for this team.</p>
       <% end %>
