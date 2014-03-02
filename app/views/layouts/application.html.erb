@@ -11,6 +11,20 @@
 	<%= csrf_meta_tags %>
   <script type="text/javascript" src="//use.typekit.net/qgw6ayk.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<style type="text/css" media="screen">
+  #twitter-widget-0 {
+    display: block;
+  }
+</style>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=213307042200239";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </head>
 
 <body>
@@ -23,7 +37,12 @@
         </div>
         <p class="navbar-text">
           <%= link_to 'Dashboard', root_path %>
+
         </p>
+       <div style="float: left;">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://game.startupbus.com/" data-text="Join me and play the StartupBus game at" data-via="TheStartupBus" data-size="small" data-related="TheStartupBus" data-hashtags="StartupBus">Tweet</a>
+       <div class="fb-share-button" data-href="http://game.startupbus.com/" data-type="button_count"></div>
+    </div>
         <% unless omniauthable_signed_in? %>
           <p class="navbar-text">StartupBus North America 2014</p>
         <% end %>
@@ -68,6 +87,7 @@
   </nav>
 
   <div class="container">
+
     <% if notice %>
       <p class="alert alert-success"><%= notice.html_safe %></p>
     <% end %>
