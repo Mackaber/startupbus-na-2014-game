@@ -30,7 +30,7 @@
 	<h3 class="pull-left">StartupBus Teams</h3>
 
 	<% if can?(:create_team, :all) and @current_omniauthable.team.nil? %>  
-	    <a href="<%= edit_buspreneur_path current_omniauthable %>" class="pull-right btm btn-primary btn-sm">Join Team</a>
+	    <a href="<%= buspreneur_path current_omniauthable %>" class="pull-right btm btn-primary btn-sm">Join Team</a>
 		<a href="<%= new_team_path %>" class="pull-right btm btn-primary btn-sm">Create Team</a>
 	<% end %>
 
