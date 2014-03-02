@@ -1,8 +1,9 @@
 namespace :investor do
   desc "Give some money to investors"
-  task :deposit_money => :environment do |t, opts|
+  task :deposit_money, [:amount] => :environment do |t, opts|
+    amount = opts.to_hash.fetch(:amount, 1000)
     Investor.find_each do |investor|
-      investor.add_funds(investor.get_amount)
+      investor.add_funds((investor.get_points/100) * amount)
       investor.save!
     end
   end
