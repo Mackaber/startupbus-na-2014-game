@@ -18,7 +18,7 @@
 <% end %>
 <% if @investor.present? && @investor.investments.present? %>
 <section class="box">
-	<h3 class="pull-left">Your Investments (<%= @total_clicks %> clicks)</h3>
+	<h3 class="pull-left">Your Investments (<%= @total_clicks %> clicks - $<%= @investor.bank %> remaining)</h3>
 	<div class="clearfix"></div>
 	<br />
 	<div class="row">
