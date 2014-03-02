@@ -13,7 +13,11 @@
     </div>
     <div class="col-sm-2  sm-team-actions">
       <%= link_to @team.bus_name, @team.bus, class: "sb-team-bus" %>
-
+       <% if can?(:request_milestone, @team) %>
+      
+                <%= link_to "Submit Team Update", new_team_update_path, class:"btn btn-xs btn-primary" %>
+           
+          <% end %>
       <% if can?(:invest, @team) %>
         <%= link_to new_team_investment_path(@team),
           class: "btn btn-xs btn-success", role: "button" do %>
@@ -32,9 +36,10 @@
 </header>
 
 <section class="sb-team-leaders">
+   
   <div class="row">
     <div class="col-sm-4">
-      <h3>Total score</h3> 
+      <h3>Total Score</h3> 
       <% if omniauthable_signed_in? %>
         <%= content_tag :strong, @team.total_points, class: "sb-team-score" %>
       <% else %>

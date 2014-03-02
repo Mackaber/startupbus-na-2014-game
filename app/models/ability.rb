@@ -51,6 +51,9 @@ class Ability
     can :request_milestone, Team do |team|
       user.team == team
     end
+    can :submit_update, Team do |team|
+      user.team == team
+    end
     can :edit_profile, Buspreneur
   end
 
