@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     @team.update_attributes(params[:team])
-    if @team.short_url.blank?
+    if @team.short_url.nil? || @team.short_url.blank?
       if url_exist?(@team.website)
         Bitly.use_api_version_3
         bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
@@ -94,6 +94,7 @@ class TeamsController < ApplicationController
       ! %W(4 5).include?(res.code[0]) # Not from 4xx or 5xx families
     end
   rescue Exception => e
+    puts e.inspect
     false #false if can't find the server
   end
 
