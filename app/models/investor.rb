@@ -37,8 +37,8 @@ class Investor < Omniauthable
     if max_funds == 0
       max_funds = 1
     end
-    total_points *= total_points * (total_invested/max_funds)
-    total_points += total_clicks * 0.5
-    total_points
+    total_points *= total_points.to_f * (total_invested.to_f/max_funds.to_f)
+    total_points += total_clicks.to_f * 0.5
+    total_points.floor
   end
 end
