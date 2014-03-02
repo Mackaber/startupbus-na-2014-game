@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     @team.update_attributes(params[:team])
-    if !@team.short_url.present?
+    if @team.short_url.blank?
       if url_exist?(@team.website)
         Bitly.use_api_version_3
         bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
