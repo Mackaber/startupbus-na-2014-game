@@ -4,10 +4,9 @@
 		<div class="sb-team-module-header">
 			<h4 class="sb-team-name">
 				<%= link_to team.name, team %>
-				
 			</h4>
 			<p class="sb-team-desc">
-				 <strong><%= link_to team.bus_name, team.bus %></strong> - <%= team.description %>
+				 <%= team.description %>
 			</p>
 		</div>
 
@@ -17,7 +16,10 @@
 
 		<div class="sb-team-module-footer">
 	    	<% if omniauthable_signed_in? %>
-				<span class="label label-primary"><%= number_to_currency(team.funding) %> Total Funding</span>
+
+				<span class="text-success"><%= number_to_currency(team.funding) %> Total Funding</span>
+
+
 	      	<% else %>
 		        <p><a href="<%= root_path %>">Log in or register</a> to see stats for this team.</p>
 	      	<% end %>
@@ -28,13 +30,27 @@
 		          <i class="fa fa-dollar"></i> Invest
 		        <% end %>
 		      <% elsif can?(:edit_team, team) %>
-		        <br />
-		        <br />
-		        <%= link_to edit_team_path(team),
-		          class: "btn btn-xs btn-default", role: "button" do %>
+		        <small><%= link_to edit_team_path(team),
+		          class: "pull-right", role: "button" do %>
 		          Edit your team
 		        <% end %>
+		      </small>
 		      <% end %>
-		</div>
+
+<br />
+
+<div class="row">
+	<div class="col-sm-8">
+		      <span class="sb-team-meta"><%= link_to team.bus_name, team.bus %></span>
+		    </div>
+	<div class="col-sm-4">
+						<span class="sb-team-meta-score pull-right"><%= team.score %> Points</span>
+
 	</div>
+	</div>
+	</div>
+		</div>
+
 </div>
+
+
