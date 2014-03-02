@@ -87,7 +87,7 @@ class Team < ActiveRecord::Base
     #mult = [funding / max_funds, 0.1].max
     mult = [milestone_points / max_points, 0.1].max
     total_points *= mult
-    num_investments = Investment.count
+    num_investments ||= Investment.count || 1
     mult = [investments.count / num_investments, 0.1].max
     total_points *= mult
     if clicks
