@@ -53,6 +53,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+
     if url_exist?(@team.website)
       Bitly.use_api_version_3
       bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
@@ -61,6 +62,7 @@ class TeamsController < ApplicationController
     end
     if @team.save
       current_omniauthable.team = @team
+      current_omniauthable.bus = @team.bus
       current_omniauthable.save
       redirect_to @team, notice: 'Team was successfully created.'
     else
