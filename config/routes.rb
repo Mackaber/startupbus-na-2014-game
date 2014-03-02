@@ -29,5 +29,5 @@ DeviseApp::Application.routes.draw do
   root to: "teams#index"
 
   get 'leaderboard' => 'leaderboard#index'
-
+  get 'leaderboard/iframe' => 'leaderboard#iframe'
 end

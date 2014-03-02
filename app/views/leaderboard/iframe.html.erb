@@ -1,0 +1,13 @@
+    <table>
+	<tr>
+		<td><h3>Investor</h3></td>
+		<td><h3>Points</h3></td>
+		<td><h3>Amount Invested</h3></td>
+	</tr>
+	<% @investors.each do |investor| %>
+		<tr>
+		<td width="33%"><h4><img src="<%= investor.photo_url %>"> <%=investor.name %></h4></td>
+		<td width="5%"><h4><%= investor.get_points.floor %></h4></td>
+		<td width="5%"><h4><%= number_to_currency(investor.total_invested) %></h4></td>
+	</tr>
+	<% end %>

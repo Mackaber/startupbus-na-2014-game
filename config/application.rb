@@ -21,6 +21,6 @@ module DeviseApp
     # config.i18n.default_locale = :de
     config.active_record.whitelist_attributes = false
     config.autoload_paths += %W( #{config.root}/lib )
-
+    config.action_dispatch.default_headers['X-Frame-Options'] = "ALLOW-FROM http://northamerica.startupbus.com"
   end
 end
