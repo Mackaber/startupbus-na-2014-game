@@ -7,25 +7,24 @@ DeviseApp::Application.routes.draw do
     path_names: { sign_in: "login", sign_out: "logout" },
     controllers: { omniauth_callbacks: "omniauth_callbacks" }
 
-  resources :conductors
+  #resources :conductors
 
-  resources :buspreneurs do
-    get :not_allowed
-  end
+  resources :buspreneurs, only: [:show]
 
-  resources :investors do
-    put :request_buspreneurship
-  end
+  #resources :investors
+  #  do
+  #   put :request_buspreneurship
+  # end
 
-  resources :dashboard
-  resources :teams do
+  #resources :dashboard
+  resources :teams, except: [:destroy] do
     resources :investments, only: [:create, :new]
   end
 
   resources :team_milestone_requests, only: [:create, :new]
   resources :team_updates, only: [:create, :new]
-  resources :buses
-  resources :milestones
+  resources :buses, only: [:show]
+#  resources :milestones
 
   root to: "teams#index"
 
