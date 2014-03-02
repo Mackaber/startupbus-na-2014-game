@@ -6,6 +6,7 @@ ActiveAdmin.register TeamMilestoneRequest do
   index do
     selectable_column
     column :team
+    column :bus
     column :milestone
     column :url
     column :description
@@ -16,6 +17,7 @@ ActiveAdmin.register TeamMilestoneRequest do
   show do |team_milestone_request|
     attributes_table do
       row("Team") { team_milestone_request.team.name }
+      row("Bus") { team_milestone_request.team.bus.name }
       row("Milestone") { team_milestone_request.milestone.name }
       row("URL") { team_milestone_request.url }
       row("Description") { team_milestone_request.description }
@@ -34,17 +36,11 @@ ActiveAdmin.register TeamMilestoneRequest do
     f.actions
   end
 
-  member_action :approve_form, :method => :get do
-    @team_milestone_request = TeamMilestoneRequest.find(params[:id])
-    @mt = MilestoneTeam.new
-  end
-
-  member_action :approve_me, :method => :post do
+  member_action :approve, :method => :get do
     team_milestone_request = TeamMilestoneRequest.find(params[:id])
     mt = MilestoneTeam.new
     mt.approved_by = current_omniauthable
     mt.milestone = team_milestone_request.milestone
-    mt.awarded_points = params['milestone_team'][:awarded_points]
     mt.team = team_milestone_request.team
     mt.save!
     team_milestone_request.destroy!
@@ -52,6 +48,6 @@ ActiveAdmin.register TeamMilestoneRequest do
   end
 
   action_item :only => [:show] do
-    link_to "Approve", approve_form_admin_team_milestone_request_path(params[:id])
+    link_to "Approve", approve_admin_team_milestone_request_path(params[:id])
   end
 end

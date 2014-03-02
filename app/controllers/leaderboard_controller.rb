@@ -7,8 +7,8 @@ class LeaderboardController < ApplicationController
   def total_milestone_points(team_id)
   	@total_points = 0
   	@milestone_team = MilestoneTeam.where(:team_id => team_id)
-  	@milestone_team.each do |point|
-  		@total_points += point.awarded_points
+  	@total_points += @milestone_team.each do |point|
+  		@total_points += point.milestone.max_points
   	end
   	@total_points
   end

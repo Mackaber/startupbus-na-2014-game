@@ -56,8 +56,7 @@
         <thead>
           <tr>
             <th>Milestone</th>
-            <th>Possible Points</th>
-            <th>Points Received</th>
+            <th>Points</th>
             <th>Deadline</th>
             <th>Completed At</th>
           </tr>
@@ -68,7 +67,6 @@
               <tr class="success">
                 <td><%= milestone.name %></td>
                 <td><%= milestone.max_points %></td>
-                <td><%= milestone.milestone_teams.first.awarded_points %></td>
                 <td><%= milestone.target_completion_date.strftime("%d-%m-%y") %></td>
                 <td><%= milestone.milestone_teams.first.created_at.strftime("%d-%m-%y") %></td>
               </tr>

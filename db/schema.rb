@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302000537) do
+ActiveRecord::Schema.define(version: 20140302011726) do
 
   create_table "buses", force: true do |t|
     t.string   "name"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20140302000537) do
     t.string   "image_url"
   end
 
+  create_table "games", force: true do |t|
+    t.string   "name"
+    t.datetime "start_of_game"
+    t.datetime "end_of_game"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "investments", force: true do |t|
     t.integer  "investor_id"
     t.integer  "team_id"
@@ -28,6 +37,16 @@ ActiveRecord::Schema.define(version: 20140302000537) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
+    t.integer  "game_id"
+  end
+
+  create_table "investor_games", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "team_id"
+    t.integer  "investor_id"
+    t.integer  "investment_id"
+    t.integer  "game_id"
   end
 
   create_table "investor_team_updates", force: true do |t|
@@ -48,9 +67,8 @@ ActiveRecord::Schema.define(version: 20140302000537) do
   end
 
   create_table "milestone_teams", force: true do |t|
-    t.integer  "milestone_id",   null: false
-    t.integer  "team_id",        null: false
-    t.integer  "awarded_points"
+    t.integer  "milestone_id", null: false
+    t.integer  "team_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "approved_by"

@@ -41,7 +41,6 @@ ActiveAdmin.register Team do
 
       f.has_many :milestone_teams, :allow_destroy => true do |app_f|
         app_f.inputs do
-          app_f.input :awarded_points
           app_f.input :milestone_id, multiple: false, :as => :select, collection: Milestone.all
           app_f.input :team_id, :as => :select, collection: Team.all
         end
