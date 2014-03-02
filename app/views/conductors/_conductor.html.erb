@@ -1,1 +1,14 @@
-<%= link_to conductor.name, conductor_path(conductor) %>
+
+
+<div class="col-xs-6 col-sm-4  sb-buspreneur-container">
+	
+	<div class="sb-buspreneur">
+		<%= image_tag conductor.photo_url(width: 50, height: 50), alt: conductor.name %>
+		<h4>
+			<%= conductor.name %>
+		</h4>
+		<p>
+			<%= conductor.description %>
+		</p>
+		</div>
+</div>
