@@ -9,7 +9,7 @@ DeviseApp::Application.routes.draw do
 
   #resources :conductors
 
-  resources :buspreneurs, only: [:show, :edit]
+  resources :buspreneurs, only: [:show, :edit, :update]
 
   #resources :dashboard
   resources :teams, except: [:destroy] do
