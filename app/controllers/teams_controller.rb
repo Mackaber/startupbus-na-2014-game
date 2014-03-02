@@ -6,6 +6,13 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    if current_omniauthable.team == @team
+      Bitly.use_api_version_3
+      bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
+      bit = bitly_client.clicks(@team.short_url)
+      @team.clicks = bit.user_clicks
+      @team.save
+    end
   end
 
   def edit
