@@ -72,4 +72,12 @@ class Team < ActiveRecord::Base
     end
   end
 
+  def milestone_points
+    total_points = 0
+    milestone_teams.each do |point|
+      total_points += point.milestone.max_points
+    end
+    total_points
+  end
+
 end
