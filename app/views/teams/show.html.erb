@@ -5,7 +5,7 @@
     </div>
 
     <div class="col-sm-9">
-      <h2><%= @team.name %></h2>
+      <h2><%= link_to @team.name, @team.short_url %></h2>
       <p class="sb-team-desc"><%= @team.description %></p>
     <% if current_omniauthable.is_a?(Buspreneur) and current_omniauthable.team == @team %>
       <b>Short URL: </b> <%= link_to @team.short_url, @team.short_url %>
