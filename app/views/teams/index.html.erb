@@ -22,7 +22,7 @@
 	<div class="clearfix"></div>
 	<br />
 	<div class="row">
-		<%= render partial: "investments", collection: @investor.investments.select("url, amount, team_id").joins(:team).group(:team_id) %>
+		<%= render partial: "investments", collection: @investor.investments.select("url, amount, team_id").joins(:team).group(:team_id, :url) %>
 	</div>
 	</section>
 <% end %>
