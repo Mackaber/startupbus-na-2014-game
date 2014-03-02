@@ -25,6 +25,7 @@ ActiveAdmin.register Team do
       row("RSS Feed")       { team.rss_feed }
       row("Logo URL")       { team.logo_url }
       row("Milestones")     { team.milestones.map(&:name).to_sentence }
+      row("Short URL")      { team.short_url }
     end
   end
 
@@ -49,6 +50,7 @@ ActiveAdmin.register Team do
       end
       f.input :rss_feed
       f.input :logo_url
+      f.input :short_url
     end
 
     f.actions
