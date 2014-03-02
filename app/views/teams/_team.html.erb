@@ -4,9 +4,10 @@
 		<div class="sb-team-module-header">
 			<h4 class="sb-team-name">
 				<%= link_to team.name, team %>
+				
 			</h4>
 			<p class="sb-team-desc">
-				<%= team.description %>
+				 <strong><%= link_to team.bus_name, team.bus %></strong> - <%= team.description %>
 			</p>
 		</div>
 
@@ -15,9 +16,8 @@
 		</div>
 
 		<div class="sb-team-module-footer">
-			score: <%= team.score %>
-			funding: <%= number_to_currency(team.funding) %>
-			<%= team.bus_name %>
+			<span class="label label-warning"><%= team.score %> Points</span>
+			<span class="label label-primary"><%= number_to_currency(team.funding) %> Total Funding</span>
 		    <% if can?(:invest, team) %>
 		        <%= link_to new_team_investment_path(team),
 		          class: "btn btn-xs btn-success", role: "button" do %>

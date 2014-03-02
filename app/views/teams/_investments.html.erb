@@ -6,7 +6,7 @@
 				<%= link_to investments.team.name, investments.team %> (<%= @click_count[investments.url] %> clicks)
 			</h4>
 			<p class="sb-team-desc">
-				<%= investments.team.description %>
+				 <strong><%= link_to investments.team.bus_name, investments.team.bus %></strong> - <%= investments.team.description %>
 			</p>
 		</div>
 
@@ -15,11 +15,11 @@
 		</div>
 
 		<div class="sb-team-module-footer">
-			score: <%= investments.team.score %>
-			total funding: <%= number_to_currency(investments.team.funding) %>
-			your investment: <%= number_to_currency investments.amount %>
-			Your Short URL: <%= link_to investments.url, investments.url %>
-			<%= investments.team.bus_name %>
+			<span class="label label-warning"><%= investments.team.score %> Points</span>
+			<span class="label label-primary"><%= number_to_currency(investments.amount) %> Invested</span>
+			
+			
+
 	        <% if can?(:invest, investments.team) %>
 		        <%= link_to new_team_investment_path(investments.team),
 		          class: "btn btn-xs btn-success", role: "button" do %>
@@ -33,6 +33,8 @@
 		          Edit your team
 		        <% end %>
 		      <% end %>
+		      <br />
+		      Your URL: <%= link_to investments.url, investments.url %>
 		</div>
 	</div>
 </div>
