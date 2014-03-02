@@ -19,8 +19,11 @@
       <div class="navbar-header">
         <div class="navbar-brand">
           <%= link_to image_tag('sb-game-logo.svg'), root_path %>
-        </div>
 
+        </div>
+        <p class="navbar-text">
+          <%= link_to 'Dashboard', root_path %>
+        </p>
         <% unless omniauthable_signed_in? %>
           <p class="navbar-text">StartupBus North America 2014</p>
         <% end %>
