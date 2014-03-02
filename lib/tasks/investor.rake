@@ -4,7 +4,7 @@ namespace :investor do
     if [1,4,7,10].include?(Time.now.hour)
       amount = opts.to_hash.fetch(:amount, 1000)
       Investor.find_each do |investor|
-        investor.add_funds([investor.get_points * amount,100].max)
+        investor.add_funds(amount) #[investor.get_points * amount,100].max)
         investor.save!
       end
     end
