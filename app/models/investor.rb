@@ -23,6 +23,10 @@ class Investor < Omniauthable
 
   def get_points
     total_points = 0
+    total_clicks = 0
+    investments.each do |investment|
+      total_clicks += investment.clicks 
+    end
     teams.each do |team|
       total_points += team.total_points
     end
@@ -33,7 +37,8 @@ class Investor < Omniauthable
     if max_funds == 0
       max_funds = 1
     end
-    total_points *= total_points * (max_funds/total_invested)
+    total_points *= total_points * (total_invested/max_funds)
+    total_points += total_clicks * 0.5
     total_points
   end
 end
