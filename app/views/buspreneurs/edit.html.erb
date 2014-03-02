@@ -1,22 +1,124 @@
-<%= simple_form_for @buspreneur do |f| %>
-  <%= f.input :name %>
-  <%= f.input :email %>
-  <%= f.input :phone_number %>
-  <%= f.input :description %>
-  <%= f.input :blog %>
-  <%= f.input :facebook %>
-  <%= f.input :foursquare %>
-  <%= f.input :github %>
-  <%= f.input :linkedin %>
-  <%= f.input :twitter %>
-  <%= f.input :website %>
 
-  <% if can?(:manage, :all) %>
-    <%= f.input :bus_id, as: :select, collection: Bus.all %>
-    <p class="note small">If changing buses, please save and refresh to gather the list
-    of teams in that bus</p>
-    <%= f.input :team_id, as: :select, collection: @buspreneur.bus.teams %>
+<section class="box">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="component-box">
+
+
+    <h2>Edit Your Profile</h2>
+
+    <%= form_for(@buspreneur, :html => {:class => 'form-horizontal'}) do |f| %>
+  <% if @buspreneur.errors.any? %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <h4><%= pluralize(@buspreneur.errors.count, "error") %> prohibited your profile from being saved:</h4>
+
+      <ul>
+      <% @buspreneur.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
 
-  <%= f.submit %>
+  <div class="form-group">
+    <%= f.label "Name", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :name, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "E-Mail", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :email, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Cell Phone Number", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :phone_number, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Description", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_area :description, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Blog", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :blog, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Facebook Profile", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :facebook, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Foursquare Profile", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :foursquare, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "GitHub Profile", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :github, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "LinkedIn Profile", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :linkedin, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Twitter Profile", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :twitter, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Website", :class => "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_field :website, :class => "form-control" %>
+    </div>
+  </div>
+
+  <% if can?(:manage, :all) %>
+    <div class="form-group">
+      <%= f.label "Your Bus", :class => "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.select(:bus_id, Bus.all.map {|b| [b.name, b.id]}) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label "Your Team", :class => "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.select(:team_id, @buspreneur.bus.teams.map {|t| [t.name, t.id]}) %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.submit "Save Profile", :class => "btn btn-block btn-primary"  %>
 <% end %>
+  </div>
+
+  <a href="<%= teams_path %>" class="back-link"><i class="fa fa-arrow-left"></i> Back to team listings</a>
+</div>
+
+  <div class="clearfix"></div>
+  <br />
+</section>
