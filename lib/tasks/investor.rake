@@ -3,7 +3,7 @@ namespace :investor do
   task :deposit_money, [:amount] => :environment do |t, opts|
     amount = opts.to_hash.fetch(:amount, 1000)
     Investor.find_each do |investor|
-      investor.add_funds((investor.get_points/100) * amount)
+      investor.add_funds((investor.get_points/1000) * amount)
       investor.save!
     end
   end
