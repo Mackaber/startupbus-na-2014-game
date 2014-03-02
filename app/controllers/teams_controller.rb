@@ -16,6 +16,14 @@ class TeamsController < ApplicationController
   end
 
   def edit
+    @team = Team.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    @team.update_attributes(params[:team])
+    @team.save
+    redirect_to team_path @team
   end
 
   def index

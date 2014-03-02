@@ -15,7 +15,7 @@ class Team < ActiveRecord::Base
 
   validates :name, :website, :uniqueness => true
 
-  validates_uniqueness_of :twitter_handle, :github_url, :facebook_url, :allow_blank => true, :allow_nil => true
+#  validates_uniqueness_of :twitter_handle, :github_url, :facebook_url, :allow_blank => true, :allow_nil => true
 
 
   validates :description, presence: true
@@ -78,6 +78,10 @@ class Team < ActiveRecord::Base
       total_points += point.milestone.max_points
     end
     total_points
+  end
+
+  def total_points
+    mpoints = milestone_points
   end
 
 end
