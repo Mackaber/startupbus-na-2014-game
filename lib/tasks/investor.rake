@@ -1,13 +1,13 @@
 namespace :investor do
   desc "Give some money to investors"
   task :deposit_money, [:amount] => :environment do |t, opts|
-    if [1,4,7,10].include?(Time.now.hour)
+  #  if [1,4,7,10].include?(Time.now.hour)
       amount = opts.to_hash.fetch(:amount, 1000)
       Investor.find_each do |investor|
-        investor.add_funds(amount) #[investor.get_points * amount,100].max)
+        investor.add_funds(300)
         investor.save!
       end
-    end
+    #end
   end
 
   task :update => :environment do
