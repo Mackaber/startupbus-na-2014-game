@@ -26,7 +26,7 @@ class Investor < Omniauthable
     teams.each do |team|
       total_points += team.total_points
     end
-    max_funds ||= Investment.all.pluck(:amount).reduce(:+) || 1
+    max_funds = Investment.all.pluck(:amount).reduce(:+)
     if max_funds == 0
       max_funds = 1
     end
