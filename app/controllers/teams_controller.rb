@@ -25,13 +25,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @team.update_attributes(params[:team])
     if !@team.short_url.present?
-      url = URI.parse(@team.website)
-      req = Net::HTTP.new(url.host, url.port)
-      res = req.request_head(url.path)
-      rescue Errno::ENOENT
-        false # false if can't find the server
-      end
-      if res.code == "200"
+      if url.exist?(@team.website)
         Bitly.use_api_version_3
         bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
         bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")
@@ -59,13 +53,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    url = URI.parse(@team.website)
-    req = Net::HTTP.new(url.host, url.port)
-    res = req.request_head(url.path)
-    rescue Errno::ENOENT
-      false # false if can't find the server
-    end
-    if res.code == "200"
+    if url.exist?(@team.website)
       Bitly.use_api_version_3
       bitly_client = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API_KEY'])
       bit = bitly_client.shorten("#{@team.website}?utm_source=game&utm_medium=link&utm_campaign=TEAM")
@@ -89,6 +77,21 @@ class TeamsController < ApplicationController
   def team_params
     params.require(:team).permit :description,
       :name, :website, :twitter_handle, :facebook_url, :github_url, :bus_id
+  end
+
+  def url_exist?(url_string)
+    url = URI.parse(url_string)
+    req = Net::HTTP.new(url.host, url.port)
+    req.use_ssl = (url.scheme == 'https')
+    path = url.path if url.path.present?
+    req.request_head(path || '/')
+    if res.kind_of?(Net::HTTPRedirection)
+      url_exist?(res['location']) # Go after any redirect and make sure you can access the redirected URL 
+    else
+      ! %W(4 5).include?(res.code[0]) # Not from 4xx or 5xx families
+    end
+  rescue Errno::ENOENT
+    false #false if can't find the server
   end
 
   def tally_links
