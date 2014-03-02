@@ -17,11 +17,14 @@
 	</div>
 <% end %>
 <% if @investor.present? %>
-	<h2 class="sb-collection-title">Your Portfolio (<%= @total_clicks %> clicks)</h2>
-
+<section class="box">
+	<h3 class="pull-left">Your Portfolio (<%= @total_clicks %> clicks)</h3>
+	<div class="clearfix"></div>
+	<br />
 	<div class="row">
 		<%= render partial: "investments", collection: @investor.investments %>
 	</div>
+	</section>
 <% end %>
 <section class="box">
 	<h3 class="pull-left">StartupBus Teams</h3>
