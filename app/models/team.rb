@@ -81,7 +81,19 @@ class Team < ActiveRecord::Base
   end
 
   def total_points
-    mpoints = milestone_points
+    total_points = funding
+    max_points = Milestone.all.pluck(:max_points).reduce(:+)
+    #max_funds = Investment.all.pluck(:amount).reduce(:+)
+    #mult = [funding / max_funds, 0.1].max
+    mult = [milestone_points / max_points, 0.1].max
+    total_points *= mult
+    num_investments = Investment.count
+    mult = [investments.count / num_investments, 0.1].max
+    total_points *= mult
+    if clicks
+      total_points += clicks * mult * 15
+    end
+    total_points
   end
 
 end
