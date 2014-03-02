@@ -80,6 +80,9 @@ class TeamsController < ApplicationController
   end
 
   def url_exist?(url_string)
+    if url_string.nil? || url_string.blank?
+      false
+    end
     url = URI.parse(URI.encode(url_string.strip))
     req = Net::HTTP.new(url.host, url.port)
     req.use_ssl = (url.scheme == 'https')
